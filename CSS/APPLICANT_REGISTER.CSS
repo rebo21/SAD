@@ -1,0 +1,265 @@
+/* VERSION 3 */
+
+@import url('https://fonts.cdnfonts.com/css/trajan-pro');
+
+/* BODY */
+body 
+{
+  margin: 0;
+  font-family: trajan pro, serif;
+  color: white;
+  background-image: url(../IMAGES/BG.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+/* HEADER */
+.header 
+{
+  overflow: hidden;
+  background: linear-gradient(180deg, #7A0042 0%, rgba(255, 0, 168, 0.00) 100%);    
+}
+  
+.header a 
+{
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding-top: 15px;
+  text-decoration: none;
+  font-size: 17px;
+  height: 100px;
+}
+  
+.header .icon 
+{
+  display: none;
+}
+  
+@media screen and (max-width: 600px) 
+{
+  .header a:not(:first-child) 
+  {
+    display: none;
+  }
+  .header a.icon 
+  {
+    float: right;
+    display: block;
+  }
+}
+  
+@media screen and (max-width: 600px) {
+  .header.responsive 
+  {
+    position: relative;
+  }
+  .header.responsive .icon 
+  {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .header.responsive a 
+  {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+
+/* CARDS */ 
+
+
+.card1
+{
+  width: 800px;
+  height: 480px;
+  padding: 20px 20px 20px;
+  padding-top: 10px;
+  border-radius: 25px;
+  border: 5px solid #000;
+  background: linear-gradient(180deg, rgba(156, 7, 88, 0.20) 0%, rgba(156, 7, 88, 0.20) 50.01%, rgba(156, 7, 88, 0.20) 100%);
+  backdrop-filter: blur(5px);
+  font-weight: bold 10px;
+}
+
+.card1 h1
+{
+    font-family: trajan pro, serif;
+    color: white;
+    font-size: 30px;
+    line-height: 15px;
+    font-weight: bolder;
+}
+
+
+
+
+
+.card2
+{
+    width: 90%;
+    height: 35px;
+    background-color: transparent;
+    padding: 5px 5px 5px;
+    color: white;
+    
+}
+
+
+
+.card3
+{
+    width: 100%;
+    height:fit-content;
+    text-align: center;
+    background-color: transparent;
+    margin-top: 10px;
+}
+
+.card3 h3
+{
+    font-family: trajan pro, serif;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+   
+}
+
+
+.col1
+{
+    width: 50%;
+    float: left;
+    background-color: transparent;
+
+}
+
+.col2
+{
+    width: 50%;
+    float: left;
+    background-color: transparent;
+    
+}
+
+.col3
+{
+    width: 100%;
+    float: left;
+    background-color: transparent;
+    
+}
+
+
+
+input[type=text], input[type=password], input[type=number], input[type=email], select
+{
+    width: 660px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-top: none;
+    display: inline-block;
+    border-bottom: 3px solid white;
+    box-sizing: border-box;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 15px;
+    color: white;
+    background-color: transparent;
+    text-align: left;
+    font-family: trajan pro, serif;
+    font-weight: bolder;
+}
+
+option
+{
+    color: black;
+    border-style: none;
+}
+
+::placeholder 
+{
+    color: white;
+    font-family: trajan pro, serif;
+    font-size: 15px;
+    font-weight:bolder;
+}
+
+::placeholder select
+{
+    color: black;
+    font-family: trajan pro, serif;
+    font-size: 15px;
+    font-weight:bolder;
+
+}
+
+
+
+
+/* MODAL */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+  
+.modal-content 
+{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #e57eb5;
+    width: 80%;
+    height: 300px;
+    color: black
+}
+  
+.close 
+{
+    color: #e57eb5;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus 
+{
+    color: #9c0758;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* BUTTON */
+.register
+{
+ 
+  border-radius: 25px;
+  background-color: #9C0758;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+  font-family: trajan pro, serif;
+  font-size: 25px;
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-right: 60px;
+}

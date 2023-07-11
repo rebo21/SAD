@@ -1,0 +1,102 @@
+.column {
+  
+    padding: 10px;
+  }
+  
+  /* Left and right column */
+  .column.side {
+    width: 15%;
+    float: right;
+    background-color: wheat;
+    
+  }
+
+  
+  /* Middle column */
+  .column.middle {
+    width: 75%;
+    float: left;
+    background-color: white;
+  }
+  
+  /* Clear floats after the columns */
+  .row::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .column.side, .column.middle {
+      width: 100%;
+    }
+  }
+
+
+.card1
+{
+    width: 750px;
+    height: 1000px;
+    background-color: pink;
+    border: solid 5px #9c0758;
+    border-radius: 25px;
+    margin-top: 50px;
+}
+
+.card2
+{
+    width: 750px;
+    height: 50px;
+    background-color: transparent;
+    border-bottom: solid 5px #9c0758;
+}
+
+.card2 h1
+{
+    color: black;
+    font-size: 30px;
+    text-align: center;
+}
+
+.card3A
+{
+    width: 500px;
+    height: 250px;
+    float: left;
+    background-color: transparent;
+   
+}
+
+.card3A h2
+{
+    font-size: 25px;
+    color:#9c0758;
+    margin-left: 10px;
+}
+
+.card3A h3
+{
+    font-size: 15px;
+    color: black;
+    margin-left: 15px;
+    line-height: 8px;
+}
+
+.card3B
+{
+    width: 250px;
+    height: 250px;
+    float: right;
+    background-color: transparent;
+    
+}
+
+
+.card3C
+{
+    width: 750px;
+    height: 100px;
+    float: left;
+    background-color: transparent;
+    border-bottom: solid 3px #9c0758;
+}
