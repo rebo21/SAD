@@ -1,0 +1,357 @@
+/* VERSION 1 */
+
+@import url('https://fonts.cdnfonts.com/css/trajan-pro');
+
+                
+* {
+	box-sizing: border-box;
+	
+}
+
+
+/* BODY */
+body 
+{
+  margin: 0;                    
+	color: white;
+	background-image: url(../IMAGES/BACKGROUND.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: trajan pro, serif;
+}
+
+
+/* NAVIGATION BAR */
+.navbar 
+{
+  width: 100%;
+ background-image: url("../IMAGES/HEADER.png");
+ background-size: cover;
+  font-size: 20px;
+  color: black;
+}
+
+
+.navbar-links 
+{
+  height: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  float: center;
+  width: 100%;
+    
+}
+
+.navbar-links ul 
+{
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li 
+{
+  list-style: none;
+  float: center;
+  width: fit-content;   
+  height: 110px;
+  padding-top: 30px;
+}
+
+.navbar-links li a 
+{
+  display: block;
+  text-decoration: none;
+  color: black;
+  padding: 1rem;
+  text-shadow: 3px 3px 5px gray;
+}
+
+.navbar-links li:hover 
+{
+  text-decoration-style: solid;
+  text-decoration-thickness: 3px;
+  text-decoration: underline 5px solid #9c0758;
+  background-color: transparent;
+}
+
+.toggle-button 
+{
+  position: absolute;
+  top: .75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.toggle-button .bar 
+{
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+
+/* NAVIGATION BAR - RESPONSIVE */
+@media (max-width: 1000px) 
+{
+  .navbar 
+  {
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    font-size: 15px;
+  }
+
+  .toggle-button 
+  {
+    display: flex;
+    margin-top: 120px;
+  }
+
+  .navbar-links 
+  {
+    display: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-links ul 
+  {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .navbar-links ul li 
+  {
+    text-align: center;
+    width: 100%;
+  }
+
+  .navbar-links ul li a 
+  {
+    padding: .5rem 1rem;
+    text-align: center;     
+  }
+
+  .navbar-links.active 
+  {
+    display: flex;
+  }
+}
+
+
+/* COLUMN */
+.column
+{
+  width: 100%;
+  height: 1000px;
+  background-color: transparent;
+}
+
+
+/* CARDS */
+.card1
+{
+  height: 500px;
+  width: 85%;
+  margin-left: 0px;
+  background-color: transparent;
+  flex-basis: 85%;
+  float: center;
+  margin-bottom: 50px;
+}
+
+
+.card2
+{
+  height: 500px;
+  width: 85%;
+  margin-left: 0px;
+  background-color: transparent;
+  flex-basis: 85%;
+  float: center;
+  padding: 30px 30px 30px;
+}
+
+.card2 h1
+{
+  font-family: trajan pro, serif;
+  font-size: 35px;
+  font-weight: bolder;
+  color: black;
+}
+
+.card3
+{
+  background-color: transparent;
+  width: 100%;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+
+
+.card4
+{
+  margin-top: 20px;
+  background-color: transparent;
+  width: 100%;
+  height: 300px;
+  padding: 30px 30px 30px;
+}
+
+.col1
+{
+  background-color: transparent;
+  width: 30%;
+  margin-right: 5%;
+  float: left;
+
+}
+
+.col2
+{
+  background-color: transparent;
+  width: 30%;
+  margin-right: 5%;
+  float: left;
+
+}
+
+.col3
+{
+  background-color: transparent;
+  width: 30%;
+  float: left;
+
+
+}
+
+
+
+
+
+
+/* IMAGE MAGNIFIER */
+.img-magnifier-container {
+  position:relative;
+}
+
+.img-magnifier-glass {
+  position: absolute;
+  border: 3px solid #000;
+  border-radius: 50%;
+  cursor: none;
+  /*Set the size of the magnifier glass:*/
+  width: 100px;
+  height: 100px;
+}
+
+
+/* Set a style for all buttons */
+button {
+  background-color: #9c0758;
+  color: white;
+  font-size: 20px;
+  font-family: trajan pro, serif;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+.container {
+  padding: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: pink;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 5px solid #9c0758;
+  border-radius: 15px;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 400px;
+}
+
+.modal-content h2
+{
+  padding-top: 30px;
+  font-size: 30px;
+  color: black;
+  font-weight: bolder;
+}
+
+.modal-content h3
+{
+  padding-top: 10px;
+  font-size: 25px;
+  color: black;
+  font-weight: bold;
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+

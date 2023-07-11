@@ -1,17 +1,24 @@
-/* VERSION 3 */
+/* VERSION 1 */
 
 @import url('https://fonts.cdnfonts.com/css/trajan-pro');
+
+                
+* {
+	box-sizing: border-box;
+	
+}
+
 
 /* BODY */
 body 
 {
-  margin: 0;
-  font-family: trajan pro, serif;
-  color: white;
-  background-image: url(../IMAGES/BG.png);
+  margin: 0;                    
+	color: white;
+	background-image: url(../IMAGES/BACKGROUND.png);
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: trajan pro, serif;
 }
 
 
@@ -19,98 +26,192 @@ body
 .header 
 {
   overflow: hidden;
-  background: linear-gradient(180deg, #7A0042 0%, rgba(255, 0, 168, 0.00) 100%);    
+  background-image: url(../IMAGES/HEADER.png);
+  background-size: cover;
+  text-align: center;
+  padding: 10px 20px;
+  padding-top: 5px;
+  position: relative;
 }
-  
+
 .header a 
 {
-  float: left;
   display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding-top: 15px;
+}
+
+.header:hover
+{
+  background-color: pink;
+}
+
+
+/* NAVIGATION BAR */
+.navbar 
+{
+  width: 100%;
+  background-color: transparent;
+  font-size: 25px;
+  color: black;
+}
+
+
+.navbar-links 
+{
+  height: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  float: center;
+  width: 100%;
+    
+}
+
+.navbar-links ul 
+{
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li 
+{
+  list-style: none;
+  float: center;
+  width: 20%;   
+}
+
+.navbar-links li a 
+{
+  display: block;
   text-decoration: none;
-  font-size: 17px;
-  height: 100px;
+  color: black;
+  padding: 1rem;
+  text-shadow: 3px 3px 5px gray;
 }
-  
-.header .icon 
+
+.navbar-links li:hover 
 {
+  text-decoration-style: solid;
+  text-decoration-thickness: 3px;
+  background-color: #e57eb5;
+}
+
+.toggle-button 
+{
+  position: absolute;
+  top: .75rem;
+  right: 1rem;
   display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
 }
-  
-@media screen and (max-width: 600px) 
+
+.toggle-button .bar 
 {
-  .header a:not(:first-child) 
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+
+/* NAVIGATION BAR - RESPONSIVE */
+@media (max-width: 1000px) 
+{
+  .navbar 
+  {
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    font-size: 15px;
+  }
+
+  .toggle-button 
+  {
+    display: flex;
+    margin-top: 120px;
+  }
+
+  .navbar-links 
   {
     display: none;
+    width: 100%;
+    text-align: center;
   }
-  .header a.icon 
+
+  .navbar-links ul 
   {
-    float: right;
-    display: block;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .navbar-links ul li 
+  {
+    text-align: center;
+    width: 100%;
+  }
+
+  .navbar-links ul li a 
+  {
+    padding: .5rem 1rem;
+    text-align: center;     
+  }
+
+  .navbar-links.active 
+  {
+    display: flex;
   }
 }
-  
-@media screen and (max-width: 600px) {
-  .header.responsive 
-  {
-    position: relative;
-  }
-  .header.responsive .icon 
-  {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .header.responsive a 
-  {
-    float: none;
-    display: block;
-    text-align: left;
-  }
+
+
+/* COLUMN */
+.column
+{
+  width: 100%;
+  height: 1000px;
+  background-color: transparent;
 }
 
 
-
-
-/* CARDS */ 
-
-
+/* CARD */
 .card1
 {
-  width: 800px;
-  height: 500px;
+  width: 60%;
+  height: 1050px;
   padding: 20px 20px 20px;
-  padding-top: 10px;
-  border-radius: 25px;
-  border: 5px solid #000;
-  background: linear-gradient(180deg, rgba(156, 7, 88, 0.20) 0%, rgba(156, 7, 88, 0.20) 50.01%, rgba(156, 7, 88, 0.20) 100%);
-  backdrop-filter: blur(0px);
+  border-radius: 10px;
+  border: solid 5px #9c0758;
+  background: rgba(255, 255, 255, 0.192);
+  backdrop-filter: blur(10px);
   font-weight: bold 10px;
 }
 
 .card1 h1
 {
     font-family: trajan pro, serif;
-    color: white;
-    font-size: 30px;
-    line-height: 15px;
-    font-weight: bolder;
+    color: black;
+    font-size: 35px;
+    line-height: 30px;
+    font-weight: 50px;
 }
 
-
-
-
+.card1 h2
+{
+    font-family: trajan pro, serif;
+    color: black;
+    font-size: 20px;
+    text-align: left;
+    line-height: 10px;
+}
 
 .card2
 {
     width: 90%;
-    height: 35px;
-    background-color: transparent;
-    padding: 5px 5px 5px;
-    color: white;
-    
+    height: fit-content;
+    background-color: white;
+    margin-bottom: 10px;
+
 }
 
 
@@ -118,22 +219,29 @@ body
 .card3
 {
     width: 100%;
+    margin-top: 15px;
     height:fit-content;
     text-align: center;
-    background-color: transparent;
-    margin-top: 10px;
+    background-color: pink;
 }
 
 .card3 h3
 {
     font-family: trajan pro, serif;
-    color: white;
+    color: black;
     font-size: 15px;
     text-align: center;
-   
+    line-height: 10px;
 }
 
 .col1
+{
+    width: 90%;
+    float: left;
+    
+}
+
+.col2
 {
     width: 100%;
     float: left;
@@ -141,112 +249,108 @@ body
     
 }
 
-
-
-input[type=text], input[type=password], input[type=number], input[type=email], input[type=tel], select
+input[type=text], input[type=password], input[type=number], input[type=tel], select
 {
-    width: 650px;
-    padding-top: 10px;
-    padding-bottom: 5px;
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
     display: inline-block;
-    border-bottom: 3px solid #FF008B;
+    border: 1px solid #ccc;
     box-sizing: border-box;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    font-size: 15px;
+    border-radius: 10px;
+    
+    
+}
+
+input[type=password]
+{
+  width: 65%;
+}
+
+input[type=number]
+{
+  width: 60%;
+}
+
+button 
+{
+    background-color: #9c0758;
     color: white;
-    background-color: transparent;
-    text-align: left;
-    font-family: trajan pro, serif;
-    font-weight: bolder;
-}
-
-option
-{
-    color: black;
-}
-
-::placeholder 
-{
-    color: white;
-    font-family: trajan pro, serif;
-    font-size: 15px;
-    font-weight:bolder;
-}
-
-::placeholder select
-{
-    color: black;
-    font-family: trajan pro, serif;
-    font-size: 15px;
-    font-weight:bolder;
-}
-
-
-/* MODAL */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-  
-.modal-content 
-{
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #e57eb5;
-    width: 80%;
-    height: 300px;
-    color: black
-}
-  
-.close 
-{
-    color: #e57eb5;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-  
-.close:hover,
-.close:focus 
-{
-    color: #9c0758;
-    text-decoration: none;
+    padding: 14px 20px;
+    border: transparent;
+    border-radius: 10px;
     cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    font-size: 25px;
 }
-
-
-/* BUTTON */
-.register
+  
+button:hover 
 {
- 
-  border-radius: 25px;
-  background-color: #9C0758;
-  color: white;
-  padding: 5px;
-  cursor: pointer;
-  font-family: trajan pro, serif;
-  font-size: 25px;
-  width: 300px;
-  height: 40px;
-  margin-left: 20px;
-  margin-right: 60px;
+    opacity:1;
 }
 
-span.psw 
+.signupbtn 
 {
     float: center;
-    padding-top: 16px;
+    width: fit-content;
+    font-family: trajan pro, serif;
+}
 
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #e57eb5;
+  width: 80%;
+  height: 300px;
+  color: black
+}
+
+/* The Close Button */
+.close {
+  color: #e57eb5;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #9c0758;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.error-message {
+  color: black;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 10px;
+  background-color: #ffdddd;
+  border: 1px solid #ff0000;
+  border-radius: 5px;
+  position: fixed;
+   top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
 }

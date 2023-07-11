@@ -1,0 +1,342 @@
+/* VERSION 1 */
+
+@import url('https://fonts.cdnfonts.com/css/trajan-pro');
+
+                
+* {
+	box-sizing: border-box;
+	
+}
+
+
+/* BODY */
+body 
+{
+  margin: 0;                    
+	color: white;
+	background-image: url(../IMAGES/BACKGROUND.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  font-family: trajan pro, serif;
+}
+
+
+
+
+
+/* NAVIGATION BAR */
+.navbar 
+{
+  width: 100%;
+  background-image: url("../IMAGES/HEADER.png");
+  background-size: cover;
+  font-size: 20px;
+  color: black;
+}
+
+
+.navbar-links 
+{
+  height: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  float: center;
+  width: 100%;
+    
+}
+
+.navbar-links ul 
+{
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li 
+{
+  list-style: none;
+  float: center;
+  width: fit-content;   
+  height: 110px;
+  padding-top: 30px;
+}
+
+.navbar-links li a 
+{
+  display: block;
+  text-decoration: none;
+  color: black;
+  padding: 1rem;
+  text-shadow: 3px 3px 5px gray;
+}
+
+.navbar-links li:hover 
+{
+  text-decoration-style: solid;
+  text-decoration-thickness: 3px;
+  text-decoration: underline 5px solid #9c0758;
+  background-color: transparent;
+}
+
+.navbar-links a.active
+{
+    text-decoration: underline solid 5px #9c0758;
+    color: #9c0758;
+}
+
+.toggle-button 
+{
+  position: absolute;
+  top: .75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.toggle-button .bar 
+{
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+
+/* NAVIGATION BAR - RESPONSIVE */
+@media (max-width: 1000px) 
+{
+  .navbar 
+  {
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    font-size: 15px;
+  }
+
+  .toggle-button 
+  {
+    display: flex;
+    margin-top: 120px;
+  }
+
+  .navbar-links 
+  {
+    display: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-links ul 
+  {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .navbar-links ul li 
+  {
+    text-align: center;
+    width: 100%;
+  }
+
+  .navbar-links ul li a 
+  {
+    padding: .5rem 1rem;
+    text-align: center;     
+  }
+
+  .navbar-links.active 
+  {
+    display: flex;
+  }
+}
+
+
+.column 
+{
+  float: left;
+  padding: 0px;
+  width: 100%;
+  height: 500px;
+ background-color: transparent;
+}
+
+
+
+.column.left
+{
+  width: 40%;
+  height: 800px;
+  background-color: transparent;
+}
+
+.column.right
+{
+  width: 60%;
+  height: 800px;
+  background-color: transparent;
+  margin-top: 50px;
+}
+
+.row::after 
+{
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) 
+{
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+
+.card1 
+{
+  height: 450px;
+  width: 50%;
+  margin-top: 50px;
+  margin-left: 50px;
+  background-color: transparent;
+  flex-basis: 100%;
+  float: left;
+  text-align: center;
+  border: 2px solid #9c0758;
+}
+
+.card1 h1
+{
+  font-size: 25px;
+  color: black;
+}
+
+.card1 h2
+{
+  font-size: 50px;
+  color: black;
+
+}
+
+.card1 h3
+{
+  font-size: 20px;
+  color: black;
+
+}
+
+
+
+.card2
+{
+  height: 450px;
+  width: 550px;
+  margin-top: 50px;
+  margin-right: 50px;
+  background-image: url(../IMAGES/LANDINGPAGE.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  flex-basis: 100%;
+  float: right;
+  text-align: center;
+  border: 2px solid #9c0758;
+}
+
+
+
+.card1A
+{
+  width: 100%;
+  height: 100px;
+  background-color: transparent;
+ 
+  float: left;
+}
+
+
+
+.card input[type=text] 
+{ 
+  padding: 10px;
+  margin-top: 0px;
+  margin-right: 16px;
+  background-color: white;
+  font-size: 25px;
+  text-align: center;
+  color: black;
+  width: 70%;
+  font-family: trajan pro, serif;
+  border-radius: 10px;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 25px;
+  margin-left: 50px;
+  border: 2px solid #9c0758;
+  float: left;
+  width: 60%;
+  background: #f1f1f1;
+  font-family: trajan pro, serif;
+  text-align: center;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #e57eb5;
+  color: white;
+  font-size: 25px;
+  border: 2px solid #9c0758;
+  font-family: trajan pro, serif;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #ec44a1;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* BUTTON */
+.btn {
+  
+  border-radius: 10px;
+  background-color: #9c0758;
+  color: white;
+  padding: 14px;
+  cursor: pointer;
+  font-family: trajan pro, serif;
+  font-size: 25px;
+  width: 50%;
+  margin-left: 20px;
+  margin-right: 60px;
+}
+
+.register {
+  border-color: #9c0758;
+  color: white;
+  float: center;
+  
+}
+
+.login2 {
+  border-color: #9c0758;
+  color: white;
+  float: right;
+  
+}
+
+.login:hover {
+  background-color: pink;
+  color: black;
+}

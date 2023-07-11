@@ -1,0 +1,86 @@
+APPLICANT
+
+REGISTER:
+- last name = lastname
+- first name = firstname
+- middle name = middlename
+- type of jobseekers = jobseeker_type
+- age = age
+- sex = sex
+- email = email
+- password = password
+- confirm password = confirm_password
+
+-------
+
+LOG IN:
+- email = email
+- password = password
+
+-------
+
+APPLICANT PROFILE 1: PERSONAL INFORMATION
+- last name = lastname
+- first name = firstname
+- middle name = middlename
+- type of jobseekers = jobseeker_type
+- suffix = suffix
+- place of birth = birthplace
+- date of birth = birthday
+- age = age
+- sex = sex
+- civil status = civil_status
+- citizenship = citizenship
+* present address 
+	- house number = housenum_present
+	- barangay = barangay_present
+	- city = city_present
+	- province = province_present
+*permanent address
+	- house number = housenum_permanent
+	- barangay = barangay_permanent
+	- city = city_permanent
+	- province = province_permanent
+- height = height
+- weight = weight
+- landline number = landline_num
+* mobile number 
+	- primary number = mobile_pnum
+	- secondary number = mobile_snum
+- email = email
+- disability = disability
+- employment status = employment_status
+- are you actively looking for work? = actively_looking
+- willing to work immediately? = willingly_work
+- are you a 4Ps beneficiary? = 4ps_beneficiary
+- are you an ofw? = ofw
+
+-------
+
+APPLICANT PROFILE 2: JOB PREFERENCE
+* preferred occupation
+	= occupation_1
+	= occupation_2
+	= occupation_3
+* preferred industry
+	= industry_1
+	= industry_2
+	= industry_3
+* preferred location
+	= local_abroad
+	= location1
+	= location2
+
+-------
+
+APPLICANT PROFILE 3: EDUCATIONAL BACKGROUND
+
+- currently in school
+
+
+
+
+
+
+
+

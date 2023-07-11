@@ -1,0 +1,91 @@
+<!-- VERSION 2 -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>APPLICANT LOG IN</title>
+        <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
+        <link rel="stylesheet" href="../CSS/APPLICANT_LOGIN.CSS">
+       
+    </head>
+
+    <body>
+        <center>
+            <nav class="navbar">
+               
+                <div class="navbar-links">
+                    
+                    <ul>
+                        <li style="float: left; padding-top: 0; width: 25%;"><a href="index.php"><img src="../IMAGES/PESO_LOGO.png"  style="width:80px;height:80px; float: left; margin-left: 30px;"></a></li>
+                        <li><a href="../HTML/ABOUT_US.HTML">ABOUT US</a></li>
+                        <li><a href="../HTML/REQUIREMENTS.HTML">REQUIREMENTS</a></li>
+                        <li><a href="../HTML/JOB_OFFERS.HTML">JOB OFFERS</a></li>
+                        <li><a href="../HTML/URGENT_HIRING.HTML">URGENT HIRING</a></li>
+                        <li><a href="../HTML/URGENT_HIRING.HTML">RELATED SITE</a></li>
+                        <li><a href="..HTML/HELP_CENTER.HTML">HC</a></li>
+                    </ul>
+                    
+                </div>
+
+                <a href="#" class="toggle-button">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                  </a>
+            </nav>
+        </center>
+
+        <div class="column">
+            <br> <br> <br> <br> <br> <br>
+            <center>
+            <div class="card">
+                <h1>LOG IN</h1>
+                <br> <br>
+                <div class="card2">
+                    <form action="" method="post">
+                        <div class="container">
+                            <div class="card3">
+                                <h2><label for="">EMAIL&nbsp;&nbsp;ADDRESS</label></h2>
+                                <input type="text" placeholder="EMAIL ADDRESS" name="email" required>
+                            </div>
+
+                            <div class="card3">
+                                <h2><label for="">PASSWORD</label></h2>
+                                <input type="password" placeholder="PASSWORD" name="password" required>
+
+                                <h3 style="margin-left: 50px;"><label>
+                                <input type="checkbox" checked="checked" name="remember">Remember&nbsp;&nbsp;me
+                                </label></h3>
+                            </div>
+
+                            <div class="card3">
+                                
+
+                                <br> <br>
+                                <center><button type="submit">LOG IN</button></center>
+                                <br>
+                                <center><span class="psw"><a href="#">Forgot&nbsp;&nbsp;password?</a></span></center>
+
+                                <br> 
+                                <h4>Create an Account&nbsp;&nbsp;<a href="../HTML-PHP/APPLICANT_REGISTER.php">SIGN UP</a></h4>
+
+                            </div>
+                        </div>  
+                    </form>
+
+                </div>
+            </div>
+            </center>
+        </div>
+
+        <script src="../JS/APPLICANT_LOGIN.JS"></script>
+        <div class="error-message">
+            <?php echo $error; ?>
+        </div>
+
+    </body>
+
+</html>

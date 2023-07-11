@@ -1,0 +1,366 @@
+/* VERSION 1 */
+
+@import url('https://fonts.cdnfonts.com/css/trajan-pro');
+
+                
+* {
+	box-sizing: border-box;
+	
+}
+
+
+/* BODY */
+body 
+{
+  margin: 0;                    
+	color: white;
+	background-image: url(../IMAGES/BACKGROUND.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: trajan pro, serif;
+}
+
+
+/* HEADER */
+.header 
+{
+  overflow: hidden;
+  background-image: url(../IMAGES/HEADER.png);
+  background-size: cover;
+  text-align: center;
+  padding: 10px 20px;
+  padding-top: 5px;
+  position: relative;
+}
+
+.header a 
+{
+  display: block;
+}
+
+.header:hover
+{
+  background-color: pink;
+}
+
+
+/* NAVIGATION BAR */
+.navbar 
+{
+  width: 100%;
+  background-color: transparent;
+  font-size: 25px;
+  color: black;
+}
+
+
+.navbar-links 
+{
+  height: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  float: center;
+  width: 100%;
+    
+}
+
+.navbar-links ul 
+{
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li 
+{
+  list-style: none;
+  float: center;
+  width: 20%;   
+}
+
+.navbar-links li a 
+{
+  display: block;
+  text-decoration: none;
+  color: black;
+  padding: 1rem;
+  text-shadow: 3px 3px 5px gray;
+}
+
+.navbar-links li:hover 
+{
+  text-decoration-style: solid;
+  text-decoration-thickness: 3px;
+  background-color: #e57eb5;
+}
+
+.toggle-button 
+{
+  position: absolute;
+  top: .75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.toggle-button .bar 
+{
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+
+/* NAVIGATION BAR - RESPONSIVE */
+@media (max-width: 1000px) 
+{
+  .navbar 
+  {
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    font-size: 15px;
+  }
+
+  .toggle-button 
+  {
+    display: flex;
+    margin-top: 120px;
+  }
+
+  .navbar-links 
+  {
+    display: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-links ul 
+  {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .navbar-links ul li 
+  {
+    text-align: center;
+    width: 100%;
+  }
+
+  .navbar-links ul li a 
+  {
+    padding: .5rem 1rem;
+    text-align: center;     
+  }
+
+  .navbar-links.active 
+  {
+    display: flex;
+  }
+}
+
+
+/* COLUMN */
+.column
+{
+  width: 100%;
+  height: 1000px;
+  background-color: transparent;
+}
+
+
+/* CARD */
+.card
+{
+  width: 90%;
+  height: 1400px;
+  padding: 20px 20px 20px;
+  border-radius: 10px;
+  border: solid 5px #9c0758;
+  background: #e57eb5;
+  font-weight: bold 10px;
+}
+
+.card h1
+{
+    font-family: trajan pro, serif;
+    color: black;
+    font-size: 35px;
+    line-height: 30px;
+    font-weight: 50px;
+}
+
+.card h2
+{
+    font-family: trajan pro, serif;
+    color: black;
+    font-size: 20px;
+    text-align: left;
+    line-height: 10px;
+}
+
+.card2
+{
+    width: 90%;
+    height: 250px;
+    background-color: transparent;
+}
+
+.card3
+{
+    width: 100%;
+    height: 800px;
+    padding: 20px 20px 20px;
+    border-radius: 10px;
+    border: solid 5px #9c0758;
+    background: rgba(255, 255, 255, 0.192);
+    backdrop-filter: blur(10px);
+    font-weight: bold 10px;
+}
+
+.card3 h3
+{
+  font-family: trajan pro, serif;
+    color: black;
+    font-size: 20px;
+    text-align: left;
+    line-height: 0px;
+}
+
+.card3 h4
+{
+  font-family: trajan pro, serif;
+    color: black;
+    font-size: 15px;
+    text-align: left;
+   
+}
+
+.card4
+{
+    width: 95%;
+    height: 110px;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+
+.card5
+{
+  width: 100%;
+    height: 200px;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+
+
+.col1
+{
+    width: 90%;
+    float: left;
+    
+}
+
+.col2
+{
+    width: 40%;
+    float: left;
+    background-color: transparent;
+
+}
+
+.col3
+{
+    width: 40%;
+    float: left;
+    background-color: transparent;
+    margin-left:10px;
+}
+
+
+input[type=text], input[type=tel], input[type=number], input[type=date], select
+{
+    width: 50%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 15px;
+    color:rgb(37, 32, 32);
+    
+    
+}
+
+
+.button1 
+{
+    background-color: #9c0758;
+    color: white;
+    padding: 14px 20px;
+    border: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 40%;
+    opacity: 0.9;
+    font-size: 25px;
+    font-family: trajan pro, serif;
+    float: left;
+    margin-left: 85px;
+    margin-bottom: 5px;
+}
+  
+.button1:hover 
+{
+    opacity:1;
+}
+
+.button2 
+{
+    background-color: #9c0758;
+    color: white;
+    padding: 14px 20px;
+    border: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 40%;
+    opacity: 0.9;
+    font-size: 25px;
+    font-family: trajan pro, serif;
+    float: left;
+    margin-left: 30px;
+    margin-bottom: 5px;
+}
+  
+.button2:hover 
+{
+    opacity:1;
+}
+
+.button3
+{
+    background-color: #9c0758;
+    color: white;
+    padding: 14px 20px;
+    border: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 60%;
+    opacity: 0.9;
+    font-size: 25px;
+    font-family: trajan pro, serif;
+
+    margin-bottom: 5px;
+}
+  
+.button3:hover 
+{
+    opacity:1;
+}
+
+

@@ -1,0 +1,306 @@
+/* BODY */
+body 
+{
+  margin: 0;                    
+	color: white;
+	background-image: url(../IMAGES/BACKGROUND.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: trajan pro, serif;
+}
+
+/* Style the navbar */
+#navbar {
+    overflow: hidden;
+    background-image: url(../IMAGES/HEADER.png);
+    background-size: cover;
+
+    height: 120px;
+    
+  }
+  
+  /* Navbar links */
+  #navbar a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: right;
+    font-size: 25px;
+    text-decoration: none;
+    padding-top: 35px;
+    width: fit-content;
+    padding-right: 40px;
+  }
+  
+  /* Page content */
+  .content {
+    padding: 16px;
+  }
+  
+  /* The sticky class is added to the navbar with JS when it reaches its scroll position */
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+  .sticky + .content {
+    padding-top: 60px;
+  }
+
+
+/* COLUMN */
+.column
+{
+  width: 100%;
+  height: 1000px;
+  background-color: transparent;
+}
+
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 30%; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: transparent; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  margin-top: 140px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-right: 3px solid white;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 26px;
+  color: black;
+  display: block;
+  line-height: 50px;
+}
+
+.sidenav a.active
+{
+    text-decoration: underline solid 5px #9c0758;
+    color: #9c0758;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #e57eb5;
+}
+
+/* Style page content */
+.main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    width: 60%;
+    float: right;
+    padding-top: 20px;
+  margin-top: 120px;
+
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+/* CARD */
+.card
+{
+  width: 90%;
+  height: 1300px;
+  padding: 20px 20px 20px;
+  border-radius: 10px;
+  border: solid 5px #9c0758;
+  background: #e57eb5;
+  font-weight: bold 10px;
+}
+
+.card h1
+{
+    font-family: trajan pro, serif;
+    color: black;
+    font-size: 35px;
+    line-height: 30px;
+    font-weight: 50px;
+}
+
+.card h2
+{
+    font-family: trajan pro, serif;
+    color: black;
+    font-size: 20px;
+    text-align: left;
+    line-height: 10px;
+}
+
+.card2
+{
+    width: 90%;
+    height: 250px;
+    background-color: transparent;
+}
+
+.card3
+{
+    width: 90%;
+    height: 1000px;
+    border-radius: 10px;
+    border: solid 5px #9c0758;
+    background: rgba(255, 255, 255, 0.192);
+    font-weight: bold 10px;
+}
+
+
+
+.card3 h3
+{
+  font-family: trajan pro, serif;
+    color: black;
+    font-size: 25px;
+    text-align: left;
+    line-height: 0px;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+
+.card3 h4
+{
+  font-family: trajan pro, serif;
+    color: black;
+    font-size: 20px;
+    text-align: left;
+   
+}
+
+.card3 h5
+{
+  font-family: trajan pro, serif;
+    color: black;
+    font-size: 10px;
+    text-align: left;
+   
+}
+
+
+.card4A
+{
+  width: 95%;
+  height: 100px;
+  background-color: transparent;
+  margin-bottom: 10px;
+}
+
+.card4B
+{
+    width: 95%;
+    height: 140px;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+
+.card4E
+{
+    width: 95%;
+    height: 100px;
+    background-color: transparent;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+.col1
+{
+    width: 90%;
+    float: left;
+    margin-left: 35px;
+    
+}
+
+.col2
+{
+    width: 40%;
+    float: left;
+    background-color: transparent;
+    margin-left: 35px;
+
+}
+
+.col3
+{
+    width: 40%;
+    float: left;
+    background-color: transparent;
+    margin-left:10px;
+}
+
+input[type=text], input[type=tel], input[type=number], input[type=date], select
+{
+    width: 60%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 15px;
+    color:rgb(37, 32, 32);
+    
+    
+}
+
+
+.button1
+{
+    background-color: #9c0758;
+    color: white;
+    padding: 14px 20px;
+    border: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    width: 40%;
+    opacity: 0.9;
+    font-size: 25px;
+    font-family: trajan pro, serif;
+    margin-right: 30px;
+    margin-bottom: 5px;
+}
+  
+.button1:hover 
+{
+    opacity:1;
+}
+
+
+.button2
+{
+    background-color: #9c0758;
+    color: white;
+    padding: 14px 20px;
+    border: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    width: 40%;
+    opacity: 0.9;
+    font-size: 25px;
+    font-family: trajan pro, serif;
+
+    margin-bottom: 5px;
+}
+  
+.button2:hover 
+{
+    opacity:1;
+}

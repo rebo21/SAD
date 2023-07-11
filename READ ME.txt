@@ -1,0 +1,24 @@
+UPDATES & PATCHS(SAD):
+
+MAY, 08,2023
+>LIST OF CHANGES<
+
+-Change all "HTML" to "PHP" extension format;
+-Change name of "LANDING_PAGE.HTML" to "index.php"; (The purpose of this is to easily access website)
+-Change file location of "index.php";
+-Change folder "HTML" to "HTML-PHP";
+-Change all href into specific new implemented name;
+
+>LIST OF ADDED<
+-Add "webdb.sql" for the database;
+-Add "a_accounttb" for applicant table of database (table contain 8 column);
+-Add "config.php" to connect through database;
+-Add php command to connect "APPLICANT_REGISTER.php" to database;
+-Add php command to connect "APPLICANT_LOGIN.php" to database (If directed to landingpage means the login is success);
+-Add error handling (INC);
+-Add c_accountb for the company table of database(consist of 9 column)
+-Add Add php command to connect "COMPANY_REGISTER.php" to database;
+--Add php command to connect "COMPANY_LOGIN.php" to database (If directed to landingpage means the login is success);
+
+>FIXED<
+-Fix some bugs and error

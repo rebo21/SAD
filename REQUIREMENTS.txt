@@ -1,0 +1,183 @@
+<!-- VERSION 1 -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>REQUIREMENTS</title>
+        <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
+        <link rel="stylesheet" href="../CSS/REQUIREMENTS.CSS">
+       
+    </head>
+
+    <body>
+
+        
+        <div class="header">
+            
+                <a href="../HTML/LANDING_PAGE.HTML"><img src="../IMAGES/PESO_LOGO.png"  style="width:100px;height:100px; float: left;"></a>
+                <a href="https://santarosacity.gov.ph"><img src="../IMAGES/STA_ROSA_LOGO.png"  style="width:100px; height:100px; float: right;"></a>
+            
+        </div>
+
+        <center>
+            <nav class="navbar">
+               
+                <div class="navbar-links">
+                    
+                    <ul>
+                    
+                    <li><a href="../HTML/ABOUT_US.HTML">ABOUT US</a></li>
+                    <li><a href="../HTML/REQUIREMENTS.HTML" class="active">REQUIREMENTS</a></li>
+                    <li><a href="../HTML/JOB_OFFERS.HTML">JOB OFFERS</a></li>
+                    <li><a href="../HTML/URGENT_HIRING.HTML">URGENT HIRING</a></li>
+                    <li><a href="..HTML/HELP_CENTER.HTML">HELP CENTER</a></li>
+                    </ul>
+                    
+                </div>
+
+                <a href="#" class="toggle-button">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                  </a>
+            </nav>
+        </center>
+
+        <br> <br> <br>
+        <div class="column">
+            <center>
+            <div class="card1">
+                <div class="img-magnifier-container">
+                <img id="myimage" src="../IMAGES/LANDINGPAGE1.png" width="100%" height="450">
+                </div>
+            </div>
+            </center>
+
+            <br> <br> <br>
+
+            <center>
+            <div class="card2A">
+                <div class="card3">
+                <div id="myNav1" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav1()">&times;</a>
+                    <div class="overlay-content">
+                        <a href="#">PAG-IBIG</a>
+                                            
+                    </div>
+                </div>
+                                
+                <button class="btn three" onclick="openNav1()">PAG-IBIG</button>
+
+                <div id="myNav2" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
+                    <div class="overlay-content">
+                        <a href="#">PHILHEALTH</a>
+                                            
+                    </div>
+                </div>
+                                
+                <button class="btn three" onclick="openNav2()">PHILHEALTH</button>
+
+
+                <div id="myNav3" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav3()">&times;</a>
+                    <div class="overlay-content">
+                        <a href="#">NBI CLEARANCE</a>
+                                            
+                    </div>
+                </div>
+                                
+                <button class="btn three" onclick="openNav3()">NBI&nbsp;CLEARANCE</button>
+
+                </div>
+
+                <div class="card3">
+
+                <div id="myNav4" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav4()">&times;</a>
+                    <div class="overlay-content">
+                        <a href="#">MAYOR PERMIT</a>
+                                            
+                    </div>
+                </div>
+                                
+                <button class="btn three" onclick="openNav4()">MAYOR&nbsp;PERMIT</button>
+
+            
+
+                <div id="myNav5" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav5()">&times;</a>
+                    <div class="overlay-content">
+                        <a href="#">PHILIPPINE STATISTICS AUTHORITY (PSA)</a>
+                                            
+                    </div>
+                </div>
+                                
+                <button class="btn three" onclick="openNav5()">PHILIPPINE&nbsp;STATISTICS&nbsp;AUTHORITY&nbsp;(PSA)</button>
+
+                <div id="myNav6" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav6()">&times;</a>
+                    <div class="overlay-content">
+                        <a href="#">POLICE CLEARANCE</a>
+                                            
+                    </div>
+                </div>
+                                
+                <button class="btn three" onclick="openNav6()">POLICE&nbsp;CLEARANCE</button>
+
+                </div>
+
+                <div class="card3">
+
+                <div id="myNav7" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav7()">&times;</a>
+                    <div class="overlay-content">
+                        <a href="#">SOCIAL SECURITY SYSTEM (SSS)</a>
+                                            
+                    </div>
+                </div>
+                                
+                <button class="btn three" onclick="openNav7()">SOCIAL&nbsp;SECURITY&nbsp;SYSTEM&nbsp;(SSS)</button>
+
+                <div id="myNav8" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav8()">&times;</a>
+                    <div class="overlay-content">
+                        <a href="#">HEALTH CERTIFICATE</a>
+                                            
+                    </div>
+                </div>
+                                
+                <button class="btn three" onclick="openNav8()">HEALTH&nbsp;CERTIFICATE</button>
+
+                <div id="myNav9" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav9()">&times;</a>
+                    <div class="overlay-content">
+                        <a href="#">PASSPORT/VISA</a>
+                                            
+                    </div>
+                </div>
+                                
+                <button class="btn three" onclick="openNav9()">PASSPORT/VISA</button>
+
+                </div>
+                  
+            </div>
+
+            <div class="card2B">
+
+                <h1>LEGEND:</h1>
+
+            </div>
+            </center>
+        </div>
+
+        
+
+        
+        <script src="../JS/REQUIREMENTS.JS"></script>
+
+    </body>
+</html>
