@@ -57,9 +57,9 @@
                         <button type="" class="update" name="">UPDATE PROFILE</button>
                       </center>
                       <br>
-                        <a href="#" class="active">PERSONAL INFORMATION</a>
-                        <a href="#">EDUCATIONAL BACKGROUND</a>
+                      <a href="#" class="active">PERSONAL INFORMATION</a>
                         <a href="#">JOB PREFERENCE</a>
+                        <a href="#">EDUCATIONAL BACKGROUND</a>
                         <a href="#">TRAININGS</a>
                         <a href="#">ELIGIBILITY</a>
                         <a href="#">WORK EXPERIENCES</a>
