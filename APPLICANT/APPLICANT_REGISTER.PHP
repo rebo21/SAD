@@ -1,9 +1,7 @@
-<!-- VERSION 3 -->
 <?php
+include "config.php";
 session_start();
-include 'APPLICANT_CONFIG.PHP';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+if(isset($_POST["submit"])){
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
     $age = $_POST["age"];
@@ -13,29 +11,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $confirm_password = $_POST["confirm_password"];
 
-    if ($password === $confirm_password) {
-        $existingAccountQuery = "SELECT * FROM a_accounttb WHERE email='$email'";
-        $result = $conn->query($existingAccountQuery);
-
-        if ($result->num_rows > 0) {
-            echo "<script>alert('Account with this email already exists.');</script>";
-        } else {
-            $sql = "INSERT INTO a_accounttb (firstname, lastname, age, sex, jobseekerType, email, password) VALUES ('$firstname', '$lastname', '$age', '$sex', '$jobseekerType', '$email', '$password')";
-
-            if ($conn->query($sql) === true) {
-                header('location:APPLICANT_LOGIN.php');
-            } else {
-                        
-            }
-        }
-    } else {
-        echo "<script>alert('Passwords do not match.');</script>";
+    if($password !== $confirm_password){
+        echo "password not match";
     }
 
-    $conn->close();
+    $insert = "INSERT INTO a_accounttb (firstname, lastname, age, sex, jobseekerType, email, password) VALUES (?,?,?,?,?,?,?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $insert)){
+        echo "error database";
+    } else {
+        mysqli_stmt_bind_param($stmt, "sssssss", $firstname, $lastname, $age, $sex, $jobseekerType, $email, $password);
+        mysqli_stmt_execute($stmt);
+        header("location: applicant_login.php");
+    }
+    
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>

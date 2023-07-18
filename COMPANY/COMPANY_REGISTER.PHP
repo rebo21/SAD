@@ -2,35 +2,27 @@
 <?php
 session_start();
 include 'COMPANY_CONFIG.PHP';
-
-$error = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST["submit"])){
     $companyName = $_POST["companyName"];
     $industry = $_POST["industry"];
     $contactPerson = $_POST["contactPerson"];
     $contactNum = $_POST["contactNum"];
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $confirmPassword = $_POST["confirmPassword"];
-
-    $existingEmailQuery = "SELECT * FROM c_accounttb WHERE email = '$email'";
-    $existingEmailResult = $conn->query($existingEmailQuery);
-
-    if ($existingEmailResult->num_rows > 0) {
-        $error = "Account with this email already exists.";
-    } elseif ($password !== $confirmPassword) {
-        $error = "Password do not match!";
-    } else {
-        $sql = "INSERT INTO c_accounttb (companyName, industry, contactPerson, contactNum, email, password) VALUES ('$companyName', '$industry', '$contactPerson', '$contactNum', '$email', '$password')";
-
-        if ($conn->query($sql) === true) {
-            header('Location: COMPANY_LOGIN.php');
-            exit;
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
+    $confirm_password = $_POST["confirm_password"];
+    if($password !== $confirm_password){
+        echo "password not match!";
     }
+    $insert = "INSERT INTO c_accounttb (companyName, industry, contactPerson, contactNum, email, password) VALUES (?,?,?,?,?,?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt,$insert)){
+        echo "cant connect to database";
+    } else {
+        mysqli_stmt_bind_param($stmt, "ssssss",$companyName, $industry, $contactPerson, $contactNum, $email, $password);
+        mysqli_stmt_execute($stmt);
+        header("location: company_login.php");
+    }
+
 }
 ?>
 
@@ -122,8 +114,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>                            
                         </div>
                         <br>
-                        <center><button type="submit" class="register">REGISTER</button></center>
-                        <h3>Already have an Account?&nbsp;&nbsp;<a href="APPLICANT_LOGIN.php">LOG IN</a></h3>
+                        <center><button type="submit" class="register"name="submit">REGISTER</button></center>
+                        <h3>Already have an Account?&nbsp;&nbsp;<a href="company_login.php">LOG IN</a></h3>
                     </div>
 
                     
