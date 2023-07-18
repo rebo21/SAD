@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
             setcookie('emailid',$_REQUEST['email'],time()+20);
             setcookie('pwd',$_REQUEST['password'],time()+20);
         }
-        header("location:update_profile_1.php");
+        header("location:APPLICANT_HOMEPAGE.php");
         exit();
     } else {
         $error = "Invalid email or password!";

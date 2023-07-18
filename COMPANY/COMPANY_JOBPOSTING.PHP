@@ -18,7 +18,7 @@
 		VALUES ('$c_jobTitle', '$c_salary', '$c_workLocation', '$c_jobIndustry', '$c_numSlot', '$c_skills')";
 
 		if ($conn->query($sql) === TRUE) {
-		  echo "";
+      header("location: COMPANY_JOBPOSTING_2.html");
 		} else {
 		  echo "Error: " . $sql . "<br>" . $conn->error;
 		}

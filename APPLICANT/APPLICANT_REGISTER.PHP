@@ -1,6 +1,7 @@
 <!-- VERSION 3 -->
 <?php
-@include 'APPLICANT_CONFIG.PHP';
+session_start();
+include 'APPLICANT_CONFIG.PHP';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $firstname = $_POST["firstname"];
@@ -19,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             echo "<script>alert('Account with this email already exists.');</script>";
         } else {
-            $sql = "INSERT INTO a_accounttb (firstname, lastname, age, sex, jobseekerType, email, password) VALUES ('$firstname', '$lastname', '$age', '$sex', '$jobseekerType' '$email', '$password')";
+            $sql = "INSERT INTO a_accounttb (firstname, lastname, age, sex, jobseekerType, email, password) VALUES ('$firstname', '$lastname', '$age', '$sex', '$jobseekerType', '$email', '$password')";
 
             if ($conn->query($sql) === true) {
                 header('location:APPLICANT_LOGIN.php');
@@ -134,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>                            
                         </div>
                         <br>
-                        <center><button type="submit" class="register">REGISTER</button></center>
+                        <center><button type="submit" class="register" name="submit">REGISTER</button></center>
                         <h3>Already have an Account?&nbsp;&nbsp;<a href="APPLICANT_LOGIN.php">LOG IN</a></h3>
                     </div>
 
