@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
         <div class="card1">
             <h1>LOG IN</h1>
             <div class="container">
-                <form action="" method="post">
+                <form action="" method="post" autocomplete="off">
                    
                     <div class="card2">
                         <div class="col1">
@@ -74,7 +74,7 @@ if (isset($_POST['submit'])) {
                         <center><button type="submit" class="login" name="submit">LOGIN</button></center>
                         <br>
                         <span class="psw"><a href="#">Forgot&nbsp;&nbsp;password?</a></span>
-                        <button onclick="document.getElementById('signup-modal').style.display='block'" style="width:auto;"><h3>Sign Up</h3></button>
+                        <center><button type="submit" class="login" onclick="document.getElementById('signup-modal').style.display='block'" style="width:auto;"><h3>Sign Up</h3></button></center>
                     </div>
 
                     
