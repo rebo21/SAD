@@ -1,28 +1,31 @@
-<!-- VERSION 3 -->
 <?php
-@include'PESO_CONFIG.PHP';
-session_start();
-if (isset($_POST['submit'])){
-$user_id = $_SESSION["user_id"];
-$jobTitle = $_POST["jobTitle"];
-$salary = $_POST["salary"];
-$workLocation = $_POST["workLocation"];
-$jobIndustry = $_POST["jobIndustry"];
-$numSlot = $_POST["numSlot"];
+	
+	include 'PESO_CONFIG.PHP';
 
-$insert = "INSERT INTO p_job_posting (user_id, jobTitle, salary, workLocation, jobIndustry, numSlot) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-$stmt = mysqli_stmt_init($conn);
-if(!mysqli_stmt_prepare($stmt, $insert)){
+	if (isset($_POST['post_comment'])) {
 
-} else{
-    mysqli_stmt_bind_param($stmt,"sssssssssss",$user_id, $jobTitle, $salary, $workLocation, $jobIndustry, $numSlot);
-    mysqli_stmt_execute($stmt);
-    header("location: ../HTML-PHP/");
-    exit();
-}
-}
+		$p_jobTitle = $_POST['p_jobTitle'];
+    $p_companyName = $_POST['p_companyName'];
+		$p_salary = $_POST['p_salary'];
+    $p_workLocation = $_POST['p_workLocation'];
+		$p_jobIndustry = $_POST['p_jobIndustry'];
+    $p_numSlot = $_POST['p_numSlot'];
+		$p_skills = $_POST['p_skills'];
+    
+
+
+		
+		$sql = "INSERT INTO p_job_posting (p_jobTitle, p_companyName, p_salary, p_workLocation, p_jobIndustry, p_numSlot, p_skills)
+		VALUES ('$p_jobTitle', '$p_companyName', '$p_salary', '$p_workLocation', '$p_jobIndustry', '$p_numSlot', '$p_skills')";
+
+		if ($conn->query($sql) === TRUE) {
+		  echo "";
+		} else {
+		  echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+	}
+
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,15 +49,15 @@ if(!mysqli_stmt_prepare($stmt, $insert)){
                 <img src="../IMAGES/LOGO.png"  style="width:200px;height:60px; float: left; margin-left: 30px;">
             </a>
             
-            <a href="#">HOME</a>
-            <a href="#">APPLICANTS</a>
-            <a href="#">JOB POSTS</a>
-            <a href="#" class="active">JOB POSTING</a>
-            <a href="#">NOTIFICATION</a>
-            <a href="#">PROFILE</a>
-            <a href="#">SETTING</a>
-            <a href="#">MORE INFO</a>
-            <a href="#">LOG OUT</a>
+            <a href="#" style="font-size: 20px;">HOME</a>
+            <a href="#" style="font-size: 20px;">COMPANY JOB POST</a>
+            <a href="#" style="font-size: 20px;" class="active">PESO JOB POSTS</a>
+            <a href="#" style="font-size: 20px;">PESO JOB POSTING</a>
+            <a href="#" style="font-size: 20px;">NOTIFICATION</a>
+            <a href="#" style="font-size: 20px;">PROFILE</a>
+            <a href="#" style="font-size: 20px;">SETTING</a>
+            <a href="#" style="font-size: 20px;">MORE INFO</a>
+            <a href="#" style="font-size: 20px;">LOG OUT</a>
           </div>
           
           <div class="main">
@@ -76,76 +79,75 @@ if(!mysqli_stmt_prepare($stmt, $insert)){
               <div class="content">
                 <div class="container">
                   <h1>JOB POSTING</h1>
-                    <form action="/action_page.php">
+                  <form action="" method="post" class="form">
                       <div class="row">
                         <div class="col-25">
-                          <label for="fname">JOB TITLE</label>
+                          <label for="">JOB TITLE</label>
                         </div>
                         <div class="col-75">
-                          <input type="text" name="jobTitle" placeholder="JOB TITLE">
+                          <input type="text" name="p_jobTitle" placeholder="JOB TITLE">
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-25">
-                          <label for="lname">MONTHLY SALARY</label>
+                          <label for="">COMPANY NAME</label>
                         </div>
                         <div class="col-75">
-                          <input type="number" name="salary" placeholder="SALARY">
+                          <input type="text" name="p_companyName" placeholder="COMPANY NAME">
                         </div>
                       </div>
-
                       <div class="row">
                         <div class="col-25">
-                          <label for="lname">WORK LOCATION</label>
+                          <label for="">MONTHLY SALARY</label>
                         </div>
                         <div class="col-75">
-                          <input type="text" name="workLocation" placeholder="WORK LOCATION">
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-25">
-                          <label for="lname">JOB INDUSTRY</label>
-                        </div>
-                        <div class="col-75">
-                          <input type="text" name="jobIndustry" placeholder="JOB INDUSTRY">
+                          <input type="number" name="p_salary" placeholder="SALARY">
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-25">
-                          <label for="lname">SLOTS</label>
+                          <label for="">WORK LOCATION</label>
                         </div>
                         <div class="col-75">
-                          <input type="number" name="numSlot" placeholder="SLOTS">
+                          <input type="text" name="p_workLocation" placeholder="WORK LOCATION">
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-25">
-                          <label for="lname">SKILLS</label>
+                          <label for="">JOB INDUSTRY</label>
                         </div>
                         <div class="col-75">
-                          <input type="text" name="skills" placeholder="SKILLS">
-                          <br> <br>
+                          <input type="text" name="p_jobIndustry" placeholder="JOB INDUSTRY">
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-25">
-                          <label for="lname">PHOTOS</label>
+                          <label for="">SLOTS</label>
                         </div>
                         <div class="col-75">
-                          <form action="/action_page.php">
-                            <input type="file" id="myFile" name="filename">
-                            
-                          </form>
+                          <input type="number" name="p_numSlot" placeholder="SLOTS">
                         </div>
                       </div>
+
+                      <div class="row">
+                        <div class="col-25">
+                          <label for="">SKILLS</label>
+                        </div>
+                        <div class="col-75">
+                        <input type="text" name="p_skills" placeholder="SKILLS">
+                        </div>
+                      </div>
+
+                          
+                     
 
                       <br>
                       <div class="row">
-                        <center><input type="submit" value="Next"></center>
+                        
+                      <center><button type="submit" class="post" name="post_comment">POST JOB</button><center>
                       </div>
                     </form>
                   </div>

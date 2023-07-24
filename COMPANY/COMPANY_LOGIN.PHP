@@ -10,12 +10,12 @@ if (isset($_POST["submit"])) {
     $contactPerson = mysqli_real_escape_string($conn, $_POST["contactPerson"]);
     $password = $_POST["password"];
 
-    $select = "SELECT * FROM c_accounttb WHERE email = '$email' && '$companyName' = companyName && '$contactPerson' = contactPerson  && password = '$password'";
+    $select = "SELECT * FROM c_accounttb WHERE email = '$email' AND '$companyName' = companyName AND '$contactPerson' = contactPerson  AND password = '$password'";
     $result = mysqli_query($conn, $select);
     if(mysqli_num_rows($result) == 1){
         $row = mysqli_fetch_array($result);
         $_SESSION['user_id'] = $row['user_id'];
-        header("location: COMPANY_HOMEPAGE.php");
+        header("location: COMPANY_HOMEPAGE.PHP");
         exit();
     }
     else{
@@ -82,10 +82,10 @@ if (isset($_POST["submit"])) {
 
                     <div class="card3">
                         <br>
-                        <center><button type="submit" class="login">LOG IN</button></center>
+                        <center><button type="submit" class="login" name="submit">LOG IN</button></center>
                         <br>
                         <span class="psw"><a href="#">Forgot&nbsp;&nbsp;password?</a></span>
-                        <h3>Create an Account&nbsp;&nbsp;<a href="APPLICANT_REGISTER.php">SIGN UP</a></h3>
+                        <h3>Create an Account&nbsp;&nbsp;<a href="company_REGISTER.php">SIGN UP</a></h3>
                     </div>
 
                     
