@@ -14,7 +14,6 @@ body
   background-size: cover;
 }
 
-
 /* HEADER */
 .header 
 {
@@ -141,7 +140,10 @@ body
     
 }
 
-
+.col1 img{
+  position: absolute;
+  width: 30px;
+}
 
 input[type=text], input[type=password], input[type=number], input[type=email], select
 {

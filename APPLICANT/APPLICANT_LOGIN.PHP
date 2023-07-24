@@ -59,8 +59,11 @@ if (isset($_POST['submit'])) {
                     <div class="card2">
                         <div class="col1">
                             <input type="password" placeholder="PASSWORD" name="password" id="password"required maxlength="20">
+                            <img src="../IMAGES/eye-close.png" alt="" id="eyeicon">
+                            
                         </div>
                     </div>
+
                     <div class="card2">
                         <div class="col1">
                            <h2 style="float: left; font-size: 15px; margin-left: 30px;"><input type="checkbox" checked="checked" name="remember">Remember&nbsp;&nbsp;me</h2>
