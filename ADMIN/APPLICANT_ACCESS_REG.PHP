@@ -1,37 +1,4 @@
-
 <!-- VERSION 3 -->
-<?php
-session_start();
-include 'ADMIN_CONFIG.PHP';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $employeeNum = $_POST["employeeNum"];
-    $passcode = $_POST["passcode"];
-    $confirm_passcode = $_POST["confirm_passcode"];
-
-
-    if ($passcode === $confirm_passcode) {
-        $existingAccountQuery = "SELECT * FROM applicant_access WHERE employeeNum='$employeeNum'";
-        $result = $conn->query($existingAccountQuery);
-
-        if ($result->num_rows > 0) {
-            echo "<script>alert('Account with this email already exists.');</script>";
-        } else {
-            $sql = "INSERT INTO applicant_access (employeeNum, passcode) VALUES ('$employeeNum', '$passcode')";
-
-            if ($conn->query($sql) === true) {
-                header('location:../PESO/APPLICANTS_ACCESS.php');
-            } else {
-                        
-            }
-        }
-    } else {
-        echo "<script>alert('Passwords do not match.');</script>";
-    }
-
-    $conn->close();
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>APPLICANT HOMEPAGE</title>
         <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
-        <link rel="stylesheet" href="../CSS/PESO_REGISTER.CSS">
+        <link rel="stylesheet" href="../CSS/ACCESS_REGISTER.CSS">
         <link rel="stylesheet" href="../CSS/NAVBAR.CSS">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -64,66 +31,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="#">SETTING</a>
             <a href="#">MORE INFO</a>
             <a href="#">LOG OUT</a>
-          </div>
+        </div>
           
-          <div class="main">
+        <div class="main">
             <div id="navbar">
-                <a class="active" style="width: 350px; text-align: left;" href="#">Home</a>
-                
-                  
+                <a class="active" style="width: 500px; text-align: left;" href="#">REGISTER PESO ACCESS</a>
                 <a href="#"></a>
-              </div>
-              
-              <div class="content">
-              <center>
-        <div class="card1">
-            <h1>REGISTER</h1>
-            <div class="container">
-            <form action="" method="post">
-                   
-                   <div class="card2">
-                       <div class="col1">
-                           <input type="text" placeholder="EMPLOYEE NUMBER" name="employeeNum" required>
-                       </div>
-                   </div>
-
-                   <div class="card2">
-                       <div class="col1">
-                           <input type="password" placeholder="PASSCODE" name="passcode" id="password"required maxlength="20">
-                       </div>
-                   </div>
-
-                   <div class="card2">
+            </div>
+                
+            <div class="content">
+                <div class="row">
+                    <div class="column side">
+                        <div class="card1">
+                            
+                            <a href="#" class="active">APPLICANTS</a>
+                            <a href="#">COMPANIES</a>
+                            <a href="#">JOB POSTING</a>
+                            <a href="#">DATABASE</a>
+                            <a href="#">REPORTS</a>
+                            <a href="#">POLICIES</a>
                         
-
-                        <div class="col3">
-                     
-                            <input style=float:left; type="password" placeholder="CONFIRM PASSWORD" name="confirm_passcode" id="myInput"required maxlength="20">
                         </div>
                     </div>
-                   
-
-
-                   <div class="card3">
-                       <br>
-                       <center><button type="submit" class="register">REGISTER</button></center>
-                       <br>
-                    
-
-                   </div>
-
-                   
-                   
-               </form>
+                </div>
+                            
+                            
             </div>
-
+        
         </div>
-    </center>
-              
-          </div>
 
 
-          <script src="../JS/APPLICANT_REGISTER.JS"></script>
+        <script src="../JS/APPLICANT_REGISTER.JS"></script>
     </body>
 
 </html>
