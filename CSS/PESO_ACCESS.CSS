@@ -14,7 +14,6 @@ body
   background-size: cover;
 }
 
-
 /* HEADER */
 .header 
 {
@@ -79,68 +78,54 @@ body
 
 .card1
 {
-  width: 80%;
+  width: 800px;
   height: 350px;
-  padding-top: 50px;
-  background-color: transparent;
+  padding: 20px 20px 20px;
+  padding-top: 20px;
+  border-radius: 25px;
+  border: 5px solid #000;
+  /* background: linear-gradient(180deg, rgba(156, 7, 88, 0.20) 0%, rgba(156, 7, 88, 0.20) 50.01%, rgba(156, 7, 88, 0.20) 100%); */
+  background-color: white;
+  backdrop-filter: blur(0px);
   font-weight: bold 10px;
 }
 
-
-.btn
+.card1 h1
 {
-  font-size: 20px;
-  color: white;
-  border-radius: 20px;
-  border: 3px solid #000;
-  background: linear-gradient(180deg, rgba(156, 7, 88, 0.50) 0%, rgba(156, 7, 88, 0.50) 100%);
-  width: 200px;
-  padding: 5px;
-  margin-left: 70px;
-  margin-right: 70px;
-  font-family: trajan pro, serif;
+    font-family: trajan pro, serif;
+    color: black;
+    font-size: 35px;
+    line-height: 15px;
+    font-weight: bolder;
+
 }
 
-.btn:hover
-{
-  background-color: black;
-}
 
 
 
 
 .card2
 {
-  background-color: wheat;
-  height: 250px;
-  width: 950px;
-  padding-top: 30px;
-  margin-left: 50px;
-}
-
-.card3
-{
     width: 90%;
-    height: 50px;
+    height: 40px;
     background-color: transparent;
     padding: 5px 5px 5px;
     color: black;
-    margin-left: 30px;
-    
+    margin-bottom: 5px;
 }
 
 
 
-.card4
+.card3
 {
     width: 100%;
     height:fit-content;
     text-align: center;
     background-color: transparent;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
-.card4 h3
+.card3 h3
 {
     font-family: trajan pro, serif;
     color: black;
@@ -157,15 +142,18 @@ body
     
 }
 
+.col1 img{
+  position: absolute;
+  width: 30px;
+}
 
-
-input[type=text], input[type=password], input[type=email]
+input[type=text], input[type=password], input[type=number], input[type=email]
 {
-    width: 700px;
+    width: 650px;
     padding-top: 10px;
     padding-bottom: 5px;
     display: inline-block;
-    border-bottom: 5px solid #FF008B;
+    border-bottom: 3px solid #FF008B;
     box-sizing: border-box;
     border-top: none;
     border-left: none;
@@ -176,7 +164,6 @@ input[type=text], input[type=password], input[type=email]
     text-align: left;
     font-family: trajan pro, serif;
     font-weight: bolder;
-    margin-left: 30px;
 }
 
 
@@ -189,19 +176,23 @@ input[type=text], input[type=password], input[type=email]
 }
 
 
+
+
+
+
 /* BUTTON */
-.login
+.access
 {
- 
   border-radius: 25px;
   background-color: #9C0758;
   color: white;
   padding: 5px;
   cursor: pointer;
   font-family: trajan pro, serif;
-  font-size: 25px;
+  font-size: 30px;
   width: 300px;
-  height: 40px;
+  height: 45px;
   margin-left: 20px;
   margin-right: 60px;
 }
+

@@ -59,11 +59,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <img src="../IMAGES/LOGO.png"  style="width:200px;height:60px; float: left; margin-left: 30px;">
             </a>
             
-            <a href="#" class="active">HOME</a>
-            <a href="#">FIND JOBS</a>
-            <a href="#">URGENT HIRING</a>
-            <a href="#">SAVED JOBS</a>
-            <a href="#">NOTIFICATION</a>
+            <a href="#">HOME</a>
+            <a href="#">ACCESS</a>
+            <a href="#" class="active">PESO REGISTER</a>
+            <a href="#">JOB POSTS</a>
+            <a href="#">REPORTS</a>
             <a href="#">PROFILE</a>
             <a href="#">SETTING</a>
             <a href="#">MORE INFO</a>

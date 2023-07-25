@@ -22,11 +22,11 @@
                 <img src="../IMAGES/LOGO.png"  style="width:200px;height:60px; float: left; margin-left: 30px;">
             </a>
             
-            <a href="#" class="active">HOME</a>
-            <a href="#">FIND JOBS</a>
-            <a href="#">URGENT HIRING</a>
-            <a href="#">SAVED JOBS</a>
-            <a href="#">NOTIFICATION</a>
+            <a href="#">HOME</a>
+            <a href="#" class="active">ACCESS</a>
+            <a href="#">PESO REGISTER</a>
+            <a href="#">JOB POSTS</a>
+            <a href="#">REPORTS</a>
             <a href="#">PROFILE</a>
             <a href="#">SETTING</a>
             <a href="#">MORE INFO</a>
@@ -40,19 +40,14 @@
             </div>
                 
             <div class="content">
-                <div class="row">
-                    <div class="column side">
-                        <div class="card1">
-                            
-                            <a href="#" class="active">APPLICANTS</a>
-                            <a href="#">COMPANIES</a>
-                            <a href="#">JOB POSTING</a>
-                            <a href="#">DATABASE</a>
-                            <a href="#">REPORTS</a>
-                            <a href="#">POLICIES</a>
-                        
-                        </div>
-                    </div>
+                <div class="card1">
+                    <a href=""><button class="btn"><i><img src="../IMAGES/APPLICANTS.png" style="height: 70px; width: 70px"></i><br>APPLICANTS</button></a>
+                    <a href=""><button class="btn"><i><img src="../IMAGES/COMPANIES.png" style="height: 70px; width: 70px"></i><br>COMPANIES</button></a>
+                    <a href=""><button class="btn"><i><img src="../IMAGES/JOBPOSTING.png" style="height: 70px; width: 70px"></i><br>JOB POSTING</button></a>
+                    <br> <br> <br> <br>
+                    <a href=""><button class="btn"><i><img src="../IMAGES/DATABASE.png" style="height: 70px; width: 70px"></i><br>DATABASE</button></a>
+                    <a href=""><button class="btn"><i><img src="../IMAGES/REPORTS.png" style="height: 70px; width: 70px"></i><br>REPORTS</button></a>
+                    <a href=""><button class="btn"><i><img src="../IMAGES/POLICIES.png" style="height: 70px; width: 70px"></i><br>POLICIES</button></a>
                 </div>
                             
                             
@@ -62,6 +57,7 @@
 
 
         <script src="../JS/APPLICANT_REGISTER.JS"></script>
+        <script src="../JS/NAVBAR.JS"></script>
     </body>
 
 </html>

@@ -42,7 +42,7 @@
                   
                     <!-- One "tab" for each step in the form: -->
 
-                    
+                    <!--
                     <div class="tab">
                         <div class="card2A">
                             <center>
@@ -244,10 +244,10 @@
                         </div>
                     </div>
 
-                    
+                    -->
                     
 
-                    
+                    <!--
                     <div class="tab">
                         <div class="card2B">
                             <h1>JOB PREFERENCE</h1>   2. JOB PREFERENCE 
@@ -322,10 +322,10 @@
                         </div>
                     </div>
 
-                    
+                    -->
 
 
-                    
+                    <!--
                     <div class="tab">
                         <div class="card2C">
                             <h1>EDUCATIONAL BACKGROUND</h1>  3. EDUCATIONAL BACKGROUND 
@@ -379,7 +379,7 @@
                         </div>
                     </div>
 
-                   
+                    -->
 
 
                     
