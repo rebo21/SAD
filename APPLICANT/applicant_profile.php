@@ -1,21 +1,20 @@
-<!-- VERSION 3 -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>APPLICANT HOMEPAGE</title>
+        <title>COMPANY JOB POST</title>
         <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
-        <link rel="stylesheet" href="../CSS/APPLICANT_HOMEPAGE.CSS">
+        <link rel="stylesheet" href="../CSS/COMPANY_JOBPOST.CSS">
         <link rel="stylesheet" href="../CSS/NAVBAR.CSS">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="../JS/loader.js"></script>
+
         
     </head>
 
     <body>
-    <div class="loader"><div></div><div></div><div></div><div></div></div>
+
     <?php
           include 'function.php';
           include 'sidebar.php';
@@ -26,7 +25,7 @@
                 <a style="width: 350px; padding-top: 20px; margin-left: 80px;">
                     <formsearch class="example" action="action_page.php">
                       <center>
-                      <input type="text" placeholder="SEARCH FOR JOB!!!" name="search">
+                      <input type="text" placeholder="" name="search">
                       <button type="submit"><i class="fa fa-search"></i></button>
                       </center>
                       
@@ -37,21 +36,4 @@
               </div>
               
               <div class="content">
-                <div class="row">
-                    <div class="column side">
-                        
-                    </div>
-                    
-                    <div class="column middle">
-                      
-                    </div>
-                    
-                   
-                  </div>
-              
-          </div>
-
-          <script src="../JS/NAVBAR.JS"></script>
-    </body>
-
-</html>
+                <a style="color:red; margin: 20%;"href="applicant_update.php">Press this to access update profile</a>

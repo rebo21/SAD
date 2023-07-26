@@ -197,8 +197,3 @@ input[type=text], input[type=ratio], input[type=number], select
     font-size: 15px;
     color:rgb(37, 32, 32);
 }
-
-input[type=checkbox]
-{
-  background-color: #9c0758;
-}

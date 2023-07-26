@@ -107,11 +107,78 @@ body
 }
 
 
+/* MENU */
+.overlay {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  /*background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);*/
+  background: transparent;
+}
 
+.overlay-content {
+  position: relative;
+  margin-top: 100px;
+  padding-top: 50px;
+  width: 1000px;
+  height: 400px;
+  text-align: center;
+  border-radius: 25px;
+  background: white;
+  border: solid 5px black;
+}
+
+.overlay-content h1
+{
+  color: black;
+  font-size: 30px;
+  text-align: center;
+  padding: 0px;
+  font-weight: bolder;
+}
+
+.overlay a {
+  padding: 0px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  background-color: #7A0042;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
 
 .card2
 {
-  background-color: wheat;
+  background-color: white;
   height: 250px;
   width: 950px;
   padding-top: 30px;
