@@ -5,7 +5,7 @@ session_start();
 include 'ADMIN_CONFIG.PHP';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $employeeNum = $_POST["employeeNum"];
+$employeeNum = $_POST["employeeNum"];
     $passcode = $_POST["passcode"];
     $confirm_passcode = $_POST["confirm_passcode"];
 
