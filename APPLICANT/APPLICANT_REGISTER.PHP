@@ -36,10 +36,12 @@ if(isset($_POST["submit"])){
     <title>APPLICANT REGISTER</title>
     <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
     <link rel="stylesheet" href="../CSS/APPLICANT_REGISTER.CSS">
-   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="../JS/loader.js"></script>
   </head>
 
   <body>
+  <div class="loader"><div></div><div></div><div></div><div></div></div>
     <div class="header" id="myHeader">
       <a href="#" style="width: 55%; margin-left: 20px;"><img src="../IMAGES/LOGO.png"  style="width:300px;height:90px; float: left; margin-left: 30px;"></a>
     </div>
@@ -53,7 +55,7 @@ if(isset($_POST["submit"])){
 
                     <div class="card2">
                         <div class="col1">
-                            
+                        <i class="bi bi-person"></i>
                             <input style=width:300px;float:left;color:white; type="text" onkeydown="restrictName(event)"name="firstname" placeholder="FIRST NAME" required maxlength="50">
                             
                         </div>
@@ -81,7 +83,7 @@ if(isset($_POST["submit"])){
                    
                     <div class="card2">
                         <div class="col3">
-                        
+                        <i class="bi bi-list"></i>
                             <select style=float:left; class="" name="jobseekerType" required>
                                 <option value="" selected disabled>TYPE OF JOBSEEKER</option>
                                 <option value="FirstTime">First Time Jobseeker</option>
@@ -93,7 +95,7 @@ if(isset($_POST["submit"])){
 
                     <div class="card2">
                         <div class="col3">
-                        
+                        <i class="bi bi-envelope-at-fill"></i>
                         <input style="float:left;" type="email" placeholder="EMAIL ADDRESS" name="email" required maxlength="50">
                         </div>
                     </div>
@@ -102,7 +104,7 @@ if(isset($_POST["submit"])){
                     
                     <div class="card2">
                         <div class="col3">
-                        
+                        <i class="bi bi-key"></i>
                             <input style=float:left; type="password" placeholder="PASSWORD" name="password" id="myInput" oninput="validatePassword()"required maxlength="20">
                         </div>
                     </div>
@@ -111,7 +113,7 @@ if(isset($_POST["submit"])){
                         
 
                         <div class="col3">
-                     
+                        <i class="bi bi-key"></i>
                             <input style=float:left; type="password" placeholder="CONFIRM PASSWORD" name="confirm_password" id="myInput"required maxlength="20">
                         </div>
                     </div>
@@ -142,3 +144,11 @@ if(isset($_POST["submit"])){
   </body>
 
 </html>
+<style>
+    .bi{
+        font-size:20px; 
+        left:30px; 
+        position:absolute; 
+        margin-top:10px;
+    }
+</style>

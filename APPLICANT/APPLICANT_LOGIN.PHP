@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
             setcookie('emailid',$_REQUEST['email'],time()+20);
             setcookie('pwd',$_REQUEST['password'],time()+20);
         }
-        header("location:APPLICANT_HOMEPAGE.html");
+        header("location:applicant_homepage.php");
         exit();
     } else {
         $error = "Invalid email or password!";
@@ -36,10 +36,13 @@ if (isset($_POST['submit'])) {
     <title>APPLICANT LOGIN</title>
     <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
     <link rel="stylesheet" href="../CSS/APPLICANT_LOGIN.CSS">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="../JS/loader.js"></script>
    
   </head>
 
   <body>
+  <div class="loader"><div></div><div></div><div></div><div></div></div>
     <div class="header" id="myHeader">
       <a href="#" style="width: 55%; margin-left: 20px;"><img src="../IMAGES/LOGO.png"  style="width:300px;height:90px; float: left; margin-left: 30px;"></a>
     </div>
@@ -48,19 +51,22 @@ if (isset($_POST['submit'])) {
         <div class="card1">
             <h1>LOG IN</h1>
             <div class="container">
-                <form action="" method="post">
+                <form action="" method="post" autocomplete="off">
                    
                     <div class="card2">
                         <div class="col1">
+
+                        <i class="bi bi-envelope-at-fill" style="font-size:20px"></i>
                             <input type="email" placeholder="EMAIL ADDRESS" name="email" required>
                         </div>
                     </div>
 
                     <div class="card2">
                         <div class="col1">
+                        <i class="bi bi-key" style="font-size:20px"></i>
+                        <img src="../IMAGES/eye-close.png" alt="" id="eyeicon">
                             <input type="password" placeholder="PASSWORD" name="password" id="password"required maxlength="20">
-                            <img src="../IMAGES/eye-close.png" alt="" id="eyeicon">
-                            
+ 
                         </div>
                     </div>
 
