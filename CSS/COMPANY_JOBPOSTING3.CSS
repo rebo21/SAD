@@ -1,0 +1,152 @@
+
+#regForm {
+    background-color: saddlebrown;
+    margin: 100px auto;
+    font-family: Raleway;
+    padding: 40px;
+    width: 90%;
+    min-width: 300px;
+  }
+  
+  h1 {
+    text-align: center;  
+    font-size: 30px;
+  }
+  
+  input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+  }
+  
+  /* Mark input boxes that gets an error on validation: */
+  input.invalid {
+    background-color: #ffdddd;
+  }
+  
+  /* Hide all steps by default: */
+  .tab {
+    display: none;
+  }
+  
+  button {
+    background-color: #04AA6D;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  #prevBtn {
+    background-color: #bbbbbb;
+  }
+  
+  /* Make circles that indicate the steps of the form: */
+  .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+  
+  .step.active {
+    opacity: 1;
+  }
+  
+  /* Mark the steps that are finished and valid: */
+  .step.finish {
+    background-color: #04AA6D;
+  }
+
+.card1
+{
+    background-color: darkkhaki;
+}
+
+
+  input[type=text], select, input[type=number] {
+    width: 100%;
+    padding: 10px;
+    border: 1.5px solid #9C0758;
+    background: #FFE0EF;
+    border-radius: 4px;
+    width: 500px;
+    resize: vertical;
+    font-size: 15px;
+  }
+  
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    font-size: 25px;
+    font-family: trajan pro, serif;
+  }
+
+  .colA-25 {
+    float: left;
+    width: 35%;
+    margin-top: 6px;
+  }
+  
+  .colA-75 {
+    float: left;
+    width: 60%;
+    margin-top: 6px;
+  }
+
+
+  .colB-25 {
+    float: left;
+    width: 25%;
+    margin-top: 10px;
+    margin-left: 70px;
+    background-color: blueviolet;
+    height: 50px;
+  }
+  
+  .colB-75 {
+    float: left;
+    width: 65%;
+    margin-top: 10px;
+    background-color: sandybrown;
+    height: 50px;
+  }
+
+  .colB-75 h2
+  {
+    font-size: 25px;
+    color: black;
+  }
+
+  .colB-75 h3
+  {
+    font-size: 15px;
+    color: red;
+  }
+
+  .colB-25 h4
+  {
+    font-size: 25px;
+    color: black;
+    text-align: center;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
