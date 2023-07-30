@@ -44,28 +44,8 @@
           include 'function.php';
           include 'sidebar.php';
           ?>
-          <div class="main">
-            <div id="navbar">
-
-                
-                <a class="active" style="width: 350px; text-align: left;" href="#">Home</a>
-                <a style="width: 350px; padding-top: 20px; margin-left: 80px;">
-                    <formsearch class="example" action="action_page.php">
-                      <center>
-                      <input type="text" placeholder="" name="search">
-                      <button type="submit"><i class="fa fa-search"></i></button>
-                      </center>
-                      
-                  </formsearch>
-                  </a>
-                  
-                <a href="#"></a>
-              </div>
-              
-              <div class="content">
+            <div class="content">
                 <div class="row">
-                    
-                    
                     <div class="column middle">
                         <div class="card1">
                             <div class="card2">
