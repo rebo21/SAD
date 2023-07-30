@@ -1,6 +1,13 @@
 <?php
 include "config.php";
 session_start();
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+require 'PHPMailer/Exception.php';
+require 'PHPMailer/PHPMailer.php';
+require 'PHPMailer/SMTP.php';
 if(isset($_POST["submit"])){
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
@@ -12,21 +19,55 @@ if(isset($_POST["submit"])){
     $confirm_password = $_POST["confirm_password"];
 
     if($password !== $confirm_password){
-        echo "password not match";
-    }
-
-    $insert = "INSERT INTO a_accounttb (firstname, lastname, age, sex, jobseekerType, email, password) VALUES (?,?,?,?,?,?,?)";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $insert)){
-        echo "error database";
+        echo "Password does not match.";
     } else {
-        mysqli_stmt_bind_param($stmt, "sssssss", $firstname, $lastname, $age, $sex, $jobseekerType, $email, $password);
-        mysqli_stmt_execute($stmt);
-        header("location: applicant_login.php");
+        $verification_code = bin2hex(random_bytes(16));
+
+        $insert = "INSERT INTO a_accounttb (firstname, lastname, age, sex, jobseekerType, email, password, verification_code) VALUES (?,?,?,?,?,?,?,?)";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $insert)){
+            echo "Database error.";
+        } else {
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            mysqli_stmt_bind_param($stmt, "ssssssss", $firstname, $lastname, $age, $sex, $jobseekerType, $email, $hashed_password, $verification_code);
+            mysqli_stmt_execute($stmt);
+
+            $mail = new PHPMailer(true);
+
+            try {
+                // Server settings
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;  
+                $mail->isSMTP();
+                $mail->Host = 'smtp.yahoo.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'peso.srcojssw@yahoo.com';
+                $mail->Password = 'websiteforpeso123';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
+                $mail->setFrom('noreply@example.com', 'Your Website');
+                $mail->addAddress($email, $firstname . ' ' . $lastname);
+                $mail->isHTML(true);
+                $mail->Subject = 'Account Verification';
+                $mail->Body    = 'Dear ' . $firstname . ',<br><br>Please click on the following link to verify your account:<br>'
+                                . '<a href="https://localhost/SAD/APPLICANT/verify.php?email=' . urlencode($email) . '&code=' . urlencode($verification_code) . '">Verify Account</a><br><br>'
+                                . 'If you did not sign up for an account on our website, you can ignore this email.<br><br>'
+                                . 'Best regards,<br>Your Website Team';
+
+                $mail->send();
+
+                echo 'Account created successfully. Please check your email for the verification link.';
+            } catch (Exception $e) {
+                echo 'Verification email could not be sent. Please try again later.';
+            }
+
+            header("location: index.php");
+        }
     }
-    
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -104,17 +145,17 @@ if(isset($_POST["submit"])){
                     
                     <div class="card2">
                         <div class="col3">
-                        <i class="bi bi-key"></i>
-                            <input style=float:left; type="password" placeholder="PASSWORD" name="password" id="myInput" oninput="validatePassword()"required maxlength="20">
+                            <i class="bi bi-key"></i>
+                            <img src="../IMAGES/eye-close.png" alt="" id="eyeicon1" class="eyeicon" data-target="myInput1">
+                            <input style="float:left;" type="password" placeholder="PASSWORD" name="password" id="myInput1" oninput="validatePassword()" required maxlength="20">
                         </div>
                     </div>
 
                     <div class="card2">
-                        
-
                         <div class="col3">
-                        <i class="bi bi-key"></i>
-                            <input style=float:left; type="password" placeholder="CONFIRM PASSWORD" name="confirm_password" id="myInput"required maxlength="20">
+                            <i class="bi bi-key"></i>
+                            <img src="../IMAGES/eye-close.png" alt="" id="eyeicon2" class="eyeicon" data-target="myInput2">
+                            <input style="float:left;" type="password" placeholder="CONFIRM PASSWORD" name="confirm_password" id="myInput2" required maxlength="20">
                         </div>
                     </div>
                     
@@ -129,7 +170,7 @@ if(isset($_POST["submit"])){
                         </div>
                         <br>
                         <center><button type="submit" class="register" name="submit">REGISTER</button></center>
-                        <h3>Already have an Account?&nbsp;&nbsp;<a href="APPLICANT_LOGIN.php">LOG IN</a></h3>
+                        <h3>Already have an Account?&nbsp;&nbsp;<a href="index.php">LOG IN</a></h3>
                     </div>
 
                     

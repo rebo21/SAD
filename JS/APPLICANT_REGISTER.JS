@@ -72,14 +72,22 @@ function validatePassword() {
     passwordError.innerHTML = 'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.';
   }
 }
-//show password
-let eyeicon = document.getElementById("eyeicon");
-let password = document.getElementById("newpassword");
+//Show Password
+let eyeIcons = document.getElementsByClassName("eyeicon");
 
-eyeicon.onclick = function(){
-    if(password.type == "newpassword"){
-        password.type = "text";
+for (let i = 0; i < eyeIcons.length; i++) {
+  let eyeIcon = eyeIcons[i];
+  let targetInputId = eyeIcon.getAttribute("data-target");
+  let targetInput = document.getElementById(targetInputId);
+
+  eyeIcon.onclick = function() {
+    if (targetInput.type === "password") {
+      targetInput.type = "text";
+      eyeIcon.src = "../IMAGES/eye-open.png";
     } else {
-        password.type = "newpassword";
+      targetInput.type = "password";
+      eyeIcon.src = "../IMAGES/eye-close.png";
     }
+  };
 }
+

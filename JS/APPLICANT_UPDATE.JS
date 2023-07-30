@@ -70,3 +70,15 @@ document.querySelectorAll(".btn-navigate-form-step").forEach((formNavigationBtn)
         navigateToFormStep(stepNumber);
     });
 });
+
+// Get all the buttons with the class "scrollButton"
+const scrollButtons = document.querySelectorAll(".btn-navigate-form-step");
+
+// Add a click event listener to each button
+scrollButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    // Scroll to the top of the page (body element)
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+  });
+});

@@ -1,4 +1,7 @@
 <!-- VERSION 3 -->
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
