@@ -3,7 +3,7 @@
 
 <?php
 	
-	include 'COMPANY_CONFIG.PHP';
+  include "../connect.php";
 	if (isset($_POST['post_job'])) {
         $jobTitle = $_POST["jobTitle"];
         $companyName = $_POST["companyName"];

@@ -1,13 +1,6 @@
 <?php
-include "config.php";
+include "../connect.php";
 session_start();
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\SMTP;
-
-require 'PHPMailer/Exception.php';
-require 'PHPMailer/PHPMailer.php';
-require 'PHPMailer/SMTP.php';
 if(isset($_POST["submit"])){
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
@@ -19,51 +12,19 @@ if(isset($_POST["submit"])){
     $confirm_password = $_POST["confirm_password"];
 
     if($password !== $confirm_password){
-        echo "Password does not match.";
-    } else {
-        $verification_code = bin2hex(random_bytes(16));
-
-        $insert = "INSERT INTO a_accounttb (firstname, lastname, age, sex, jobseekerType, email, password, verification_code) VALUES (?,?,?,?,?,?,?,?)";
-        $stmt = mysqli_stmt_init($conn);
-        if (!mysqli_stmt_prepare($stmt, $insert)){
-            echo "Database error.";
-        } else {
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            mysqli_stmt_bind_param($stmt, "ssssssss", $firstname, $lastname, $age, $sex, $jobseekerType, $email, $hashed_password, $verification_code);
-            mysqli_stmt_execute($stmt);
-
-            $mail = new PHPMailer(true);
-
-            try {
-                // Server settings
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER;  
-                $mail->isSMTP();
-                $mail->Host = 'smtp.yahoo.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'peso.srcojssw@yahoo.com';
-                $mail->Password = 'websiteforpeso123';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
-                $mail->setFrom('noreply@example.com', 'Your Website');
-                $mail->addAddress($email, $firstname . ' ' . $lastname);
-                $mail->isHTML(true);
-                $mail->Subject = 'Account Verification';
-                $mail->Body    = 'Dear ' . $firstname . ',<br><br>Please click on the following link to verify your account:<br>'
-                                . '<a href="https://localhost/SAD/APPLICANT/verify.php?email=' . urlencode($email) . '&code=' . urlencode($verification_code) . '">Verify Account</a><br><br>'
-                                . 'If you did not sign up for an account on our website, you can ignore this email.<br><br>'
-                                . 'Best regards,<br>Your Website Team';
-
-                $mail->send();
-
-                echo 'Account created successfully. Please check your email for the verification link.';
-            } catch (Exception $e) {
-                echo 'Verification email could not be sent. Please try again later.';
-            }
-
-            header("location: index.php");
-        }
+        echo "password not match";
     }
+
+    $insert = "INSERT INTO a_accounttb (firstname, lastname, age, sex, jobseekerType, email, password) VALUES (?,?,?,?,?,?,?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $insert)){
+        echo "error database";
+    } else {
+        mysqli_stmt_bind_param($stmt, "sssssss", $firstname, $lastname, $age, $sex, $jobseekerType, $email, $password);
+        mysqli_stmt_execute($stmt);
+        header("location: index.php");
+    }
+    
 }
 ?>
 
