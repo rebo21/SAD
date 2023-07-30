@@ -1,5 +1,8 @@
+<!-- VERSION 3 -->
+
 <?php
-include "../connect.php";
+
+include 'APPLICANT_CONFIG.PHP';
 session_start();
 $error = "";
 
@@ -12,7 +15,7 @@ if (isset($_POST['submit'])) {
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
-        $_SESSION['applicant_id'] = $row['applicant_id'];
+        $_SESSION['user_id'] = $row['user_id'];
         if(isset($_REQUEST['remember'])){
             setcookie('emailid',$_REQUEST['email'],time()+20);
             setcookie('pwd',$_REQUEST['password'],time()+20);

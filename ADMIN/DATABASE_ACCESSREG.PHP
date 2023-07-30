@@ -6,23 +6,23 @@ session_start();
 include 'PESO_CONFIG.PHP';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $A_name = $_POST["A_name"];
-    $A_email = $_POST["A_email"];
-    $A_employeeNum = $_POST["A_employeeNum"];
-    $A_passcode = $_POST["A_passcode"];
-    $A_confirm_passcode = $_POST["A_confirm_passcode"];
+    $D_name = $_POST["D_name"];
+    $D_email = $_POST["D_email"];
+    $D_employeeNum = $_POST["D_employeeNum"];
+    $D_passcode = $_POST["D_passcode"];
+    $D_confirm_passcode = $_POST["D_confirm_passcode"];
 
-    if ($A_passcode === $A_confirm_passcode) {
-        $existingAccountQuery = "SELECT * FROM applicant_access WHERE A_email='$A_email'";
+    if ($D_passcode === $D_confirm_passcode) {
+        $existingAccountQuery = "SELECT * FROM database_access WHERE D_email='$D_email'";
         $result = $conn->query($existingAccountQuery);
 
         if ($result->num_rows > 0) {
             echo "<script>alert('Account with this email already exists.');</script>";
         } else {
-            $sql = "INSERT INTO applicant_access (A_name, A_email, A_employeeNum, A_passcode) VALUES ('$A_name', '$A_email', '$A_employeeNum', '$A_passcode')";
+            $sql = "INSERT INTO database_access (D_name, D_email, D_employeeNum, D_passcode) VALUES ('$D_name', '$D_email', '$D_employeeNum', '$D_passcode')";
 
             if ($conn->query($sql) === true) {
-                header('location:../ADMIN/APPLICANT_ACCESSREG.PHP');
+                header('location:../ADMIN/DATABASE_ACCESSREG.PHP');
             } else {
                         
             }
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>APPLICANT ACCESS REGISTER</title>
+        <title>DATABASE ACCESS REGISTER</title>
         <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
         <link rel="stylesheet" href="../CSS/ACCESS.CSS">
         <link rel="stylesheet" href="../CSS/NAVBAR.CSS">
@@ -86,33 +86,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="column middle">
                     <center>
                     <div class="card4">
-                        <h1>APPLICANTS</h1>
+                        <h1>DATABASE</h1>
                         <div class="container">
                             <form action="" method="post">
 
                                 <div class="card2">
                                     <div class="col1">
                                         
-                                        <input type="text" placeholder="NAME" name="A_name" required maxlength="50">
+                                        <input type="text" placeholder="NAME" name="D_name" required maxlength="50">
                                     </div>
                                 </div>
                             
                                 <div class="card2">
                                     <div class="col1">
                                         
-                                        <input type="email" placeholder="EMAIL ADDRESS" name="A_email" required maxlength="50">
+                                        <input type="email" placeholder="EMAIL ADDRESS" name="D_email" required maxlength="50">
                                     </div>
                                 </div>
 
                                 <div class="card2">
                                     <div class="col1">
-                                    <input type="text" placeholder="EMPLOYEE NUMBER" name="A_employeeNum" required maxlength="20">
+                                    <input type="text" placeholder="EMPLOYEE NUMBER" name="D_employeeNum" required maxlength="20">
                                     </div>
                                 </div>
 
                                 <div class="card2">
                                     <div class="col1">
-                                        <input type="password" placeholder="PASSCODE" name="A_passcode" id="password"required maxlength="20">
+                                        <input type="password" placeholder="PASSCODE" name="D_passcode" id="password"required maxlength="20">
                                         <img src="../IMAGES/eye-close.png" alt="" id="eyeicon">
                                         
                                     </div>
@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 <div class="card2">
                                     <div class="col1">
-                                        <input type="password" placeholder="CONFIRM PASSCODE" name="A_confirm_passcode" id="password"required maxlength="20">
+                                        <input type="password" placeholder="CONFIRM PASSCODE" name="D_confirm_passcode" id="password"required maxlength="20">
                                         <img src="../IMAGES/eye-close.png" alt="" id="eyeicon">
                                         
                                     </div>

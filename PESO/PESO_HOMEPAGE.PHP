@@ -16,13 +16,13 @@
     <center>
     <!-- -------------------- BUTTONSSSSSS --------------------- -->
     <div class="card1">
-      <a href=""><button class="btn"><i><img src="../IMAGES/APPLICANTS.png" style="height: 70px; width: 70px"></i><br>APPLICANTS</button></a>
-      <a href=""><button class="btn"><i><img src="../IMAGES/COMPANIES.png" style="height: 70px; width: 70px"></i><br>COMPANIES</button></a>
-      <a href=""><button class="btn"><i><img src="../IMAGES/JOBPOSTING.png" style="height: 70px; width: 70px"></i><br>JOB POSTING</button></a>
+      <a href="APPLICANT_ACCESS.PHP"><button class="btn"><i><img src="../IMAGES/APPLICANTS.png" style="height: 70px; width: 70px"></i><br>APPLICANTS</button></a>
+      <a href="COMPANY_ACCESS.PHP"><button class="btn"><i><img src="../IMAGES/COMPANIES.png" style="height: 70px; width: 70px"></i><br>COMPANIES</button></a>
+      <a href="JOBPOSTING_ACCESS.PHP"><button class="btn"><i><img src="../IMAGES/JOBPOSTING.png" style="height: 70px; width: 70px"></i><br>JOB POSTING</button></a>
       <br> <br> <br> <br>
-      <a href=""><button class="btn"><i><img src="../IMAGES/DATABASE.png" style="height: 70px; width: 70px"></i><br>DATABASE</button></a>
-      <a href=""><button class="btn"><i><img src="../IMAGES/REPORTS.png" style="height: 70px; width: 70px"></i><br>REPORTS</button></a>
-      <a href=""><button class="btn"><i><img src="../IMAGES/POLICIES.png" style="height: 70px; width: 70px"></i><br>POLICIES</button></a>
+      <a href="DATABASE_ACCESS.PHP"><button class="btn"><i><img src="../IMAGES/DATABASE.png" style="height: 70px; width: 70px"></i><br>DATABASE</button></a>
+      <a href="REPORT_ACCESS.PHP"><button class="btn"><i><img src="../IMAGES/REPORTS.png" style="height: 70px; width: 70px"></i><br>REPORTS</button></a>
+      <a href="PESO_POLICIES.PHP"><button class="btn"><i><img src="../IMAGES/POLICIES.png" style="height: 70px; width: 70px"></i><br>POLICIES</button></a>
     </div>
     </center>
 
