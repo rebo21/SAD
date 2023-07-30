@@ -1,10 +1,8 @@
-COMPANY_JOBPOSTING.php
-<!-- VERSION 2 -->
 <?php
-@include'COMPANY_CONFIG.PHP';
+include '../connect.php';
 session_start();
 if (isset($_POST['submit'])){
-$user_id = $_SESSION["user_id"];
+$company_id = $_SESSION["company_id"];
 $jobTitle = $_POST["jobTitle"];
 $roleType = $_POST["roleType"];
 $position = $_POST["position"];
@@ -18,14 +16,14 @@ $jobDescription = $_POST["jobDescription"];
 
 
 
-$insert = "INSERT INTO c_job_posting (user_id, jobTitle, roleType, position, yrsExperience, jobSpecialization, workLocation, salary, educBg, numSlot, jobDescription) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+$insert = "INSERT INTO c_job_posts (company_id, jobTitle, roleType, position, yrsExperience, jobSpecialization, workLocation, salary, educBg, numSlot, jobDescription) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 $stmt = mysqli_stmt_init($conn);
 if(!mysqli_stmt_prepare($stmt, $insert)){
 
 } else{
-    mysqli_stmt_bind_param($stmt,"sssssssssss",$user_id, $jobTitle, $roleType, $position, $yrsExperience, $jobSpecialization, $workLocation, $salary, $educBg, $numSlot, $jobDescription);
+    mysqli_stmt_bind_param($stmt,"sssssssssss",$company_id, $jobTitle, $roleType, $position, $yrsExperience, $jobSpecialization, $workLocation, $salary, $educBg, $numSlot, $jobDescription);
     mysqli_stmt_execute($stmt);
-    header("location: ../HTML-PHP/");
+    header("location: #");
     exit();
 }
 }
@@ -39,30 +37,15 @@ if(!mysqli_stmt_prepare($stmt, $insert)){
         <title>COMPANY JOB POSTING</title>
         <link rel="icon" type="image/x-icon" href="../../IMAGES/PESO_LOGO.png">
         <link rel="stylesheet" href="../CSS/COMPANY_JOBPOSTING.CSS">
+        <link rel="stylesheet" href="../css/navbar.css">
        
     </head>
 
     <body>
-
-        
-        <div id="navbar">
-            <a href="#" style="width:45%; padding-top: 15px;"><img src="../../IMAGES/PESO_LOGO.png"  style="width:80px;height:80px; float: left; margin-left: 30px;"></a>
-           
-        </div>
-
-        
-        <div class="column">
-           
-            <div class="sidenav">
-               
-
-                <a href="#">HOME</a>
-                <a href="#">JOB POST</a>
-                <a href="#" class="active">JOB POSTING</a>
-                <a href="#">PROFILE</a>
-                <a href="#">SETTING</a>
-                
-            </div>
+        <?php
+        include 'function.php';
+        include 'sidebar.php';
+        ?>
 
             <div class="main">
                 <center>
@@ -70,14 +53,8 @@ if(!mysqli_stmt_prepare($stmt, $insert)){
                         <h1>JOB POSTING</h1>
                         <div class="container">
                             <form class="" action="" method="post" autocomplete="off">
-                                
-                                
                                 <br> 
                                 <div class="card3">
-                                    
-                                
-    
-            
                                     <div class="card4B">
                                         <div class="col1">
                                             <h4><label for="">JOB TITLE</label></h4>

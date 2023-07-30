@@ -1,7 +1,7 @@
 <!-- VERSION 3 -->
 <?php
 session_start();
-include 'COMPANY_CONFIG.PHP';
+include '../connect.php';
 if (isset($_POST["submit"])){
     $companyName = $_POST["companyName"];
     $industry = $_POST["industry"];
@@ -20,7 +20,7 @@ if (isset($_POST["submit"])){
     } else {
         mysqli_stmt_bind_param($stmt, "ssssss",$companyName, $industry, $contactPerson, $contactNum, $email, $password);
         mysqli_stmt_execute($stmt);
-        header("location: company_login.php");
+        header("location:index.php");
     }
 
 }

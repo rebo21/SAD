@@ -1,8 +1,7 @@
 <!-- VERSION 3 -->
 <?php
-@include 'COMPANY_CONFIG.PHP';
+include '../connect.php';
 session_start();
-$error = "";
 
 if (isset($_POST["submit"])) {
     $email = $_POST["email"];
@@ -14,12 +13,12 @@ if (isset($_POST["submit"])) {
     $result = mysqli_query($conn, $select);
     if(mysqli_num_rows($result) == 1){
         $row = mysqli_fetch_array($result);
-        $_SESSION['user_id'] = $row['user_id'];
-        header("location: COMPANY_HOMEPAGE.PHP");
+        $_SESSION['company_id'] = $row['company_id'];
+        header("location:company_requirements.PHP");
         exit();
     }
     else{
-        $error = "Invalid email or password!";
+        echo "Invalid email or password!";
     }
 }
 ?>
