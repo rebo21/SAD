@@ -69,6 +69,7 @@ body
     text-align: left;
   }
 }
+
 /*loader*/
 .loader {
   background-color: rgba(255,255,255,0.1);
@@ -89,16 +90,16 @@ transition: opacity 0.75s, visibility 0.75s;
   padding:0;
   top:47%;
   left:47%;
-align-items: center;
-box-sizing: border-box;
-display: block;
-position: fixed;
-width: 64px;
-height: 64px;
-border: 8px solid #fff;
-border-radius: 50%;
-animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-border-color: #ff726f transparent transparent transparent;
+  align-items: center;
+  box-sizing: border-box;
+  display: block;
+  position: fixed;
+  width: 64px;
+  height: 64px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #ff726f transparent transparent transparent;
 }
 .loader div:nth-child(1) {
 animation-delay: -0.45s;
@@ -327,9 +328,9 @@ input::-webkit-inner-spin-button {
 .register:hover{
   color: #9C0758;
   background: #fafafa;
-letter-spacing: 1px;
--webkit-box-shadow: 0px 5px 40px -10px rgba(255, 255, 255, 0.57);
--moz-box-shadow: 0px 5px 40px -10px rgba(255, 255, 255, 0.57);
-box-shadow: 5px 40px -10px rgba(255, 255, 255, 0.57);
-transition: all 0.4s ease 0s;
+  letter-spacing: 1px;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(255, 255, 255, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(255, 255, 255, 0.57);
+  box-shadow: 5px 40px -10px rgba(255, 255, 255, 0.57);
+  transition: all 0.4s ease 0s;
 }

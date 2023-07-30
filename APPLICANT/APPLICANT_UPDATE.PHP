@@ -1,4 +1,6 @@
+
 <?php
+
 include 'APPLICANT_CONFIG.PHP';
 
 session_start();
@@ -116,6 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $techSkill = implode(', ', $_POST["techSkill"]);
     $otherTechskill = $_POST["otherTechskill"];
 
+    
     /*step 1*/
 
     $sql_table1 = "INSERT INTO applicant_profile01 (user_id, lastName, firstName, midName, suffix, jobseekerType, birthplace, birthday, age, sex, civilStatus, citizenship, housenumPresent, brgyPresent, cityPresent, provincePresent, housenumPermanent, brgyPermanent, cityPermanent, provincePermanent, height, weight, mobilePnum, email, disability, employmentStatus, activelyLooking, willinglyWork, fourpsBeneficiary, ofw) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -140,6 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         echo "Error inserting data into education_info: " . $conn->error;
     }
+
     /*step 3*/
     $sql_table3 = "INSERT INTO applicant_profile03 (user_id, occupation1, industry1, occupation2, industry2, occupation3, industry3, employment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -197,7 +201,9 @@ if ($stmt->execute()) {
 
     }
 }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
