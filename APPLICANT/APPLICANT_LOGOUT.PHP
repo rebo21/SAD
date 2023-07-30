@@ -1,5 +1,5 @@
 <?php
-@include 'APPLICANT_CONFIG.PHP';
+include "../connect.php";
 session_start();
 session_unset();
 session_destroy();
