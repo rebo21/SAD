@@ -105,8 +105,8 @@ if (isset($_POST['submit'])) {
             }
         } else {
             // Data does not exist, perform an INSERT query
-            $insert_query = "INSERT INTO applicant_profile01 (applicant_id, lastName, firstName, midName, suffix, jobseekerType, birthplace, birthday, age, sex, civilStatus, citizenship, housenumPresent, brgyPresent, cityPresent, provincePresent, housenumPermanent, brgyPermanent, cityPermanent, provincePermanent, height, weight, mobilePnum, mobileSnum, email, disability, educLevel, gradYear, school, course, preferIndustry, employmentStatus, activelyLooking, willinglyWork, fourPsBeneficiary, ofw)
-            VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $insert_query = "INSERT INTO applicant_profile (applicant_id, lastName, firstName, midName, suffix, jobseekerType, birthplace, birthday, age, sex, civilStatus, citizenship, housenumPresent, brgyPresent, cityPresent, provincePresent, housenumPermanent, brgyPermanent, cityPermanent, provincePermanent, height, weight, mobilePnum, mobileSnum, email, disability, educLevel, gradYear, school, course, preferIndustry, employmentStatus, activelyLooking, willinglyWork, fourPsBeneficiary, ofw)
+            VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $insert_query)) {
                 echo "Error connecting to database";
@@ -182,15 +182,15 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="mt-3">
-                        <div class="col3">
-                        <label for=""><h2>Type of jobseeker</h2></label>
-                        <select style="width:200px;" class="" name="jobseekerType" required>
-                            <option value="" <?php echo empty($fetch['jobseekerType']) ? 'selected' : ''; ?>>Select Type</option>
-                            <option value="first_time" <?php echo ($fetch['jobseekerType'] === 'first_time') ? 'selected' : ''; ?>>FIRST TIME</option>
-                            <option value="jobseeker" <?php echo ($fetch['jobseekerType'] === 'jobseeker') ? 'selected' : ''; ?>>JOBSEEKER</option>
-                            <option value="ofw" <?php echo ($fetch['jobseekerType'] === 'ofw') ? 'selected' : ''; ?>>OFW</option>
-                        </select>
-                        </div>
+                    <div class="col3">
+                    <label for=""><h2>Type of jobseeker</h2></label>
+                    <select style="width:200px;" class="" name="jobseekerType" required>
+                        <option value="" <?php echo empty($fetch['jobseekerType']) ? 'selected' : ''; ?>>Select Type</option>
+                        <option value="first_time" <?php echo (isset($fetch['jobseekerType']) && $fetch['jobseekerType'] === 'first_time') ? 'selected' : ''; ?>>FIRST TIME</option>
+                        <option value="jobseeker" <?php echo (isset($fetch['jobseekerType']) && $fetch['jobseekerType'] === 'jobseeker') ? 'selected' : ''; ?>>JOBSEEKER</option>
+                        <option value="ofw" <?php echo (isset($fetch['jobseekerType']) && $fetch['jobseekerType'] === 'ofw') ? 'selected' : ''; ?>>OFW</option>
+                    </select>
+                </div>
                     </div>
                     <div class="mt-3">
                     <div class="stick-object">
@@ -215,25 +215,26 @@ if (isset($_POST['submit'])) {
                         <label for=""><h2>Sex</h2></label>
                         <select class="" name="sex" required>
                             <option value="" <?php echo empty($fetch['sex']) ? 'selected' : ''; ?>>Select Gender</option>
-                            <option value="Female" <?php echo ($fetch['sex'] === 'Female') ? 'selected' : ''; ?>>Female</option>
-                            <option value="Male" <?php echo ($fetch['sex'] === 'Male') ? 'selected' : ''; ?>>Male</option>
+                            <option value="Female" <?php echo (isset($fetch['sex']) && $fetch['sex'] === 'Female') ? 'selected' : ''; ?>>Female</option>
+                            <option value="Male" <?php echo (isset($fetch['sex']) && $fetch['sex'] === 'Male') ? 'selected' : ''; ?>>Male</option>
                         </select>
-                        </div>
+                    </div>
+
                     </div>
                     </div>
                     
                     <div class="mt-3">
                     <div class="stick-object">
-                        <div class="col1">
-                        <label for=""><h2>Civil Status</h2></label>
-                        <select class="" name="civilStatus" required>
-                            <option value="" <?php echo empty($fetch['civilStatus']) ? 'selected' : ''; ?>>Select Status</option>
-                            <option value="Single" <?php echo ($fetch['civilStatus'] === 'Single') ? 'selected' : ''; ?>>Single</option>
-                            <option value="Married" <?php echo ($fetch['civilStatus'] === 'Married') ? 'selected' : ''; ?>>Married</option>
-                            <option value="Single Parent" <?php echo ($fetch['civilStatus'] === 'Single Parent') ? 'selected' : ''; ?>>Single Parent</option>
-                            <option value="Widow" <?php echo ($fetch['civilStatus'] === 'Widow') ? 'selected' : ''; ?>>Widow</option>
-                        </select>
-                        </div>
+                    <div class="col1">
+                    <label for=""><h2>Civil Status</h2></label>
+                    <select class="" name="civilStatus" required>
+                        <option value="" <?php echo empty($fetch['civilStatus']) ? 'selected' : ''; ?>>Select Status</option>
+                        <option value="Single" <?php echo (isset($fetch['civilStatus']) && $fetch['civilStatus'] === 'Single') ? 'selected' : ''; ?>>Single</option>
+                        <option value="Married" <?php echo (isset($fetch['civilStatus']) && $fetch['civilStatus'] === 'Married') ? 'selected' : ''; ?>>Married</option>
+                        <option value="Single Parent" <?php echo (isset($fetch['civilStatus']) && $fetch['civilStatus'] === 'Single Parent') ? 'selected' : ''; ?>>Single Parent</option>
+                        <option value="Widow" <?php echo (isset($fetch['civilStatus']) && $fetch['civilStatus'] === 'Widow') ? 'selected' : ''; ?>>Widow</option>
+                    </select>
+                </div>
                         <div class="col2">
                         <label for=""><h2>Citizenship</h2></label>
                         <input type="text" name="citizenship" placeholder="CITIZENSHIP" required maxlength="50" value="<?php echo isset($fetch['citizenship']) ? $fetch['citizenship'] : ''; ?>">
@@ -289,30 +290,32 @@ if (isset($_POST['submit'])) {
                     <div class="mt-3">
                     <div class="stick-object">
                     <div class="col1">
-                        <label for=""><h2>Disability</h2></label>
-                        <select style="width: 120px;" class="" name="disability" required>
-                            <option value="None" <?php echo ($fetch['disability'] === 'None') ? 'selected' : ''; ?>>None</option>
-                            <option value="visual" <?php echo ($fetch['disability'] === 'visual') ? 'selected' : ''; ?>>Visual</option>
-                            <option value="hearing" <?php echo ($fetch['disability'] === 'hearing') ? 'selected' : ''; ?>>Hearing</option>
-                            <option value="speech" <?php echo ($fetch['disability'] === 'speech') ? 'selected' : ''; ?>>Speech</option>
-                            <option value="physical" <?php echo ($fetch['disability'] === 'physical') ? 'selected' : ''; ?>>Physical</option>
-                        </select>   
-                    </div>
-                    <div class="col2">
-                        <label for=""><h2>Employment Status</h2></label>
-                        <select class="" name="employmentStatus" required>
-                            <option value="" <?php echo empty($fetch['employmentStatus']) ? 'selected' : ''; ?>>Status</option>
-                            <option value="wage_employed" <?php echo ($fetch['employmentStatus'] === 'wage_employed') ? 'selected' : ''; ?>>Wage Employed</option>
-                            <option value="self_employed" <?php echo ($fetch['employmentStatus'] === 'self_employed') ? 'selected' : ''; ?>>Self Employed</option>
-                            <option value="fresh_grad" <?php echo ($fetch['employmentStatus'] === 'fresh_grad') ? 'selected' : ''; ?>>Fresh Graduate</option>
-                            <option value="finished_contract" <?php echo ($fetch['employmentStatus'] === 'finished_contract') ? 'selected' : ''; ?>>Finished Contract</option>
-                            <option value="resigned" <?php echo ($fetch['employmentStatus'] === 'resigned') ? 'selected' : ''; ?>>Resigned</option>
-                            <option value="retired" <?php echo ($fetch['employmentStatus'] === 'retired') ? 'selected' : ''; ?>>Retired</option>
-                            <option value="terminated" <?php echo ($fetch['employmentStatus'] === 'terminated') ? 'selected' : ''; ?>>Terminated</option>
-                            <option value="laidoff_local" <?php echo ($fetch['employmentStatus'] === 'laidoff_local') ? 'selected' : ''; ?>>Laidoff(local)</option>
-                            <option value="laidoff_abroad" <?php echo ($fetch['employmentStatus'] === 'laidoff_abroad') ? 'selected' : ''; ?>>Laidoff(abroad)</option>
-                        </select>      
-                    </div>
+                    <label for=""><h2>Disability</h2></label>
+                    <select style="width: 120px;" class="" name="disability" required>
+                        <option value="None" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'None') ? 'selected' : ''; ?>>None</option>
+                        <option value="visual" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'visual') ? 'selected' : ''; ?>>Visual</option>
+                        <option value="hearing" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'hearing') ? 'selected' : ''; ?>>Hearing</option>
+                        <option value="speech" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'speech') ? 'selected' : ''; ?>>Speech</option>
+                        <option value="physical" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'physical') ? 'selected' : ''; ?>>Physical</option>
+                    </select>
+                </div>
+
+                <div class="col2">
+                <label for=""><h2>Employment Status</h2></label>
+                <select class="" name="employmentStatus" required>
+                    <option value="" <?php echo empty($fetch['employmentStatus']) ? 'selected' : ''; ?>>Status</option>
+                    <option value="wage_employed" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'wage_employed') ? 'selected' : ''; ?>>Wage Employed</option>
+                    <option value="self_employed" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'self_employed') ? 'selected' : ''; ?>>Self Employed</option>
+                    <option value="fresh_grad" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'fresh_grad') ? 'selected' : ''; ?>>Fresh Graduate</option>
+                    <option value="finished_contract" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'finished_contract') ? 'selected' : ''; ?>>Finished Contract</option>
+                    <option value="resigned" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'resigned') ? 'selected' : ''; ?>>Resigned</option>
+                    <option value="retired" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'retired') ? 'selected' : ''; ?>>Retired</option>
+                    <option value="terminated" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'terminated') ? 'selected' : ''; ?>>Terminated</option>
+                    <option value="laidoff_local" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'laidoff_local') ? 'selected' : ''; ?>>Laidoff(local)</option>
+                    <option value="laidoff_abroad" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'laidoff_abroad') ? 'selected' : ''; ?>>Laidoff(abroad)</option>
+                </select>
+            </div>
+
                     </div>
 
                     
@@ -353,9 +356,9 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="col2">
                         <select class="" name="activelyLooking" required>
-                            <option value="" <?php echo empty($fetch['activelyLooking']) ? 'selected' : ''; ?> hidden></option>
-                            <option value="yes" <?php echo ($fetch['activelyLooking'] === 'yes') ? 'selected' : ''; ?>>Yes</option>
-                            <option value="no" <?php echo ($fetch['activelyLooking'] === 'no') ? 'selected' : ''; ?>>No</option>
+                            <option value="" <?php echo empty($fetch['activelyLooking']) ? 'selected' : ''; ?> hidden>Select an option</option>
+                            <option value="yes" <?php echo (isset($fetch['activelyLooking']) && $fetch['activelyLooking'] === 'yes') ? 'selected' : ''; ?>>Yes</option>
+                            <option value="no" <?php echo (isset($fetch['activelyLooking']) && $fetch['activelyLooking'] === 'no') ? 'selected' : ''; ?>>No</option>
                         </select>
                     </div> 
                 </div>
@@ -365,9 +368,9 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="col2">
                         <select class="drop-down" name="willinglyWork" required>
-                            <option value="" <?php echo empty($fetch['willinglyWork']) ? 'selected' : ''; ?> hidden></option>
-                            <option value="yes" <?php echo ($fetch['willinglyWork'] === 'yes') ? 'selected' : ''; ?>>Yes</option>
-                            <option value="no" <?php echo ($fetch['willinglyWork'] === 'no') ? 'selected' : ''; ?>>No</option>
+                            <option value="" <?php echo empty($fetch['willinglyWork']) ? 'selected' : ''; ?> hidden>Select an option</option>
+                            <option value="yes" <?php echo (isset($fetch['willinglyWork']) && $fetch['willinglyWork'] === 'yes') ? 'selected' : ''; ?>>Yes</option>
+                            <option value="no" <?php echo (isset($fetch['willinglyWork']) && $fetch['willinglyWork'] === 'no') ? 'selected' : ''; ?>>No</option>
                         </select>
                     </div>     
                 </div>
@@ -377,9 +380,9 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="col2">
                         <select class="" name="fourPsBeneficiary" required>
-                            <option value="" <?php echo empty($fetch['fourPsBeneficiary']) ? 'selected' : ''; ?> hidden></option>
-                            <option value="yes" <?php echo ($fetch['fourPsBeneficiary'] === 'yes') ? 'selected' : ''; ?>>Yes</option>
-                            <option value="no" <?php echo ($fetch['fourPsBeneficiary'] === 'no') ? 'selected' : ''; ?>>No</option>
+                            <option value="" <?php echo empty($fetch['fourPsBeneficiary']) ? 'selected' : ''; ?> hidden>Select an option</option>
+                            <option value="yes" <?php echo (isset($fetch['fourPsBeneficiary']) && $fetch['fourPsBeneficiary'] === 'yes') ? 'selected' : ''; ?>>Yes</option>
+                            <option value="no" <?php echo (isset($fetch['fourPsBeneficiary']) && $fetch['fourPsBeneficiary'] === 'no') ? 'selected' : ''; ?>>No</option>
                         </select>
                     </div>     
                 </div>
@@ -389,11 +392,13 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="col2">
                         <select class="" name="ofw" required>
-                            <option value="" <?php echo empty($fetch['ofw']) ? 'selected' : ''; ?> hidden></option>
-                            <option value="yes" <?php echo ($fetch['ofw'] === 'yes') ? 'selected' : ''; ?>>Yes</option>
-                            <option value="no" <?php echo ($fetch['ofw'] === 'no') ? 'selected' : ''; ?>>No</option>
+                            <option value="" <?php echo empty($fetch['ofw']) ? 'selected' : ''; ?> hidden>Select an option</option>
+                            <option value="yes" <?php echo (isset($fetch['ofw']) && $fetch['ofw'] === 'yes') ? 'selected' : ''; ?>>Yes</option>
+                            <option value="no" <?php echo (isset($fetch['ofw']) && $fetch['ofw'] === 'no') ? 'selected' : ''; ?>>No</option>
                         </select>
-                    </div>        
+                    </div>    
+                </div>
+                    
                 </div>
                 <button name="submit">Submit</button>
                 </div>
