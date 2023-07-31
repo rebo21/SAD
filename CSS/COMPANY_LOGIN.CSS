@@ -141,7 +141,12 @@ body
     
 }
 
-
+.col1 img{
+  margin-top: 5px;
+  right: 100px;
+  position: absolute;
+  width: 30px;
+}
 
 input[type=text], input[type=password], input[type=number], input[type=email], select
 {

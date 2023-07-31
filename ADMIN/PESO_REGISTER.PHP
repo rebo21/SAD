@@ -2,7 +2,7 @@
 <!-- VERSION 3 -->
 <?php
 session_start();
-include 'PESO_CONFIG.PHP';
+include '../connect.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $firstname = $_POST["firstname"];
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "INSERT INTO p_accounttb (firstname, lastname, age, sex, position, email, password) VALUES ('$firstname', '$lastname', '$age', '$sex', '$position', '$email', '$password')";
 
             if ($conn->query($sql) === true) {
-                header('location:../PESO/PESO_LOGIN.php');
+                header('location:../PESO/login.php');
             } else {
                         
             }

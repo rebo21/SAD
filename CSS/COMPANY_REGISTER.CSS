@@ -140,8 +140,13 @@ body
     background-color: transparent;
     
 }
-
-
+.col3 img{
+  margin-top: 5px;
+  right: 0;
+  margin-right: 16%;
+  position: absolute;
+  width: 30px;
+}
 
 input[type=text], input[type=password], input[type=number], input[type=email], input[type=tel], select
 {
