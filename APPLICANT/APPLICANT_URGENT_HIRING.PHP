@@ -11,7 +11,6 @@ include '../connect.php';
         <title>COMPANY JOB POST</title>
         <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
         <link rel="stylesheet" href="../CSS/COMPANY_JOBPOST.CSS">
-        <link rel="stylesheet" href="../CSS/NAVBAR.CSS">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         

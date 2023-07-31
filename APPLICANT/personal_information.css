@@ -1,0 +1,109 @@
+.main-container{
+    display: flex;
+}
+.mini-sidebar{
+    margin-top: 30px;
+    width: 250px;
+    height: 80vh;
+    margin-left: 300px;
+    position: relative;
+    border-right: 2px solid pink;
+}
+.content-sidebar{
+    height: 250px;
+}
+.profile-picture{
+    position: relative;
+}
+.profile-picture img{
+    padding: 0 45px;
+    max-width: 60%;
+    border-radius: 50%;
+}
+.change-profile-button {
+    width: 80%;
+    font-size: 22px;
+    margin-top: 40px;
+    display: block;
+    text-align: center;
+    background-color: #9C0758;
+    color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Hide the default file input button */
+input[type="file"] {
+    display: none;
+}
+.col-center{
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+.col-center a{
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+    display: block;
+    text-decoration: none;
+}
+.col-center a:hover{
+    color: #9C0758;
+}
+.container-profile {
+    border: 3px solid #9C0758;
+    border-radius: 30px;
+    margin: 20px 30px;
+    width: 56%;
+    overflow-y: auto;
+    max-height: 75vh; 
+}
+
+.container-profile h1 {
+    margin-left: 30px;
+}
+
+.container-profile .wrapper {
+    border-top: 2px solid #9C0758;
+    margin: 0 20px;
+    margin-bottom: 5px;
+    padding: 20px;
+}
+.container-profile button{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #04AA6D;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+}
+input[type=text], input[type=tel], input[type=number], input[type=date],input[type=email], select
+{
+    background-color: rgba(156, 7, 88, 0.5);
+    padding: 12px 20px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 15px;
+    color:rgb(37, 32, 32);
+}
+::placeholder 
+{
+    color: black;
+}
