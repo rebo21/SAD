@@ -32,3 +32,4 @@ session_start();
     <a href="#" <?php echo isActivePage("#"); ?>><i class="bi bi-envelope-at-fill" style="font-size:20px"></i>&nbsp;MORE INFO</a>
     <a href="sign_out.php" <?php echo isActivePage("sign_out.php"); ?>><i class="bi bi-box-arrow-left" style="font-size:20px"></i>&nbsp;LOG OUT</a>
 </div>
+
