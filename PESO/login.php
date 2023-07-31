@@ -1,9 +1,8 @@
 <!-- VERSION 3 -->
 
 <?php
-@include 'PESO_CONFIG.PHP';
+include '../connect.php';
 session_start();
-$error = "";
 
 if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -14,15 +13,15 @@ if (isset($_POST['submit'])) {
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
-        $_SESSION['user_id'] = $row['user_id'];
+        $_SESSION['peso_id'] = $row['peso_id'];
         if(isset($_REQUEST['remember'])){
             setcookie('emailid',$_REQUEST['email'],time()+20);
             setcookie('pwd',$_REQUEST['password'],time()+20);
         }
-        header("location:PESO_HOMEPAGE.php");
+        header("location:peso_jobposting.php");
         exit();
     } else {
-        $error = "Invalid email or password!";
+        echo "Invalid email or password!";
     }
 }
 ?>

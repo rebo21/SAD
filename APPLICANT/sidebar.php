@@ -25,9 +25,9 @@ session_start();
     <a href="applicant_homepage.php" <?php echo isActivePage("applicant_homepage.php"); ?>><i class="bi bi-house-door" style="font-size:20px"></i>&nbsp;HOME</a>
     <a href="applicant_urgent_hiring.php" <?php echo isActivePage("applicant_urgent_hiring.php"); ?>><i class="bi bi-file-post"style="font-size:20px"></i>&nbsp;Urgent Hiring</a>
     <a href="applicant_find_jobs.php" <?php echo isActivePage("applicant_find_jobs.php"); ?>><i class="bi bi-search" style="font-size:20px"></i>&nbsp;Find Job</a>
-    <a href="applicant_urgent_hiring.php" <?php echo isActivePage("applicant_urgent_hiring.php"); ?>><i class="bi bi-bell" style="font-size:20px"></i>&nbsp;NOTIFICATION</a>
+    <a href="#" <?php echo isActivePage("#"); ?>><i class="bi bi-bell" style="font-size:20px"></i>&nbsp;NOTIFICATION</a>
     <a href="applicant_profile.php" <?php echo isActivePage("applicant_profile.php"); ?>><i class="bi bi-person-lines-fill" style="font-size:20px"></i>&nbsp;PROFILE</a>
-    <a href="account_setting.php" <?php echo isActivePage("account_setting.php"); ?>><i class="bi bi-sliders2" style="font-size:20px"></i>&nbsp;SETTING</a>
+    <a href="#" <?php echo isActivePage("#"); ?>><i class="bi bi-sliders2" style="font-size:20px"></i>&nbsp;SETTING</a>
     <a href="#" <?php echo isActivePage("#"); ?>><i class="bi bi-envelope-at-fill" style="font-size:20px"></i>&nbsp;MORE INFO</a>
     <a href="sign_out.php" <?php echo isActivePage("sign_out.php"); ?>><i class="bi bi-box-arrow-left" style="font-size:20px"></i>&nbsp;LOG OUT</a>
 </div>

@@ -1,6 +1,6 @@
 <!-- VERSION 3 -->
 <?php
-@include 'COMPANY_CONFIG.PHP';
+include '../connect.php';
 session_start();
 $error = "";
 
@@ -14,7 +14,7 @@ if (isset($_POST["submit"])) {
     $result = mysqli_query($conn, $select);
     if(mysqli_num_rows($result) == 1){
         $row = mysqli_fetch_array($result);
-        $_SESSION['user_id'] = $row['user_id'];
+        $_SESSION['company_id'] = $row['company_id'];
         header("location: COMPANY_HOMEPAGE.PHP");
         exit();
     }
@@ -35,6 +35,7 @@ if (isset($_POST["submit"])) {
     <title>COMPANY LOGIN</title>
     <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
     <link rel="stylesheet" href="../CSS/COMPANY_LOGIN.CSS">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
    
   </head>
 
@@ -51,24 +52,29 @@ if (isset($_POST["submit"])) {
                    
                     <div class="card2">
                         <div class="col1">
+                        <i class="bi bi-envelope-at-fill" style="font-size:20px"></i>
                             <input type="email" placeholder="EMAIL ADDRESS" name="email" required>
                         </div>
                     </div>
 
                     <div class="card2">
                         <div class="col1">
+                        <i class="bi bi-person"></i>
                             <input type="text" placeholder="COMPANY NAME" name="companyName" required maxlength="50">
                         </div>
                     </div>
 
                     <div class="card2">
                         <div class="col1">
+                        <i class="bi bi-person"></i>
                             <input type="text" placeholder="CONTACT PERSON" name="contactPerson" required maxlength="50">
                         </div>
                     </div>
 
                     <div class="card2">
                         <div class="col1">
+                        <i class="bi bi-key"></i>
+                        <img src="../IMAGES/eye-close.png" alt="" id="eyeicon">
                             <input type="password" placeholder="PASSWORD" name="password" id="password"required maxlength="20">
                         </div>
                     </div>

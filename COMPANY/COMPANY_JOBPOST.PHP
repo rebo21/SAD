@@ -1,6 +1,11 @@
 <!-- VERSION 3 -->
 <?php
+session_start();
 include '../connect.php';
+/*if (!isset($_SESSION['company_id'])) {
+    header('Location: login.php');
+    exit();
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +45,8 @@ include '../connect.php';
                                 <h1>JOB POSTS</h1>
                             </div>
                             <?php
-                          $sql = "SELECT * FROM c_job_posts";
+                            $company_id = $_SESSION['company_id'];
+                          $sql = "SELECT * FROM c_job_posts WHERE company_id = '$company_id'";
                           $result = $conn->query($sql);
 
                           if ($result->num_rows > 0) {

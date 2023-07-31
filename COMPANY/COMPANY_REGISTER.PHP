@@ -20,7 +20,7 @@ if (isset($_POST["submit"])){
     } else {
         mysqli_stmt_bind_param($stmt, "ssssss",$companyName, $industry, $contactPerson, $contactNum, $email, $password);
         mysqli_stmt_execute($stmt);
-        header("location:index.php");
+        header("location:login.php");
     }
 
 }
@@ -35,7 +35,6 @@ if (isset($_POST["submit"])){
     <title>COMPANY REGISTER</title>
     <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
     <link rel="stylesheet" href="../CSS/COMPANY_REGISTER.CSS">
-   
   </head>
 
   <body>
@@ -90,19 +89,18 @@ if (isset($_POST["submit"])){
                     
                     <div class="card2">
                         <div class="col3">
-                        
-                            <input style=float:left; type="password" placeholder="PASSWORD" name="password" id="myInput" oninput="validatePassword()"required maxlength="20">
+                            <img src="../IMAGES/eye-close.png" alt="" id="eyeicon1" class="eyeicon" data-target="myInput1">
+                            <input style="float:left;" type="password" placeholder="PASSWORD" name="password" id="myInput1" oninput="validatePassword()" required maxlength="20">
                         </div>
                     </div>
 
                     <div class="card2">
-                        
-
                         <div class="col3">
-                     
-                            <input style=float:left; type="password" placeholder="CONFIRM PASSWORD" name="confirm_password" id="myInput"required maxlength="20">
+                            <img src="../IMAGES/eye-close.png" alt="" id="eyeicon2" class="eyeicon" data-target="myInput2">
+                            <input style="float:left;" type="password" placeholder="CONFIRM PASSWORD" name="confirm_password" id="myInput2" required maxlength="20">
                         </div>
                     </div>
+                    
                     
 
                     <div class="card3">
@@ -115,7 +113,7 @@ if (isset($_POST["submit"])){
                         </div>
                         <br>
                         <center><button type="submit" class="register"name="submit">REGISTER</button></center>
-                        <h3>Already have an Account?&nbsp;&nbsp;<a href="company_login.php">LOG IN</a></h3>
+                        <h3>Already have an Account?&nbsp;&nbsp;<a href="login.php">LOG IN</a></h3>
                     </div>
 
                     
@@ -126,7 +124,7 @@ if (isset($_POST["submit"])){
         </div>
     </center>
 
-    <script src="../JS/COMPANY_REGISTER.JS"></script>
+    <script src="../JS/applicant_register.js"></script>
   </body>
 
 </html>

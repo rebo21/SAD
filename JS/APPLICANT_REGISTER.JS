@@ -43,7 +43,7 @@ function restrictName(event) {
     document.getElementById("error-message").textContent = "";
   }
 }
-
+//validate form
 function validateForm() {
     var password = document.getElementById("password").value;
     var confirm_password = document.getElementById("confirm_password").value;
