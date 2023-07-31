@@ -1,3 +1,53 @@
+<?php
+include '../connect.php';
+session_start();
+if (isset($_POST['submit'])) {
+    $applicant_id = $_SESSION['applicant_id']; 
+    $lastName = $_POST['lastName'];
+    $firstName = $_POST['firstName'];
+    $midName = $_POST['midName'];
+    $suffix = $_POST['suffix'];
+    $jobseekerType = $_POST['jobseekerType'];
+    $birthplace = $_POST['birthplace'];
+    $birthday = $_POST['birthday'];
+    $age = $_POST['age'];
+    $sex = $_POST['sex'];
+    $civilStatus = $_POST['civilStatus'];
+    $citizenship = $_POST['citizenship'];
+    $housenumPresent = $_POST['housenumPresent'];
+    $brgyPresent = $_POST['brgyPresent'];
+    $cityPresent = $_POST['cityPresent'];
+    $provincePresent = $_POST['provincePresent'];
+    $housenumPermanent = $_POST['housenumPermanent'];
+    $brgyPermanent = $_POST['brgyPermanent'];
+    $cityPermanent = $_POST['cityPermanent'];
+    $provincePermanent = $_POST['provincePermanent'];
+    $height = $_POST['height'];
+    $weight = $_POST['weight'];
+    $mobilePnum = $_POST['mobilePnum'];
+    $mobileSnum = $_POST['mobileSnum'];
+    $email = $_POST['email'];
+    $disability = $_POST['disability'];
+    $employmentStatus = $_POST['employmentStatus'];
+    $activelyLooking = $_POST['activelyLooking'];
+    $willinglyWork = $_POST['willinglyWork'];
+    $fourpsBeneficiary = $_POST['fourpsBeneficiary'];
+    $ofw = $_POST['ofw'];
+
+    $insert = "INSERT INTO applicant_profile01 (applicant_id,lastName, firstName, midName, suffix, jobseekerType, birthplace, birthday, age, sex, civilStatus, citizenship, housenumPresent, brgyPresent, cityPresent, provincePresent, housenumPermanent, brgyPermanent, cityPermanent, provincePermanent, height, weight, mobilePnum, mobileSnum, email, disability, employmentStatus, activelyLooking, willinglyWork, fourpsBeneficiary, ofw)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $insert)){
+        echo "Error connecting to database";
+    } else{
+        mysqli_stmt_bind_param($stmt, "issssssssssssssssssssssssssssss",$applicant_id,$lastName, $firstName, $midName, $suffix, $jobseekerType, $birthplace, $birthday, $age, $sex, $civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $mobilePnum, $mobileSnum, $email, $disability, $employmentStatus, $activelyLooking, $willinglyWork, $fourpsBeneficiary, $ofw);
+        mysqli_stmt_execute($stmt);
+        echo"data successfully stored";
+        header("location:#");
+        exit();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +88,7 @@
     </div>
 
     <div class="container-profile">
-    <h1>Personal Information <button class="update">UPDATE</button></h1>
+    <h1>Personal Information <button class="update" name="submit">UPDATE</button></h1>
    
     
     
