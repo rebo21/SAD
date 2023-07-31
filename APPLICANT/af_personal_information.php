@@ -28,6 +28,13 @@ if (isset($_POST['submit'])) {
     $mobileSnum = $_POST['mobileSnum'];
     $email = $_POST['email'];
     $disability = $_POST['disability'];
+
+    $educLevel = $_POST['educLevel'];
+    $gradYear = $_POST['gradYear'];
+    $school = $_POST['school'];
+    $course = $_POST['course'];
+    $preferIndustry = $_POST['preferIndustry'];
+
     $employmentStatus = $_POST['employmentStatus'];
     $activelyLooking = $_POST['activelyLooking'];
     $willinglyWork = $_POST['willinglyWork'];
@@ -35,7 +42,7 @@ if (isset($_POST['submit'])) {
     $ofw = $_POST['ofw'];
 
     // Check if applicant data already exists in the database
-    $check_query = "SELECT * FROM applicant_profile01 WHERE applicant_id = ?";
+    $check_query = "SELECT * FROM applicant_profile WHERE applicant_id = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $check_query)) {
         echo "Error connecting to database";
@@ -46,7 +53,7 @@ if (isset($_POST['submit'])) {
 
         if (mysqli_num_rows($result) > 0) {
             // Data already exists, perform an UPDATE query
-            $update_query = "UPDATE applicant_profile01 SET 
+            $update_query = "UPDATE applicant_profile SET 
                 lastName = ?, 
                 firstName = ?, 
                 midName = ?, 
@@ -72,6 +79,13 @@ if (isset($_POST['submit'])) {
                 mobileSnum = ?, 
                 email = ?, 
                 disability = ?, 
+
+                educLevel = ?,
+                gradYear = ?,
+                school = ?,   
+                course = ?, 
+                preferIndustry = ?, 
+
                 employmentStatus = ?, 
                 activelyLooking = ?, 
                 willinglyWork = ?, 
@@ -82,8 +96,8 @@ if (isset($_POST['submit'])) {
             if (!mysqli_stmt_prepare($stmt, $update_query)) {
                 echo "Error connecting to database";
             } else {
-                mysqli_stmt_bind_param($stmt, "sssssssssssssssssssssssssssssss", 
-                    $lastName, $firstName, $midName, $suffix, $jobseekerType, $birthplace, $birthday, $age, $sex, $civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $mobilePnum, $mobileSnum, $email, $disability, $employmentStatus, $activelyLooking, $willinglyWork, $fourPsBeneficiary, $ofw, $applicant_id);
+                mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssssssssssssssssss", 
+                    $lastName, $firstName, $midName, $suffix, $jobseekerType, $birthplace, $birthday, $age, $sex, $civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $mobilePnum, $mobileSnum, $email, $disability, $educLevel, $gradYear, $school, $course, $preferIndustry, $employmentStatus, $activelyLooking, $willinglyWork, $fourPsBeneficiary, $ofw, $applicant_id);
                 mysqli_stmt_execute($stmt);
                 echo "Data successfully updated";
                 header("Location: #");
@@ -91,14 +105,14 @@ if (isset($_POST['submit'])) {
             }
         } else {
             // Data does not exist, perform an INSERT query
-            $insert_query = "INSERT INTO applicant_profile01 (applicant_id, lastName, firstName, midName, suffix, jobseekerType, birthplace, birthday, age, sex, civilStatus, citizenship, housenumPresent, brgyPresent, cityPresent, provincePresent, housenumPermanent, brgyPermanent, cityPermanent, provincePermanent, height, weight, mobilePnum, mobileSnum, email, disability, employmentStatus, activelyLooking, willinglyWork, fourPsBeneficiary, ofw)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $insert_query = "INSERT INTO applicant_profile01 (applicant_id, lastName, firstName, midName, suffix, jobseekerType, birthplace, birthday, age, sex, civilStatus, citizenship, housenumPresent, brgyPresent, cityPresent, provincePresent, housenumPermanent, brgyPermanent, cityPermanent, provincePermanent, height, weight, mobilePnum, mobileSnum, email, disability, educLevel, gradYear, school, course, preferIndustry, employmentStatus, activelyLooking, willinglyWork, fourPsBeneficiary, ofw)
+            VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $insert_query)) {
                 echo "Error connecting to database";
             } else {
-                mysqli_stmt_bind_param($stmt, "issssssssssssssssssssssssssssss", 
-                    $applicant_id, $lastName, $firstName, $midName, $suffix, $jobseekerType, $birthplace, $birthday, $age, $sex, $civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $mobilePnum, $mobileSnum, $email, $disability, $employmentStatus, $activelyLooking, $willinglyWork, $fourPsBeneficiary, $ofw);
+                mysqli_stmt_bind_param($stmt, "isssssssssssssssssssssssssssssssssss", 
+                    $applicant_id, $lastName, $firstName, $midName, $suffix, $jobseekerType, $birthplace, $birthday, $age, $sex, $civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $mobilePnum, $mobileSnum, $email, $disability, $educLevel, $gradYear, $school, $course, $preferIndustry, $employmentStatus, $activelyLooking, $willinglyWork, $fourPsBeneficiary, $ofw);
                 mysqli_stmt_execute($stmt);
                 echo "Data successfully stored";
                 header("Location: #");
@@ -126,7 +140,7 @@ if (isset($_POST['submit'])) {
       <div class="fetch-data">
         <?php
         $applicant_id = $_SESSION["applicant_id"];
-                    $select = mysqli_query($conn, "SELECT * FROM applicant_profile01 WHERE applicant_id = '$applicant_id'") or die ('query failed');
+                    $select = mysqli_query($conn, "SELECT * FROM applicant_profile WHERE applicant_id = '$applicant_id'") or die ('query failed');
                     if(mysqli_num_rows($select) > 0){
                         $fetch = mysqli_fetch_assoc($select);
                     }
@@ -135,35 +149,29 @@ if (isset($_POST['submit'])) {
     <div class="main-container">
 
  
-    <div class="mini-sidebar">
+    <div style="background: transaparent;" class="mini-sidebar">
         <div class="content-sidebar">
-            <div class="profile-picture">
-                <img src="profile-img/default.jpg" alt="">
-                <input type="file" name="profile-image" id="profile-image-input" style="display: none;">
-                <center><label for="profile-image-input" class="change-profile-button">Change Profile</label></center>
-            </div>
+            
         
             <div class="col-center">
-                <a href="">Personal Information</a>
-                <a href="">Educational Background</a>
-                <a href="">Job Preference</a>
-                <a href=""> Trainings</a>
-                <a href="">Eligibility</a>
-                <a href="">Work Experiences</a>
-                <a href="">Skills</a>
-                <a href="">Authorization</a>
+                
             </div>
         </div>
     </div>
 
     <div class="container-profile">
-    <h1>Personal Information <button class="update" name="submit">edit</button></h1>
+    <h1>Personal Information</h1>
    
     
     
         <form action="" method="post">
         <div class="wrapper">
-            <button name="submit">Submit</button>
+            
+            <div class="profile-picture">
+                <img src="profile-img/default.jpg" alt="">
+                <input type="file" name="profile-image" id="profile-image-input" style="display: none;">
+                <center><label for="profile-image-input" class="change-profile-button">Change Profile</label></center>
+            </div
                     <div class="mt-3">
                         <div class="col3">
                         <label for=""><h2>Name</h2></label>
@@ -305,9 +313,39 @@ if (isset($_POST['submit'])) {
                             <option value="laidoff_abroad" <?php echo ($fetch['employmentStatus'] === 'laidoff_abroad') ? 'selected' : ''; ?>>Laidoff(abroad)</option>
                         </select>      
                     </div>
-                </div>
+                    </div>
 
                     
+                    <div class="mt-3">
+                        <div class="col1">
+                        <label for=""><h2>Educational Level</h2></label>
+                        <input type="text" name="educLevel" placeholder="EDUC LEVEL" required maxlength="50" value="<?php echo isset($fetch['educLevel']) ? $fetch['educLevel'] : ''; ?>">
+                        </div>
+                        <div class="col2">
+                        <label for=""><h2>Year Graduated</h2></label>
+                        <input type="text" name="gradYear" placeholder="GRAD YEAR" required maxlength="50" value="<?php echo isset($fetch['gradYear']) ? $fetch['gradYear'] : ''; ?>">
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div class="col3">
+                        <label for=""><h2>School</h2></label>
+                        <input type="text" name="school" placeholder="SCHOOL" required maxlength="50" value="<?php echo isset($fetch['school']) ? $fetch['school'] : ''; ?>">
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div class="col1">
+                        <label for=""><h2>Course</h2></label>
+                        <input type="text" name="course" placeholder="COURSE" required maxlength="50" value="<?php echo isset($fetch['course']) ? $fetch['course'] : ''; ?>">
+                        </div>
+                        <div class="col2">
+                        <label for=""><h2>Preferred Industry</h2></label>
+                        <input type="text" name="preferIndustry" placeholder="PREFERRED INDUSTRY" required maxlength="50" value="<?php echo isset($fetch['preferIndustry']) ? $fetch['preferIndustry'] : ''; ?>">
+                        </div>
+                    </div>
+                    
+
+
+
                     </div>
                     <div class="mt-3">
                     <div style="height: 40px;" class="col1">
@@ -357,9 +395,9 @@ if (isset($_POST['submit'])) {
                         </select>
                     </div>        
                 </div>
-
+                <button name="submit">Submit</button>
                 </div>
-                
+                    
         </form>
     </div>
     </div>

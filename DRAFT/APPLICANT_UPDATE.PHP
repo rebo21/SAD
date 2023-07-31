@@ -1,4 +1,4 @@
-<<<<<<< HEAD:APPLICANT/APPLICANT_UPDATE.PHP
+
 
 <?php
 

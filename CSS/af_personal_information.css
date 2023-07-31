@@ -3,12 +3,13 @@
 }
 
 .mini-sidebar{
-    border: 3px solid #9C0758;
+    border: none;
     border-radius: 30px;
     margin-left: 300px;
-    width: 250px;
+    width: 50px;
     height: 500px;
     margin-top: 30px;
+    background-color: transparent;
    
 }
 .content-sidebar{
@@ -20,7 +21,8 @@
 }
 .profile-picture img{
     padding: 0 45px;
-    max-width: 60%;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
 }
 .change-profile-button {
@@ -67,9 +69,10 @@ input[type="file"] {
     border: 3px solid #9C0758;
     border-radius: 30px;
     margin-left: 50px;
-    width: 56%;
-    height: 1800px;
+    width: 65%;
+    height: 2700px;
     margin-top: 30px;
+    float: right;
 }
 
 .container-profile h1 {
