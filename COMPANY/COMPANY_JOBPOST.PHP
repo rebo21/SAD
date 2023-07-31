@@ -56,6 +56,19 @@ include '../connect.php';
                            
                             <div class="card3">
                             <div class="col-75">
+<<<<<<< HEAD
+                                <h2><?php echo $row['c_jobTitle']; ?><h2>
+                                <h3>COMPANY NAME:&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+                                <h3>JOB INDUSTRY:&nbsp;&nbsp;&nbsp;&nbsp;<?php  echo $row['c_jobIndustry']; ?></h3>
+                                <h3>SALARY:&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row['c_salary']; ?></h3>
+                                <h3>WORK LOCATION:&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row['c_workLocation']; ?></h3>
+                                <h3>SLOTS:&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row['c_numSlot']; ?></h3>
+                                <h3>SKILLS:&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row['c_skills']; ?></h3>
+
+                                
+                            
+                            </div>
+=======
                                         <h2><?php echo $row['jobTitle']; ?></h2>
                                         <h3>COMPANY ID: <?php echo $row['company_id']; ?></h3>
                                         <h3>TYPE OF ROLE: <?php echo $row['roleType']; ?></h3>
@@ -68,6 +81,7 @@ include '../connect.php';
                                         <h3>NUMBER OF SLOTS: <?php echo $row['numSlot']; ?></h3>
                                         <h3>JOB DESCRIPTION: <?php echo $row['jobDescription']; ?></h3>
                                     </div>
+>>>>>>> f699c237f58e16df6b14404dae7ac27155e685f8
                             <div class="col-25">
 
                             </div>

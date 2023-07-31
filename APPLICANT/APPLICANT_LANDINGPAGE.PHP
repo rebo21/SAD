@@ -37,7 +37,7 @@
       <h1>PUBLIC EMPLOYMENT SERVICE OFFICE (PESO)</h1>
       <h2>SANTA ROSA, LAGUNA</h2>
       <h3>YOUR PARTNER IN FINDING BETTER JOBS!</h3>
-      <a href="login.php"><button class="register">REGISTER TO APPLY</button></a>
+      <a href="APPLICANT_REGISTER.php"><button class="register">REGISTER TO APPLY</button></a>
 
     </div>
     </center>

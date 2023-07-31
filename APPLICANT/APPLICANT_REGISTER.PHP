@@ -22,7 +22,7 @@ if(isset($_POST["submit"])){
     } else {
         mysqli_stmt_bind_param($stmt, "sssssss", $firstname, $lastname, $age, $sex, $jobseekerType, $email, $password);
         mysqli_stmt_execute($stmt);
-        header("location: index.php");
+        header("location: login.php");
     }
     
 }
@@ -131,7 +131,7 @@ if(isset($_POST["submit"])){
                         </div>
                         <br>
                         <center><button type="submit" class="register" name="submit">REGISTER</button></center>
-                        <h3>Already have an Account?&nbsp;&nbsp;<a href="index.php">LOG IN</a></h3>
+                        <h3>Already have an Account?&nbsp;&nbsp;<a href="login.php">LOG IN</a></h3>
                     </div>
 
                     
