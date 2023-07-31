@@ -34,17 +34,77 @@ if (isset($_POST['submit'])) {
     $fourPsBeneficiary = $_POST['fourPsBeneficiary'];
     $ofw = $_POST['ofw'];
 
-    $insert = "INSERT INTO applicant_profile01 (applicant_id,lastName, firstName, midName, suffix, jobseekerType, birthplace, birthday, age, sex, civilStatus, citizenship, housenumPresent, brgyPresent, cityPresent, provincePresent, housenumPermanent, brgyPermanent, cityPermanent, provincePermanent, height, weight, mobilePnum, mobileSnum, email, disability, employmentStatus, activelyLooking, willinglyWork, fourPsBeneficiary, ofw)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    // Check if applicant data already exists in the database
+    $check_query = "SELECT * FROM applicant_profile01 WHERE applicant_id = ?";
     $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $insert)){
+    if (!mysqli_stmt_prepare($stmt, $check_query)) {
         echo "Error connecting to database";
-    } else{
-        mysqli_stmt_bind_param($stmt, "issssssssssssssssssssssssssssss",$applicant_id,$lastName, $firstName, $midName, $suffix, $jobseekerType, $birthplace, $birthday, $age, $sex, $civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $mobilePnum, $mobileSnum, $email, $disability, $employmentStatus, $activelyLooking, $willinglyWork, $fourPsBeneficiary, $ofw);
+    } else {
+        mysqli_stmt_bind_param($stmt, "i", $applicant_id);
         mysqli_stmt_execute($stmt);
-        echo"data successfully stored";
-        header("location:#");
-        exit();
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) > 0) {
+            // Data already exists, perform an UPDATE query
+            $update_query = "UPDATE applicant_profile01 SET 
+                lastName = ?, 
+                firstName = ?, 
+                midName = ?, 
+                suffix = ?, 
+                jobseekerType = ?, 
+                birthplace = ?, 
+                birthday = ?, 
+                age = ?, 
+                sex = ?, 
+                civilStatus = ?, 
+                citizenship = ?, 
+                housenumPresent = ?, 
+                brgyPresent = ?, 
+                cityPresent = ?, 
+                provincePresent = ?, 
+                housenumPermanent = ?, 
+                brgyPermanent = ?, 
+                cityPermanent = ?, 
+                provincePermanent = ?, 
+                height = ?, 
+                weight = ?, 
+                mobilePnum = ?, 
+                mobileSnum = ?, 
+                email = ?, 
+                disability = ?, 
+                employmentStatus = ?, 
+                activelyLooking = ?, 
+                willinglyWork = ?, 
+                fourPsBeneficiary = ?, 
+                ofw = ?
+                WHERE applicant_id = ?";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $update_query)) {
+                echo "Error connecting to database";
+            } else {
+                mysqli_stmt_bind_param($stmt, "sssssssssssssssssssssssssssssss", 
+                    $lastName, $firstName, $midName, $suffix, $jobseekerType, $birthplace, $birthday, $age, $sex, $civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $mobilePnum, $mobileSnum, $email, $disability, $employmentStatus, $activelyLooking, $willinglyWork, $fourPsBeneficiary, $ofw, $applicant_id);
+                mysqli_stmt_execute($stmt);
+                echo "Data successfully updated";
+                header("Location: #");
+                exit();
+            }
+        } else {
+            // Data does not exist, perform an INSERT query
+            $insert_query = "INSERT INTO applicant_profile01 (applicant_id, lastName, firstName, midName, suffix, jobseekerType, birthplace, birthday, age, sex, civilStatus, citizenship, housenumPresent, brgyPresent, cityPresent, provincePresent, housenumPermanent, brgyPermanent, cityPermanent, provincePermanent, height, weight, mobilePnum, mobileSnum, email, disability, employmentStatus, activelyLooking, willinglyWork, fourPsBeneficiary, ofw)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $insert_query)) {
+                echo "Error connecting to database";
+            } else {
+                mysqli_stmt_bind_param($stmt, "issssssssssssssssssssssssssssss", 
+                    $applicant_id, $lastName, $firstName, $midName, $suffix, $jobseekerType, $birthplace, $birthday, $age, $sex, $civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $mobilePnum, $mobileSnum, $email, $disability, $employmentStatus, $activelyLooking, $willinglyWork, $fourPsBeneficiary, $ofw);
+                mysqli_stmt_execute($stmt);
+                echo "Data successfully stored";
+                header("Location: #");
+                exit();
+            }
+        }
     }
 }
 ?>
