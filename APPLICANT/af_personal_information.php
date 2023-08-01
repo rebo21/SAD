@@ -41,6 +41,22 @@ if (isset($_POST['submit'])) {
     $fourPsBeneficiary = $_POST['fourPsBeneficiary'];
     $ofw = $_POST['ofw'];
 
+    //upload profile picture
+    $profile_img = $_FILES['profile_img'];
+    $file_name = $profile_img["name"];
+    $file_tmp = $profile_img["tmp_name"];
+    $upload_directory = "upload_img/";
+    $file_path = $upload_directory . $file_name;
+
+    if (!empty($file_name)) {
+        move_uploaded_file($file_tmp, $file_path);
+    } else {
+        $selectQuery = "SELECT profile_img FROM applicant_profile WHERE applicant_id = '$applicant_id'";
+        $result = mysqli_query($conn, $selectQuery);
+        $row = mysqli_fetch_assoc($result);
+        $file_name = $row['profile_img'];
+        $file_path = $upload_directory . $file_name;
+    }
     // Check if applicant data already exists in the database
     $check_query = "SELECT * FROM applicant_profile WHERE applicant_id = ?";
     $stmt = mysqli_stmt_init($conn);
@@ -131,6 +147,8 @@ if (isset($_POST['submit'])) {
     <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
     <link rel="stylesheet" href="../css/af_personal_information.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/af_personal_information.js"></script>
 </head>
 <body>
     <?php
@@ -168,22 +186,32 @@ if (isset($_POST['submit'])) {
         <div class="wrapper">
             
             <div class="profile-picture">
-                <img src="profile-img/default.jpg" alt="">
-                <input type="file" name="profile-image" id="profile-image-input" style="display: none;">
-                <center><label for="profile-image-input" class="change-profile-button">Change Profile</label></center>
-            </div
+            <?php
+            $select = mysqli_query($conn, "SELECT * FROM applicant_profile WHERE applicant_id = '$applicant_id'") or die ('query failed');
+            if(mysqli_num_rows($select) > 0){
+                $fetch = mysqli_fetch_assoc($select);
+            }
+            if($fetch['profile_img'] == ''){
+                echo '<img src="profile-img/default.jpg">';
+            }else{
+                echo'<img src="upload_img/'.$fetch['profile_img'].'">';
+            }
+            ?>
+            <input type="file" name="profile-image" id="profile-image-input" style="display: none;" onchange="uploadProfilePicture()">
+            <center><label for="profile-image-input" class="change-profile-button">Change Profile</label></center>
+        </div>
                     <div class="mt-3">
-                        <div class="col3">
-                        <label for=""><h2>Name</h2></label>
-                        <input style="width:170px;" type="text" placeholder="First Name" name="firstName" value="<?php echo isset($fetch['firstName']) ? $fetch['firstName'] : ''; ?>">
-                        <input style="width:170px;" type="text" placeholder="Last Name" name="lastName" value="<?php echo isset($fetch['lastName']) ? $fetch['lastName'] : ''; ?>">
-                        <input style="width:170px;" type="text" placeholder="Middle Name" name="midName"value="<?php echo isset($fetch['midName']) ? $fetch['midName'] : ''; ?>">
-                        <input style="width:80px;" type="text" placeholder="suffix" name="suffix"value="<?php echo isset($fetch['suffix']) ? $fetch['suffix'] : ''; ?>">
+                        <div class="col3" onkeypress="restrictName(event)">
+                        <label for=""><h2>Name<code>*</code></h2></label>
+                        <input style="width:170px;" type="text" placeholder="First Name" name="firstName" required maxlength="50" value="<?php echo isset($fetch['firstName']) ? $fetch['firstName'] : ''; ?>">
+                        <input style="width:170px;" type="text" placeholder="Last Name" name="lastName" required maxlength="50" value="<?php echo isset($fetch['lastName']) ? $fetch['lastName'] : ''; ?>">
+                        <input style="width:170px;" type="text" placeholder="Middle Name" name="midName" required maxlength="50" value="<?php echo isset($fetch['midName']) ? $fetch['midName'] : ''; ?>">
+                        <input style="width:80px;" type="text" placeholder="suffix" name="suffix" required maxlength="50"value="<?php echo isset($fetch['suffix']) ? $fetch['suffix'] : ''; ?>">
                         </div>
                     </div>
                     <div class="mt-3">
                     <div class="col3">
-                    <label for=""><h2>Type of jobseeker</h2></label>
+                    <label for=""><h2>Type of jobseeker<code>*</code></h2></label>
                     <select style="width:200px;" class="" name="jobseekerType" required>
                         <option value="" <?php echo empty($fetch['jobseekerType']) ? 'selected' : ''; ?>>Select Type</option>
                         <option value="first_time" <?php echo (isset($fetch['jobseekerType']) && $fetch['jobseekerType'] === 'first_time') ? 'selected' : ''; ?>>FIRST TIME</option>
@@ -195,12 +223,12 @@ if (isset($_POST['submit'])) {
                     <div class="mt-3">
                     <div class="stick-object">
                         <div class="col1">
-                        <label for=""><h2>Birthplace</h2></label>
-                        <input type="text" name="birthplace"placeholder="BIRTHPLACE" required value="<?php echo isset($fetch['birthplace']) ? $fetch['birthplace'] : ''; ?>">
+                        <label for=""><h2>Birthplace<code>*</code></h2></label>
+                        <input type="text" name="birthplace"placeholder="BIRTHPLACE" required maxlength="50" value="<?php echo isset($fetch['birthplace']) ? $fetch['birthplace'] : ''; ?>">
                         </div>
                         <div class="col2">
-                        <label for=""><h2>Date of Birth</h2></label>
-                        <input type="date" placeholder="birthday" name="birthday" value="<?php echo isset($fetch['birthday']) ? $fetch['birthday'] : ''; ?>">
+                        <label for=""><h2>Date of Birth<code>*</code></h2></label>
+                        <input type="date" placeholder="birthday" name="birthday" required value="<?php echo isset($fetch['birthday']) ? $fetch['birthday'] : ''; ?>">
                         </div>
                     </div>
                     </div>
@@ -208,11 +236,11 @@ if (isset($_POST['submit'])) {
                     <div class="stick-object">
                        
                         <div class="col1">
-                        <label for=""><h2>Age</h2></label>
-                        <input type="number" id="age"name="age" placeholder="AGE"min="16" max="90"required value="<?php echo isset($fetch['age']) ? $fetch['age'] : ''; ?>">
+                        <label for=""><h2>Age<code>*</code></h2></label>
+                        <input type="number" id="age"name="age" placeholder="AGE"min="18" max="90"required value="<?php echo isset($fetch['age']) ? $fetch['age'] : ''; ?>"oninput="checkInputLength(this, 3)">
                         </div>
                         <div class="col2">
-                        <label for=""><h2>Sex</h2></label>
+                        <label for=""><h2>Sex<code>*</code></h2></label>
                         <select class="" name="sex" required>
                             <option value="" <?php echo empty($fetch['sex']) ? 'selected' : ''; ?>>Select Gender</option>
                             <option value="Female" <?php echo (isset($fetch['sex']) && $fetch['sex'] === 'Female') ? 'selected' : ''; ?>>Female</option>
@@ -226,7 +254,7 @@ if (isset($_POST['submit'])) {
                     <div class="mt-3">
                     <div class="stick-object">
                     <div class="col1">
-                    <label for=""><h2>Civil Status</h2></label>
+                    <label for=""><h2>Civil Status<code>*</code></h2></label>
                     <select class="" name="civilStatus" required>
                         <option value="" <?php echo empty($fetch['civilStatus']) ? 'selected' : ''; ?>>Select Status</option>
                         <option value="Single" <?php echo (isset($fetch['civilStatus']) && $fetch['civilStatus'] === 'Single') ? 'selected' : ''; ?>>Single</option>
@@ -236,14 +264,14 @@ if (isset($_POST['submit'])) {
                     </select>
                 </div>
                         <div class="col2">
-                        <label for=""><h2>Citizenship</h2></label>
+                        <label for=""><h2>Citizenship<code>*</code></h2></label>
                         <input type="text" name="citizenship" placeholder="CITIZENSHIP" required maxlength="50" value="<?php echo isset($fetch['citizenship']) ? $fetch['citizenship'] : ''; ?>">
                         </div>
                     </div>
                     </div>
                     <div class="mt-3">
                         <div class="col3">
-                        <label for=""><h2>Present Address</h2></label>
+                        <label for=""><h2>Present Address<code>*</code></h2></label>
                         <input style="width:100px;" type="text" name="housenumPresent" placeholder="HOUSE NO." required maxlength="50" value="<?php echo isset($fetch['housenumPresent']) ? $fetch['housenumPresent'] : ''; ?>">
                         <input style="width:170px;" type="text"name="brgyPresent" placeholder="BARANGAY" required maxlength="50" value="<?php echo isset($fetch['brgyPresent']) ? $fetch['brgyPresent'] : ''; ?>">
                         <input style="width:170px;" type="text" name="cityPresent" placeholder="MUNICIPALITY/CITY" required maxlength="50" value="<?php echo isset($fetch['cityPresent']) ? $fetch['cityPresent'] : ''; ?>">
@@ -252,7 +280,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="mt-3">
                         <div class="col3">
-                        <label for=""><h2>Permanent Address</h2></label>
+                        <label for=""><h2>Permanent Address<code>*</code></h2></label>
                         <input style="width:100px;" type="text" name="housenumPermanent" placeholder="HOUSE NO." required maxlength="50" value="<?php echo isset($fetch['housenumPermanent']) ? $fetch['housenumPermanent'] : ''; ?>">
                         <input style="width:170px;" type="text" name="brgyPermanent" placeholder="BARANGAY" required maxlength="50" value="<?php echo isset($fetch['brgyPermanent']) ? $fetch['brgyPermanent'] : ''; ?>">
                         <input style="width:170px;" type="text" name="cityPermanent" placeholder="MUNICIPALITY/CITY" required maxlength="50" value="<?php echo isset($fetch['cityPermanent']) ? $fetch['cityPermanent'] : ''; ?>">
@@ -262,35 +290,37 @@ if (isset($_POST['submit'])) {
                     <div class="mt-3">
                     <div class="stick-object">
                         <div class="col1">
-                        <label for=""><h2>Height</h2></label>
-                        <input type="number" name="height" id="body-size" placeholder="HEIGHT (cm)" min="0" required value="<?php echo isset($fetch['height']) ? $fetch['height'] : ''; ?>">
+                        <label for="height"><h2>Height<code>*</code></h2></label>
+                        <input type="number" name="height" id="height" placeholder="HEIGHT (cm)" min="0" required value="<?php echo isset($fetch['height']) ? $fetch['height'] : ''; ?>"oninput="checkInputLength(this, 3)">
                         </div>
                         <div class="col2">
-                        <label for=""><h2>Weight</h2></label>
-                        <input type="text" name="weight" id="body-size" placeholder="WEIGHT (kg)" required value="<?php echo isset($fetch['weight']) ? $fetch['weight'] : ''; ?>">
+                        <label for=""><h2>Weight<code>*</code></h2></label>
+                        <input type="text" name="weight" id="body-size" placeholder="WEIGHT (kg)" required value="<?php echo isset($fetch['weight']) ? $fetch['weight'] : ''; ?>"oninput="checkInputLength(this, 3)">
                         </div>
                     </div>
                     </div>
                     <div class="mt-3">
                         <div class="col1">
-                        <label for=""><h2>Mobile Number</h2></label>
-                        <input type="tel" name="mobilePnum" placeholder="PRIMARY NUMBER" required value="<?php echo isset($fetch['mobilePnum']) ? $fetch['mobilePnum'] : ''; ?>">
+                        <label for=""><h2>Mobile Number<code>*</code></h2></label>
+                        <h4>(09xxxxxxxxx)</h4>
+                        <input type="tel" name="mobilePnum" placeholder="PRIMARY NUMBER" pattern="[0-9]{11}" required value="<?php echo isset($fetch['mobilePnum']) ? $fetch['mobilePnum'] : ''; ?>">
                         </div>
                         <div class="col2">
-                        <label for=""><h2>Mobile Number</h2></label>
-                        <input type="tel" name="mobileSnum" placeholder="SECONDARY NUMBER" required value="<?php echo isset($fetch['mobileSnum']) ? $fetch['mobileSnum'] : ''; ?>">
+                        <label for=""><h2>Mobile Number<code>*</code></h2></label>
+                        <h4>(09xxxxxxxxx)</h4>
+                        <input type="tel" name="mobileSnum" placeholder="SECONDARY NUMBER" pattern="[0-9]{11}" required value="<?php echo isset($fetch['mobileSnum']) ? $fetch['mobileSnum'] : ''; ?>">
                         </div>
                     </div>
                     <div class="mt-3">
                         <div class="col3">
-                        <label for=""><h2>Email Address</h2></label>
+                        <label for=""><h2>Email Address<code>*</code></h2></label>
                         <input type="email" name="email" placeholder="EMAIL ADDRESS" required maxlength="50" value="<?php echo isset($fetch['email']) ? $fetch['email'] : ''; ?>">
                         </div>
                     </div>
                     <div class="mt-3">
                     <div class="stick-object">
                     <div class="col1">
-                    <label for=""><h2>Disability</h2></label>
+                    <label for=""><h2>Disability<code>*</code></h2></label>
                     <select style="width: 120px;" class="" name="disability" required>
                         <option value="None" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'None') ? 'selected' : ''; ?>>None</option>
                         <option value="visual" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'visual') ? 'selected' : ''; ?>>Visual</option>
@@ -301,7 +331,7 @@ if (isset($_POST['submit'])) {
                 </div>
 
                 <div class="col2">
-                <label for=""><h2>Employment Status</h2></label>
+                <label for=""><h2>Employment Status<code>*</code></h2></label>
                 <select class="" name="employmentStatus" required>
                     <option value="" <?php echo empty($fetch['employmentStatus']) ? 'selected' : ''; ?>>Status</option>
                     <option value="wage_employed" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'wage_employed') ? 'selected' : ''; ?>>Wage Employed</option>
@@ -321,27 +351,27 @@ if (isset($_POST['submit'])) {
                     
                     <div class="mt-3">
                         <div class="col1">
-                        <label for=""><h2>Educational Level</h2></label>
+                        <label for=""><h2>Educational Level<code>*</code></h2></label>
                         <input type="text" name="educLevel" placeholder="EDUC LEVEL" required maxlength="50" value="<?php echo isset($fetch['educLevel']) ? $fetch['educLevel'] : ''; ?>">
                         </div>
                         <div class="col2">
-                        <label for=""><h2>Year Graduated</h2></label>
+                        <label for=""><h2>Year Graduated<code>*</code></h2></label>
                         <input type="text" name="gradYear" placeholder="GRAD YEAR" required maxlength="50" value="<?php echo isset($fetch['gradYear']) ? $fetch['gradYear'] : ''; ?>">
                         </div>
                     </div>
                     <div class="mt-3">
                         <div class="col3">
-                        <label for=""><h2>School</h2></label>
+                        <label for=""><h2>School<code>*</code></h2></label>
                         <input type="text" name="school" placeholder="SCHOOL" required maxlength="50" value="<?php echo isset($fetch['school']) ? $fetch['school'] : ''; ?>">
                         </div>
                     </div>
                     <div class="mt-3">
                         <div class="col1">
-                        <label for=""><h2>Course</h2></label>
+                        <label for=""><h2>Course<code>*</code></h2></label>
                         <input type="text" name="course" placeholder="COURSE" required maxlength="50" value="<?php echo isset($fetch['course']) ? $fetch['course'] : ''; ?>">
                         </div>
                         <div class="col2">
-                        <label for=""><h2>Preferred Industry</h2></label>
+                        <label for=""><h2>Preferred Industry<code>*</code></h2></label>
                         <input type="text" name="preferIndustry" placeholder="PREFERRED INDUSTRY" required maxlength="50" value="<?php echo isset($fetch['preferIndustry']) ? $fetch['preferIndustry'] : ''; ?>">
                         </div>
                     </div>
@@ -352,7 +382,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="mt-3">
                     <div style="height: 40px;" class="col1">
-                        <label for="">ACTIVELY LOOKING FOR WORK?</label>
+                        <label for="">ACTIVELY LOOKING FOR WORK?<code>*</code></label>
                     </div>
                     <div class="col2">
                         <select class="" name="activelyLooking" required>
@@ -364,7 +394,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="mt-3">
                     <div style="height: 40px;" class="col1">
-                        <label for="">WILLING TO WORK IMMEDIATELY?</label>
+                        <label for="">WILLING TO WORK IMMEDIATELY?<code>*</code></label>
                     </div>
                     <div class="col2">
                         <select class="drop-down" name="willinglyWork" required>
@@ -376,7 +406,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="mt-3">
                     <div style="height: 40px;" class="col1">
-                        <label for="">ARE YOU A 4Ps BENEFICIARY?</label>
+                        <label for="">ARE YOU A 4Ps BENEFICIARY?<code>*</code></label>
                     </div>
                     <div class="col2">
                         <select class="" name="fourPsBeneficiary" required>
@@ -388,7 +418,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="mt-3">
                     <div style="height: 40px;" class="col1">
-                        <label for="">ARE YOU AN OFW?</label>
+                        <label for="">ARE YOU AN OFW?<code>*</code></label>
                     </div>
                     <div class="col2">
                         <select class="" name="ofw" required>
