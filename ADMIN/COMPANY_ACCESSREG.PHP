@@ -1,37 +1,25 @@
-<!-- VERSION 3 -->
-
-
 <?php
-session_start();
-include 'PESO_CONFIG.PHP';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+include '../connect.php';
+if (isset($_POST["submit"])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $employeeNum = $_POST['employeeNum'];
+    $passcode = $_POST['passcode'];
+    $confirm_passcode = $_POST['confirm_passcode'];
 
-    $C_name = $_POST["C_name"];
-    $C_email = $_POST["C_email"];
-    $C_employeeNum = $_POST["C_employeeNum"];
-    $C_passcode = $_POST["C_passcode"];
-    $C_confirm_passcode = $_POST["C_confirm_passcode"];
-
-    if ($C_passcode === $C_confirm_passcode) {
-        $existingAccountQuery = "SELECT * FROM company_access WHERE C_email='$C_email'";
-        $result = $conn->query($existingAccountQuery);
-
-        if ($result->num_rows > 0) {
-            echo "<script>alert('Account with this email already exists.');</script>";
-        } else {
-            $sql = "INSERT INTO company_access (C_name, C_email, C_employeeNum, C_passcode) VALUES ('$C_name', '$C_email', '$C_employeeNum', '$C_passcode')";
-
-            if ($conn->query($sql) === true) {
-                header('location:../ADMIN/COMPANY_ACCESSREG.PHP');
-            } else {
-                        
-            }
-        }
+    if ($passcode !== $confirm_passcode) {
+        echo "Passcode Mismatch!";
     } else {
-        echo "<script>alert('Passwords do not match.');</script>";
+        $status_id = 2;
+        $insert = "INSERT INTO access (name, email, employeeNum, passcode, status_id) VALUES (?, ?, ?, ?, ?)";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $insert)) {
+            echo "Error";
+        } else {
+            mysqli_stmt_bind_param($stmt, "ssssi", $name, $email, $employeeNum, $passcode, $status_id);
+            mysqli_stmt_execute($stmt);
+        }
     }
-
-    $conn->close();
 }
 ?>
 
@@ -93,26 +81,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="card2">
                                     <div class="col1">
                                         
-                                        <input type="text" placeholder="NAME" name="C_name" required maxlength="50">
+                                        <input type="text" placeholder="NAME" name="name" required maxlength="50">
                                     </div>
                                 </div>
                             
                                 <div class="card2">
                                     <div class="col1">
                                         
-                                        <input type="email" placeholder="EMAIL ADDRESS" name="C_email" required maxlength="50">
+                                        <input type="email" placeholder="EMAIL ADDRESS" name="email" required maxlength="50">
                                     </div>
                                 </div>
 
                                 <div class="card2">
                                     <div class="col1">
-                                    <input type="text" placeholder="EMPLOYEE NUMBER" name="C_employeeNum" required maxlength="20">
+                                    <input type="text" placeholder="EMPLOYEE NUMBER" name="employeeNum" required maxlength="20">
                                     </div>
                                 </div>
 
                                 <div class="card2">
                                     <div class="col1">
-                                        <input type="password" placeholder="PASSCODE" name="C_passcode" id="password"required maxlength="20">
+                                        <input type="password" placeholder="PASSCODE" name="passcode" id="password"required maxlength="20">
                                         <img src="../IMAGES/eye-close.png" alt="" id="eyeicon">
                                         
                                     </div>
@@ -120,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 <div class="card2">
                                     <div class="col1">
-                                        <input type="password" placeholder="CONFIRM PASSCODE" name="C_confirm_passcode" id="password"required maxlength="20">
+                                        <input type="password" placeholder="CONFIRM PASSCODE" name="confirm_passcode" id="password"required maxlength="20">
                                         <img src="../IMAGES/eye-close.png" alt="" id="eyeicon">
                                         
                                     </div>

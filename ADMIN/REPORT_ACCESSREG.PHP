@@ -1,40 +1,27 @@
-<!-- VERSION 3 -->
-
-
 <?php
-session_start();
-include 'PESO_CONFIG.PHP';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+include '../connect.php';
+if (isset($_POST["submit"])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $employeeNum = $_POST['employeeNum'];
+    $passcode = $_POST['passcode'];
+    $confirm_passcode = $_POST['confirm_passcode'];
 
-    $R_name = $_POST["R_name"];
-    $R_email = $_POST["R_email"];
-    $R_employeeNum = $_POST["R_employeeNum"];
-    $R_passcode = $_POST["R_passcode"];
-    $R_confirm_passcode = $_POST["R_confirm_passcode"];
-
-    if ($R_passcode === $R_confirm_passcode) {
-        $existingAccountQuery = "SELECT * FROM report_access WHERE R_email='$R_email'";
-        $result = $conn->query($existingAccountQuery);
-
-        if ($result->num_rows > 0) {
-            echo "<script>alert('Account with this email already exists.');</script>";
-        } else {
-            $sql = "INSERT INTO report_access (R_name, R_email, R_employeeNum, R_passcode) VALUES ('$R_name', '$R_email', '$R_employeeNum', '$R_passcode')";
-
-            if ($conn->query($sql) === true) {
-                header('location:../ADMIN/REPORT_ACCESSREG.PHP');
-            } else {
-                        
-            }
-        }
+    if ($passcode !== $confirm_passcode) {
+        echo "Passcode Mismatch!";
     } else {
-        echo "<script>alert('Passwords do not match.');</script>";
+        $status_id = 5;
+        $insert = "INSERT INTO access (name, email, employeeNum, passcode, status_id) VALUES (?, ?, ?, ?, ?)";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $insert)) {
+            echo "Error";
+        } else {
+            mysqli_stmt_bind_param($stmt, "ssssi", $name, $email, $employeeNum, $passcode, $status_id);
+            mysqli_stmt_execute($stmt);
+        }
     }
-
-    $conn->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -93,26 +80,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="card2">
                                     <div class="col1">
                                         
-                                        <input type="text" placeholder="NAME" name="R_name" required maxlength="50">
+                                        <input type="text" placeholder="NAME" name="name" required maxlength="50">
                                     </div>
                                 </div>
                             
                                 <div class="card2">
                                     <div class="col1">
                                         
-                                        <input type="email" placeholder="EMAIL ADDRESS" name="R_email" required maxlength="50">
+                                        <input type="email" placeholder="EMAIL ADDRESS" name="email" required maxlength="50">
                                     </div>
                                 </div>
 
                                 <div class="card2">
                                     <div class="col1">
-                                    <input type="text" placeholder="EMPLOYEE NUMBER" name="R_employeeNum" required maxlength="20">
+                                    <input type="text" placeholder="EMPLOYEE NUMBER" name="employeeNum" required maxlength="20">
                                     </div>
                                 </div>
 
                                 <div class="card2">
                                     <div class="col1">
-                                        <input type="password" placeholder="PASSCODE" name="R_passcode" id="password"required maxlength="20">
+                                        <input type="password" placeholder="PASSCODE" name="passcode" id="password"required maxlength="20">
                                         <img src="../IMAGES/eye-close.png" alt="" id="eyeicon">
                                         
                                     </div>
@@ -120,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 <div class="card2">
                                     <div class="col1">
-                                        <input type="password" placeholder="CONFIRM PASSCODE" name="R_confirm_passcode" id="password"required maxlength="20">
+                                        <input type="password" placeholder="CONFIRM PASSCODE" name="confirm_passcode" id="password"required maxlength="20">
                                         <img src="../IMAGES/eye-close.png" alt="" id="eyeicon">
                                         
                                     </div>
