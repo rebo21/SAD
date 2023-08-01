@@ -17,10 +17,10 @@ include '../connect.php';
     </head>
 
     <body>
-    <?php
-      include 'function.php';
-      include 'sidebar.php';
-      ?>
+        <?php
+        include 'function.php';
+        include 'sidebar.php';
+        ?>
           
           <div class="main">
               

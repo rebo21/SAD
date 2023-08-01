@@ -1,6 +1,6 @@
 <?php
 	
-	include 'COMPANY_CONFIG.PHP';
+	include '../connect.php';
 
 	if (isset($_POST['post_comment'])) {
 
