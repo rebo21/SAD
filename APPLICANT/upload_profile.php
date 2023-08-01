@@ -13,7 +13,7 @@ if (isset($_FILES['profile_img'])) {
         move_uploaded_file($file_tmp, $file_path);
 
         // Update the profile_img field in the database
-        $update_query = "UPDATE applicant_profile SET profile_img = '$file_name' WHERE applicant_id = '$applicant_id'";
+        $update_query = "UPDATE a_accounttb SET profile_img = '$file_name' WHERE applicant_id = '$applicant_id'";
         if (mysqli_query($conn, $update_query)) {
             echo 'success';
         } else {

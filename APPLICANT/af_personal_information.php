@@ -3,15 +3,10 @@ include '../connect.php';
 session_start();
 if (isset($_POST['submit'])) {
     $applicant_id = $_SESSION['applicant_id']; 
-    $lastName = $_POST['lastName'];
-    $firstName = $_POST['firstName'];
     $midName = $_POST['midName'];
     $suffix = $_POST['suffix'];
-    $jobseekerType = $_POST['jobseekerType'];
     $birthplace = $_POST['birthplace'];
     $birthday = $_POST['birthday'];
-    $age = $_POST['age'];
-    $sex = $_POST['sex'];
     $civilStatus = $_POST['civilStatus'];
     $citizenship = $_POST['citizenship'];
     $housenumPresent = $_POST['housenumPresent'];
@@ -26,38 +21,18 @@ if (isset($_POST['submit'])) {
     $weight = $_POST['weight'];
     $mobilePnum = $_POST['mobilePnum'];
     $mobileSnum = $_POST['mobileSnum'];
-    $email = $_POST['email'];
     $disability = $_POST['disability'];
-
     $educLevel = $_POST['educLevel'];
     $gradYear = $_POST['gradYear'];
     $school = $_POST['school'];
     $course = $_POST['course'];
     $preferIndustry = $_POST['preferIndustry'];
-
     $employmentStatus = $_POST['employmentStatus'];
     $activelyLooking = $_POST['activelyLooking'];
     $willinglyWork = $_POST['willinglyWork'];
     $fourPsBeneficiary = $_POST['fourPsBeneficiary'];
     $ofw = $_POST['ofw'];
-
-    //upload profile picture
-    $profile_img = $_FILES['profile_img'];
-    $file_name = $profile_img["name"];
-    $file_tmp = $profile_img["tmp_name"];
-    $upload_directory = "upload_img/";
-    $file_path = $upload_directory . $file_name;
-
-    if (!empty($file_name)) {
-        move_uploaded_file($file_tmp, $file_path);
-    } else {
-        $selectQuery = "SELECT profile_img FROM applicant_profile WHERE applicant_id = '$applicant_id'";
-        $result = mysqli_query($conn, $selectQuery);
-        $row = mysqli_fetch_assoc($result);
-        $file_name = $row['profile_img'];
-        $file_path = $upload_directory . $file_name;
-    }
-    // Check if applicant data already exists in the database
+    // Check
     $check_query = "SELECT * FROM applicant_profile WHERE applicant_id = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $check_query)) {
@@ -68,17 +43,11 @@ if (isset($_POST['submit'])) {
         $result = mysqli_stmt_get_result($stmt);
 
         if (mysqli_num_rows($result) > 0) {
-            // Data already exists, perform an UPDATE query
-            $update_query = "UPDATE applicant_profile SET 
-                lastName = ?, 
-                firstName = ?, 
+            $update_query_profile = "UPDATE applicant_profile SET 
                 midName = ?, 
                 suffix = ?, 
-                jobseekerType = ?, 
                 birthplace = ?, 
                 birthday = ?, 
-                age = ?, 
-                sex = ?, 
                 civilStatus = ?, 
                 citizenship = ?, 
                 housenumPresent = ?, 
@@ -93,50 +62,87 @@ if (isset($_POST['submit'])) {
                 weight = ?, 
                 mobilePnum = ?, 
                 mobileSnum = ?, 
-                email = ?, 
                 disability = ?, 
-
                 educLevel = ?,
                 gradYear = ?,
                 school = ?,   
                 course = ?, 
                 preferIndustry = ?, 
-
                 employmentStatus = ?, 
                 activelyLooking = ?, 
                 willinglyWork = ?, 
                 fourPsBeneficiary = ?, 
                 ofw = ?
                 WHERE applicant_id = ?";
-            $stmt = mysqli_stmt_init($conn);
-            if (!mysqli_stmt_prepare($stmt, $update_query)) {
+            $stmt_profile = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt_profile, $update_query_profile)) {
                 echo "Error connecting to database";
             } else {
-                mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssssssssssssssssss", 
-                    $lastName, $firstName, $midName, $suffix, $jobseekerType, $birthplace, $birthday, $age, $sex, $civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $mobilePnum, $mobileSnum, $email, $disability, $educLevel, $gradYear, $school, $course, $preferIndustry, $employmentStatus, $activelyLooking, $willinglyWork, $fourPsBeneficiary, $ofw, $applicant_id);
-                mysqli_stmt_execute($stmt);
-                echo "Data successfully updated";
-                header("Location: #");
-                exit();
+                mysqli_stmt_bind_param($stmt_profile, "sssssssssssssssssssssssssssssi", 
+                $midName, $suffix,$birthplace, $birthday,$civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $mobilePnum, $mobileSnum, $disability, $educLevel, $gradYear, $school, $course, $preferIndustry, $employmentStatus, $activelyLooking, $willinglyWork, $fourPsBeneficiary, $ofw, $applicant_id);
+                mysqli_stmt_execute($stmt_profile);
+                }
+                $update_query_account = "UPDATE a_accounttb SET 
+                lastname = ?, 
+                firstname = ?, 
+                jobseekerType = ?, 
+                age = ?, 
+                sex = ?
+                WHERE applicant_id = ?";
+            $stmt_account = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt_account, $update_query_account)) {
+                echo "Error connecting to database";
+            } else {
+                $lastname = $_POST['lastname'];
+                $firstname = $_POST['firstname'];
+                $jobseekerType = $_POST['jobseekerType'];
+                $age = $_POST['age'];
+                $sex = $_POST['sex'];
+                mysqli_stmt_bind_param($stmt_account, "sssssi", 
+                    $lastname, $firstname, $jobseekerType, $age, $sex, $applicant_id);
+                mysqli_stmt_execute($stmt_account);
             }
-        } else {
-            // Data does not exist, perform an INSERT query
-            $insert_query = "INSERT INTO applicant_profile (applicant_id, lastName, firstName, midName, suffix, jobseekerType, birthplace, birthday, age, sex, civilStatus, citizenship, housenumPresent, brgyPresent, cityPresent, provincePresent, housenumPermanent, brgyPermanent, cityPermanent, provincePermanent, height, weight, mobilePnum, mobileSnum, email, disability, educLevel, gradYear, school, course, preferIndustry, employmentStatus, activelyLooking, willinglyWork, fourPsBeneficiary, ofw)
-            VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            } else {
+            $insert_query = "INSERT INTO applicant_profile (applicant_id, midName, suffix, birthplace, birthday,civilStatus, citizenship, housenumPresent, brgyPresent, cityPresent, provincePresent, housenumPermanent, brgyPermanent, cityPermanent, provincePermanent, height, weight, mobilePnum, mobileSnum, disability, educLevel, gradYear, school, course, preferIndustry, employmentStatus, activelyLooking, willinglyWork, fourPsBeneficiary, ofw)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $insert_query)) {
                 echo "Error connecting to database";
             } else {
-                mysqli_stmt_bind_param($stmt, "isssssssssssssssssssssssssssssssssss", 
-                    $applicant_id, $lastName, $firstName, $midName, $suffix, $jobseekerType, $birthplace, $birthday, $age, $sex, $civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $mobilePnum, $mobileSnum, $email, $disability, $educLevel, $gradYear, $school, $course, $preferIndustry, $employmentStatus, $activelyLooking, $willinglyWork, $fourPsBeneficiary, $ofw);
+                mysqli_stmt_bind_param($stmt, "isssssssssssssssssssssssssssss", 
+                    $applicant_id, $midName, $suffix, $birthplace, $birthday, $civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $mobilePnum, $mobileSnum,$disability, $educLevel, $gradYear, $school, $course, $preferIndustry, $employmentStatus, $activelyLooking, $willinglyWork, $fourPsBeneficiary, $ofw);
                 mysqli_stmt_execute($stmt);
                 echo "Data successfully stored";
                 header("Location: #");
                 exit();
             }
+            // INSERT query for a_accounttb
+                $insert_query_account = "INSERT INTO a_accounttb (applicant_id, lastname, firstname, jobseekerType, age, sex)
+                VALUES (?, ?, ?, ?, ?, ?, ?)";
+                $stmt_account = mysqli_stmt_init($conn);
+                if (!mysqli_stmt_prepare($stmt_account, $insert_query_account)) {
+                    echo "Error connecting to database";
+                } else {
+                    mysqli_stmt_bind_param($stmt_account, "issssss", 
+                        $applicant_id, $lastname, $firstname, $jobseekerType, $age, $sex);
+                    mysqli_stmt_execute($stmt_account);
+                }
         }
+        
     }
 }
+                // Fetch data for the specified applicant_id from the a_accounttb table
+                $applicant_id = $_SESSION['applicant_id'];
+                $selectQuery2 = "SELECT lastname, firstname, jobseekerType, age, sex FROM a_accounttb WHERE applicant_id = ?";
+                $stmt2 = mysqli_stmt_init($conn);
+                if (!mysqli_stmt_prepare($stmt2, $selectQuery2)) {
+                    echo "Error connecting to database";
+                    exit();
+                }
+                mysqli_stmt_bind_param($stmt2, "i", $applicant_id);
+                mysqli_stmt_execute($stmt2);
+                $result2 = mysqli_stmt_get_result($stmt2);
+                $fetch2 = mysqli_fetch_assoc($result2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -182,29 +188,44 @@ if (isset($_POST['submit'])) {
    
     
     
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
         <div class="wrapper">
-            
-            <div class="profile-picture">
-            <?php
-            $select = mysqli_query($conn, "SELECT * FROM applicant_profile WHERE applicant_id = '$applicant_id'") or die ('query failed');
-            if(mysqli_num_rows($select) > 0){
-                $fetch = mysqli_fetch_assoc($select);
-            }
-            if($fetch['profile_img'] == ''){
-                echo '<img src="profile-img/default.jpg">';
-            }else{
-                echo'<img src="upload_img/'.$fetch['profile_img'].'">';
-            }
-            ?>
-            <input type="file" name="profile-image" id="profile-image-input" style="display: none;" onchange="uploadProfilePicture()">
-            <center><label for="profile-image-input" class="change-profile-button">Change Profile</label></center>
-        </div>
+        <div class="profile-picture">
+        <?php
+        $allowed_formats = array('png', 'jpg');
+        $upload_directory = "upload_img/";
+        $select = mysqli_query($conn, "SELECT * FROM a_accounttb WHERE applicant_id = '$applicant_id'") or die ('query failed');
+        if(mysqli_num_rows($select) > 0){
+            $fetch = mysqli_fetch_assoc($select);
+        }
+        $profile_img_src = '';
+        if (!empty($_FILES['profile_img']['name'])) {
+            // If a new file is uploaded, use the uploaded image
+            $file_name = $_FILES['profile_img']['name'];
+            $file_tmp = $_FILES['profile_img']['tmp_name'];
+            $file_path = $upload_directory . $file_name;
+            $file_extension = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+            move_uploaded_file($file_tmp, $file_path);
+
+            $profile_img_src = $file_path;
+        } elseif (!empty($fetch['profile_img'])) {
+            $profile_img_src = 'upload_img/' . $fetch['profile_img'];
+        } else {
+            $profile_img_src = 'profile-img/default.jpg';
+        }
+        echo '<img src="' . $profile_img_src . '">';
+        $file_name = !empty($_FILES['profile_img']['name']) ? $_FILES['profile_img']['name'] : $fetch['profile_img'];
+        $file_path = $upload_directory . $file_name;
+
+        ?>
+        <input type="file" name="profile_img" id="profile-image-input" accept=".jpg, .jpeg, .png" style="display: none;" onchange="uploadProfilePicture()">
+        <center><label for="profile-image-input" class="change-profile-button">Change Profile</label></center>
+    </div>
                     <div class="mt-3">
                         <div class="col3" onkeypress="restrictName(event)">
                         <label for=""><h2>Name<code>*</code></h2></label>
-                        <input style="width:170px;" type="text" placeholder="First Name" name="firstName" required maxlength="50" value="<?php echo isset($fetch['firstName']) ? $fetch['firstName'] : ''; ?>">
-                        <input style="width:170px;" type="text" placeholder="Last Name" name="lastName" required maxlength="50" value="<?php echo isset($fetch['lastName']) ? $fetch['lastName'] : ''; ?>">
+                        <input style="width:170px;" type="text" placeholder="First Name" name="firstname" required maxlength="50" value="<?php echo isset($fetch2['firstname']) ? $fetch2['firstname'] : ''; ?>">
+                        <input style="width:170px;" type="text" placeholder="Last Name" name="lastname" required maxlength="50" value="<?php echo isset($fetch2['lastname']) ? $fetch2['lastname'] : ''; ?>">
                         <input style="width:170px;" type="text" placeholder="Middle Name" name="midName" required maxlength="50" value="<?php echo isset($fetch['midName']) ? $fetch['midName'] : ''; ?>">
                         <input style="width:80px;" type="text" placeholder="suffix" name="suffix" required maxlength="50"value="<?php echo isset($fetch['suffix']) ? $fetch['suffix'] : ''; ?>">
                         </div>
@@ -213,10 +234,10 @@ if (isset($_POST['submit'])) {
                     <div class="col3">
                     <label for=""><h2>Type of jobseeker<code>*</code></h2></label>
                     <select style="width:200px;" class="" name="jobseekerType" required>
-                        <option value="" <?php echo empty($fetch['jobseekerType']) ? 'selected' : ''; ?>>Select Type</option>
-                        <option value="first_time" <?php echo (isset($fetch['jobseekerType']) && $fetch['jobseekerType'] === 'first_time') ? 'selected' : ''; ?>>FIRST TIME</option>
-                        <option value="jobseeker" <?php echo (isset($fetch['jobseekerType']) && $fetch['jobseekerType'] === 'jobseeker') ? 'selected' : ''; ?>>JOBSEEKER</option>
-                        <option value="ofw" <?php echo (isset($fetch['jobseekerType']) && $fetch['jobseekerType'] === 'ofw') ? 'selected' : ''; ?>>OFW</option>
+                        <option value="" <?php echo empty($fetch2['jobseekerType']) ? 'selected' : ''; ?>>Select Type</option>
+                        <option value="First Time" <?php echo (isset($fetch2['jobseekerType']) && $fetch2['jobseekerType'] === 'First Time') ? 'selected' : ''; ?>>FIRST TIME</option>
+                        <option value="Jobseeker" <?php echo (isset($fetch2['jobseekerType']) && $fetch2['jobseekerType'] === 'Jobseeker') ? 'selected' : ''; ?>>JOBSEEKER</option>
+                        <option value="OFW" <?php echo (isset($fetch2['jobseekerType']) && $fetch2['jobseekerType'] === 'OFW') ? 'selected' : ''; ?>>OFW</option>
                     </select>
                 </div>
                     </div>
@@ -237,14 +258,14 @@ if (isset($_POST['submit'])) {
                        
                         <div class="col1">
                         <label for=""><h2>Age<code>*</code></h2></label>
-                        <input type="number" id="age"name="age" placeholder="AGE"min="18" max="90"required value="<?php echo isset($fetch['age']) ? $fetch['age'] : ''; ?>"oninput="checkInputLength(this, 3)">
+                        <input type="number" id="age"name="age" placeholder="AGE"min="18" max="90"required value="<?php echo isset($fetch2['age']) ? $fetch2['age'] : ''; ?>"oninput="checkInputLength(this, 3)">
                         </div>
                         <div class="col2">
                         <label for=""><h2>Sex<code>*</code></h2></label>
                         <select class="" name="sex" required>
-                            <option value="" <?php echo empty($fetch['sex']) ? 'selected' : ''; ?>>Select Gender</option>
-                            <option value="Female" <?php echo (isset($fetch['sex']) && $fetch['sex'] === 'Female') ? 'selected' : ''; ?>>Female</option>
-                            <option value="Male" <?php echo (isset($fetch['sex']) && $fetch['sex'] === 'Male') ? 'selected' : ''; ?>>Male</option>
+                            <option value="" <?php echo empty($fetch2['sex']) ? 'selected' : ''; ?>>Select Gender</option>
+                            <option value="Female" <?php echo (isset($fetch2['sex']) && $fetch2['sex'] === 'Female') ? 'selected' : ''; ?>>Female</option>
+                            <option value="Male" <?php echo (isset($fetch2['sex']) && $fetch2['sex'] === 'Male') ? 'selected' : ''; ?>>Male</option>
                         </select>
                     </div>
 
@@ -323,10 +344,10 @@ if (isset($_POST['submit'])) {
                     <label for=""><h2>Disability<code>*</code></h2></label>
                     <select style="width: 120px;" class="" name="disability" required>
                         <option value="None" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'None') ? 'selected' : ''; ?>>None</option>
-                        <option value="visual" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'visual') ? 'selected' : ''; ?>>Visual</option>
-                        <option value="hearing" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'hearing') ? 'selected' : ''; ?>>Hearing</option>
-                        <option value="speech" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'speech') ? 'selected' : ''; ?>>Speech</option>
-                        <option value="physical" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'physical') ? 'selected' : ''; ?>>Physical</option>
+                        <option value="Visual" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'visual') ? 'selected' : ''; ?>>Visual</option>
+                        <option value="Hearing" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'hearing') ? 'selected' : ''; ?>>Hearing</option>
+                        <option value="Speech" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'speech') ? 'selected' : ''; ?>>Speech</option>
+                        <option value="Physical" <?php echo (isset($fetch['disability']) && $fetch['disability'] === 'physical') ? 'selected' : ''; ?>>Physical</option>
                     </select>
                 </div>
 
@@ -334,15 +355,15 @@ if (isset($_POST['submit'])) {
                 <label for=""><h2>Employment Status<code>*</code></h2></label>
                 <select class="" name="employmentStatus" required>
                     <option value="" <?php echo empty($fetch['employmentStatus']) ? 'selected' : ''; ?>>Status</option>
-                    <option value="wage_employed" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'wage_employed') ? 'selected' : ''; ?>>Wage Employed</option>
-                    <option value="self_employed" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'self_employed') ? 'selected' : ''; ?>>Self Employed</option>
-                    <option value="fresh_grad" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'fresh_grad') ? 'selected' : ''; ?>>Fresh Graduate</option>
-                    <option value="finished_contract" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'finished_contract') ? 'selected' : ''; ?>>Finished Contract</option>
-                    <option value="resigned" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'resigned') ? 'selected' : ''; ?>>Resigned</option>
-                    <option value="retired" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'retired') ? 'selected' : ''; ?>>Retired</option>
-                    <option value="terminated" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'terminated') ? 'selected' : ''; ?>>Terminated</option>
-                    <option value="laidoff_local" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'laidoff_local') ? 'selected' : ''; ?>>Laidoff(local)</option>
-                    <option value="laidoff_abroad" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'laidoff_abroad') ? 'selected' : ''; ?>>Laidoff(abroad)</option>
+                    <option value="Wage Employed" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'Wage Employed') ? 'selected' : ''; ?>>Wage Employed</option>
+                    <option value="Self Employed" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'Self Employed') ? 'selected' : ''; ?>>Self Employed</option>
+                    <option value="Fresh Graduate" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'Fresh Graduate') ? 'selected' : ''; ?>>Fresh Graduate</option>
+                    <option value="Finished Contract" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'Finished Contract') ? 'selected' : ''; ?>>Finished Contract</option>
+                    <option value="Resigned" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'Resigned') ? 'selected' : ''; ?>>Resigned</option>
+                    <option value="Retired" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'Retired') ? 'selected' : ''; ?>>Retired</option>
+                    <option value="Terminated" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'Terminated') ? 'selected' : ''; ?>>Terminated</option>
+                    <option value="Laidoff(local)" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'Laidoff(local)') ? 'selected' : ''; ?>>Laidoff(local)</option>
+                    <option value="Laidoff(abroad)" <?php echo (isset($fetch['employmentStatus']) && $fetch['employmentStatus'] === 'Laidoff(abroad)') ? 'selected' : ''; ?>>Laidoff(abroad)</option>
                 </select>
             </div>
 
@@ -387,8 +408,8 @@ if (isset($_POST['submit'])) {
                     <div class="col2">
                         <select class="" name="activelyLooking" required>
                             <option value="" <?php echo empty($fetch['activelyLooking']) ? 'selected' : ''; ?> hidden>Select an option</option>
-                            <option value="yes" <?php echo (isset($fetch['activelyLooking']) && $fetch['activelyLooking'] === 'yes') ? 'selected' : ''; ?>>Yes</option>
-                            <option value="no" <?php echo (isset($fetch['activelyLooking']) && $fetch['activelyLooking'] === 'no') ? 'selected' : ''; ?>>No</option>
+                            <option value="Yes" <?php echo (isset($fetch['activelyLooking']) && $fetch['activelyLooking'] === 'Yes') ? 'selected' : ''; ?>>Yes</option>
+                            <option value="No" <?php echo (isset($fetch['activelyLooking']) && $fetch['activelyLooking'] === 'No') ? 'selected' : ''; ?>>No</option>
                         </select>
                     </div> 
                 </div>
@@ -399,8 +420,8 @@ if (isset($_POST['submit'])) {
                     <div class="col2">
                         <select class="drop-down" name="willinglyWork" required>
                             <option value="" <?php echo empty($fetch['willinglyWork']) ? 'selected' : ''; ?> hidden>Select an option</option>
-                            <option value="yes" <?php echo (isset($fetch['willinglyWork']) && $fetch['willinglyWork'] === 'yes') ? 'selected' : ''; ?>>Yes</option>
-                            <option value="no" <?php echo (isset($fetch['willinglyWork']) && $fetch['willinglyWork'] === 'no') ? 'selected' : ''; ?>>No</option>
+                            <option value="Yes" <?php echo (isset($fetch['willinglyWork']) && $fetch['willinglyWork'] === 'Yes') ? 'selected' : ''; ?>>Yes</option>
+                            <option value="No" <?php echo (isset($fetch['willinglyWork']) && $fetch['willinglyWork'] === 'No') ? 'selected' : ''; ?>>No</option>
                         </select>
                     </div>     
                 </div>
@@ -411,8 +432,8 @@ if (isset($_POST['submit'])) {
                     <div class="col2">
                         <select class="" name="fourPsBeneficiary" required>
                             <option value="" <?php echo empty($fetch['fourPsBeneficiary']) ? 'selected' : ''; ?> hidden>Select an option</option>
-                            <option value="yes" <?php echo (isset($fetch['fourPsBeneficiary']) && $fetch['fourPsBeneficiary'] === 'yes') ? 'selected' : ''; ?>>Yes</option>
-                            <option value="no" <?php echo (isset($fetch['fourPsBeneficiary']) && $fetch['fourPsBeneficiary'] === 'no') ? 'selected' : ''; ?>>No</option>
+                            <option value="Yes" <?php echo (isset($fetch['fourPsBeneficiary']) && $fetch['fourPsBeneficiary'] === 'Yes') ? 'selected' : ''; ?>>Yes</option>
+                            <option value="No" <?php echo (isset($fetch['fourPsBeneficiary']) && $fetch['fourPsBeneficiary'] === 'No') ? 'selected' : ''; ?>>No</option>
                         </select>
                     </div>     
                 </div>
@@ -423,14 +444,14 @@ if (isset($_POST['submit'])) {
                     <div class="col2">
                         <select class="" name="ofw" required>
                             <option value="" <?php echo empty($fetch['ofw']) ? 'selected' : ''; ?> hidden>Select an option</option>
-                            <option value="yes" <?php echo (isset($fetch['ofw']) && $fetch['ofw'] === 'yes') ? 'selected' : ''; ?>>Yes</option>
-                            <option value="no" <?php echo (isset($fetch['ofw']) && $fetch['ofw'] === 'no') ? 'selected' : ''; ?>>No</option>
+                            <option value="Yes" <?php echo (isset($fetch['ofw']) && $fetch['ofw'] === 'Yes') ? 'selected' : ''; ?>>Yes</option>
+                            <option value="No" <?php echo (isset($fetch['ofw']) && $fetch['ofw'] === 'No') ? 'selected' : ''; ?>>No</option>
                         </select>
                     </div>    
                 </div>
                     
                 </div>
-                <button name="submit">Submit</button>
+                <button type="submit" name="submit">Submit</button>
                 </div>
                     
         </form>
