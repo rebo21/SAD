@@ -49,80 +49,68 @@ if(!mysqli_stmt_prepare($stmt, $insert)){
 
             <div class="main">
                 <center>
-                    <div class="card">
+                    <div class="card1">
                         <h1>JOB POSTING</h1>
                         <div class="container">
                             <form class="" action="" method="post" autocomplete="off">
                                 <br> 
                                 <div class="card3">
-                                    <div class="card4B">
+                                    
                                         <div class="col1">
                                             <h4><label for="">JOB TITLE</label></h4>
                                             <input type="text" name="jobTitle" placeholder="JOB TITLE">
                                         </div>
-                                    </div>
+                                    
             
-                                    <div class="card4B">
-                                        <div class="col1">
+                                  
+                                        <div class="col2">
                                             <h4><label for="">TYPE OF ROLE</label></h4>
                                             <input type="text" name="roleType" placeholder="TYPE OF ROLE">
                                         </div>
-                                    </div>
+                                    
             
-                                    <div class="card4B">
+                                    
                                         <div class="col1">
                                             <h4><label for="">POSITION</label></h4>
                                             <input type="text" name="position" placeholder="POSITION">
                                         </div>
-                                    </div>
+                                   
             
-                                    <div class="card4B">
-                                        <div class="col1">
+                                    
+                                        <div class="col2">
                                             <h4><label for="">YEARS OF EXPERIENCE</label></h4>
                                             <input type="text" name="yrsExperience" placeholder="YEARS OF EXPERIENCE">
                                         </div>
-                                    </div>
-
-                                    <div class="card4B">
+                               
                                         <div class="col1">
                                             <h4><label for="">JOB SPECIALIZATION</label></h4>
                                             <input type="text" name="jobSpecialization" placeholder="JOB SPECIALIZATION">
                                         </div>
-                                    </div>
-
-                                    <div class="card4B">
-                                        <div class="col1">
+                                   
+                                        <div class="col2">
                                             <h4><label for="">WORK LOCATION</label></h4>
                                             <input type="text" name="workLocation" placeholder="WORK LOCATION">
                                         </div>
-                                    </div>
-
-                                    <div class="card4B">
+                                   
                                         <div class="col1">
                                             <h4><label for="">MONTHLY SALARY</label></h4>
                                             <input type="number" name="salary" placeholder="SALARY">
                                         </div>
-                                    </div>
-
-                                    <div class="card4B">
-                                        <div class="col1">
+                                    
+                                        <div class="col2">
                                             <h4><label for="">EDUCATIONAL&nbsp;&nbsp;BACKGROUND</label></h4>
                                             <input type="text" name="educBg" placeholder="EDUCATIONAL BACKGROUND">
                                         </div>
-                                    </div>
                                     
-                                    <div class="card4B">
                                         <div class="col1">
                                             <h4><label for="">NUMBER OF SLOTS</label></h4>
                                             <input type="number" name="numSlot" placeholder="SLOTS">
                                         </div>
-                                    </div>
-
-                                    <div class="card4C">
-                                        <div class="col1">
+                                    
+                                        <div class="col2">
                                             <h4><label for="">JOB DESCRIPTION</label></h4>
                                             <textarea id="" type="text" name="jobDescription" placeholder="Write something.." style="height:200px"></textarea>
-                                    </div>
+                                        </div>
 
                                     
     
