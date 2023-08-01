@@ -88,7 +88,7 @@ if(isset($_POST["submit"])){
                         <i class="bi bi-list"></i>
                             <select style=float:left; class="" name="jobseekerType" required>
                                 <option value="" selected disabled>TYPE OF JOBSEEKER</option>
-                                <option value="FirstTime">First Time Jobseeker</option>
+                                <option value="First Time">First Time Jobseeker</option>
                                 <option value="Jobseeker">Jobseeker</option>
                                 <option value="OFW">OFW</option>
                                 </select>
