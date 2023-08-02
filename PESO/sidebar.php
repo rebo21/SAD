@@ -5,13 +5,6 @@
             <div id="navbar">
                 <a class="active" style="width: 350px; text-align: left;" href="#">Home</a>
                 <a style="width: 350px; padding-top: 20px; margin-left: 80px;">
-                    <formsearch class="example" action="action_page.php">
-                      <center>
-                      <input type="text" placeholder="SEARCH FOR JOB!!!" name="search">
-                      <button type="submit"><i class="fa fa-search"></i></button>
-                      </center>
-                      
-                  </formsearch>
                   </a>
                   
                 <a href="#"></a>
