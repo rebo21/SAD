@@ -13,15 +13,25 @@ $salary = $_POST["salary"];
 $educBg = $_POST["educBg"];
 $numSlot = $_POST["numSlot"];
 $jobDescription = $_POST["jobDescription"];
+$question1 = $_POST["question1"];
+$question2 = $_POST["question2"];
+$question3 = $_POST["question3"];
+$question4 = $_POST["question4"];
+$question5 = $_POST["question5"];
+$answer1 = $_POST["answer1"];
+$answer2 = $_POST["answer2"];
+$answer3 = $_POST["answer3"];
+$answer4 = $_POST["answer4"];
+$answer5 = $_POST["answer5"];
 
 
 
-$insert = "INSERT INTO p_job_posts (peso_id, jobTitle, roleType, position, yrsExperience, jobSpecialization, workLocation, salary, educBg, numSlot, jobDescription) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+$insert = "INSERT INTO p_job_posts (peso_id, jobTitle, roleType, position, yrsExperience, jobSpecialization, workLocation, salary, educBg, numSlot, jobDescription, question1, question2, question3, question4, question5, answer1, answer2, answer3, answer4, answer5) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 $stmt = mysqli_stmt_init($conn);
 if(!mysqli_stmt_prepare($stmt, $insert)){
 
 } else{
-    mysqli_stmt_bind_param($stmt,"sssssssssss",$peso_id, $jobTitle, $roleType, $position, $yrsExperience, $jobSpecialization, $workLocation, $salary, $educBg, $numSlot, $jobDescription);
+    mysqli_stmt_bind_param($stmt,"sssssssssssssssssssss",$peso_id, $jobTitle, $roleType, $position, $yrsExperience, $jobSpecialization, $workLocation, $salary, $educBg, $numSlot, $jobDescription, $question1, $question2, $question3, $question4, $question5, $answer1, $answer2, $answer3, $answer4, $answer5);
     mysqli_stmt_execute($stmt);
     header("location: #");
     exit();
@@ -35,7 +45,7 @@ if(!mysqli_stmt_prepare($stmt, $insert)){
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>COMPANY JOB POSTING</title>
+        <title>PESO JOB POSTING</title>
         <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
         <link rel="stylesheet" href="../CSS/COMPANY_JOBPOSTING.CSS">
         <link rel="stylesheet" href="../CSS/NAVBAR.CSS">
@@ -51,15 +61,15 @@ if(!mysqli_stmt_prepare($stmt, $insert)){
                 <img src="../IMAGES/LOGO.png"  style="width:200px;height:60px; float: left; margin-left: 30px;">
             </a>
             
-            <a href="#" style="font-size: 20px;">HOME</a>
-            <a href="#" style="font-size: 20px;">COMPANY JOB POST</a>
-            <a href="#" style="font-size: 20px;" class="active">PESO JOB POSTS</a>
-            <a href="#" style="font-size: 20px;">PESO JOB POSTING</a>
-            <a href="#" style="font-size: 20px;">NOTIFICATION</a>
-            <a href="#" style="font-size: 20px;">PROFILE</a>
-            <a href="#" style="font-size: 20px;">SETTING</a>
-            <a href="#" style="font-size: 20px;">MORE INFO</a>
-            <a href="#" style="font-size: 20px;">LOG OUT</a>
+            <a href="#">HOME</a>
+            <a href="#">APPLICANTS</a>
+            <a href="#">JOB POSTS</a>
+            <a href="#" class="active">JOB POSTING</a>
+            <a href="#">NOTIFICATION</a>
+            <a href="#">PROFILE</a>
+            <a href="#">SETTING</a>
+            <a href="#">MORE INFO</a>
+            <a href="#">LOG OUT</a>
           </div>
           
           <div class="main">
@@ -80,113 +90,182 @@ if(!mysqli_stmt_prepare($stmt, $insert)){
               
               <div class="content">
                 <div class="container">
+                  <div class="card1">
                   <h1>JOB POSTING</h1>
-                  <form action="" method="post" class="form">
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="jobTitle">JOB TITLE</label>
-                      </div>
-                      <div class="col-75">
-                        <input type="text" name="jobTitle" id="jobTitle" placeholder="JOB TITLE">
-                      </div>
-                    </div>
+                  <form class="" action="" method="post" autocomplete="off">
 
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="roleType">ROLE TYPE</label>
+                      <h2>JOB DETAILS</h2>
+                      <div class="row">
+                        <div class="col-25">
+                          <label for="">JOB TITLE</label>
+                        </div>
+                        <div class="col-75">
+                        <input type="text" name="jobTitle" placeholder="JOB TITLE">
+                        </div>
                       </div>
-                      <div class="col-75">
-                        <input type="text" name="roleType" id="roleType" placeholder="ROLE TYPE">
+                      <div class="row">
+                        <div class="col-25">
+                        <label for="">TYPE OF ROLE</label>
+                        </div>
+                        <div class="col-75">
+                        <input type="text" name="roleType" placeholder="TYPE OF ROLE">
+                        </div>
                       </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="position">POSITION</label>
+                      <div class="row">
+                        <div class="col-25">
+                        <label for="">POSITION</label>
+                        </div>
+                        <div class="col-75">
+                        <input type="text" name="position" placeholder="POSITION">
+                        </div>
                       </div>
-                      <div class="col-75">
-                        <input type="text" name="position" id="position" placeholder="POSITION">
-                      </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="yrsExperience">YEARS OF EXPERIENCE</label>
+                      <div class="row">
+                        <div class="col-25">
+                        <label for="">YEARS OF EXPERIENCE</label>
+                        </div>
+                        <div class="col-75">
+                        <input type="text" name="yrsExperience" placeholder="YEARS OF EXPERIENCE">
+                        </div>
                       </div>
-                      <div class="col-75">
-                        <input type="number" name="yrsExperience" id="yrsExperience" placeholder="YEARS OF EXPERIENCE">
-                      </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="jobSpecialization">JOB SPECIALIZATION</label>
+                      <div class="row">
+                        <div class="col-25">
+                        <label for="">JOB SPECIALIZATION</label>
+                        </div>
+                        <div class="col-75">
+                        <input type="text" name="jobSpecialization" placeholder="JOB SPECIALIZATION">
+                        </div>
                       </div>
-                      <div class="col-75">
-                        <input type="text" name="jobSpecialization" id="jobSpecialization" placeholder="JOB SPECIALIZATION">
-                      </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="workLocation">WORK LOCATION</label>
+                      <div class="row">
+                        <div class="col-25">
+                        <label for="">WORK LOCATION</label>
+                        </div>
+                        <div class="col-75">
+                        <input type="text" name="workLocation" placeholder="WORK LOCATION">
+                        </div>
                       </div>
-                      <div class="col-75">
-                        <input type="text" name="workLocation" id="workLocation" placeholder="WORK LOCATION">
-                      </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="salary">MONTHLY SALARY</label>
+                      <div class="row">
+                        <div class="col-25">
+                        <label for="">MONTHLY SALARY</label>
+                        </div>
+                        <div class="col-75">
+                        <input type="number" name="salary" placeholder="SALARY">
+                        </div>
                       </div>
-                      <div class="col-75">
-                        <input type="number" name="salary" id="salary" placeholder="MONTHLY SALARY">
-                      </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="educBg">EDUCATIONAL BACKGROUND</label>
+                      <div class="row">
+                        <div class="col-25">
+                        <label for="">EDUCATIONAL&nbsp;&nbsp;BG</label>
+                        </div>
+                        <div class="col-75">
+                        <input type="text" name="educBg" placeholder="EDUCATIONAL BACKGROUND">
+                        </div>
                       </div>
-                      <div class="col-75">
-                        <input type="text" name="educBg" id="educBg" placeholder="EDUCATIONAL BACKGROUND">
-                      </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="numSlot">SLOTS</label>
+                      <div class="row">
+                        <div class="col-25">
+                        <label for="">NUMBER OF SLOTS</label>
+                        </div>
+                        <div class="col-75">
+                        <input type="number" name="numSlot" placeholder="SLOTS">
+                        </div>
                       </div>
-                      <div class="col-75">
-                        <input type="number" name="numSlot" id="numSlot" placeholder="SLOTS">
-                      </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="jobDescription">JOB DESCRIPTION</label>
+                      <div class="row">
+                        <div class="col-25">
+                        <label for="">JOB DESCRIPTION</label>
+                        </div>
+                        <div class="col-75">
+                        <textarea id="" type="text" name="jobDescription" placeholder="Write something.." style="height:200px; width: 80%"></textarea>
+                        </div>
                       </div>
-                      <div class="col-75">
-                        <input type="text" name="jobDescription" id="jobDescription" placeholder="JOB DESCRIPTION">
-                      </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="skills">SKILLS</label>
-                      </div>
-                      <div class="col-75">
-                        <input type="text" name="skills" id="skills" placeholder="SKILLS">
-                      </div>
-                    </div>
+                      <br> <br>
 
-                    <br>
-                    <div class="row">
-                      <center><button type="submit" class="post" name="submit">POST JOB</button></center>
-                    </div>
-                  </form>
+                      <h2>QUALIFICATION QUESTIONS</h2>
+                      <div class="row">
+                        <div class="col-75">
+                        <h3>QUESTIONS</h3>
+                            <p style="color:red;">NOTE: QUESTIONS MUST BE ANSWERABLE BY YES OR NO ONLY.</p>
+                        </div>
+                        <div class="col-25">
+                        <h3>ANSWERS</h3>
+                        </div>
+                      </div>
 
+                      <div class="row">
+                        <div class="col-75">
+                        <input type="text" name="question1" placeholder="QUESTION #1" required>
+                        </div>
+                        <div class="col-25">
+                        <select style=float:left; class="" name="answer1" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-75">
+                        <input type="text" name="question2" placeholder="QUESTION #2" required>
+                        </div>
+                        <div class="col-25">
+                        <select style=float:left; class="" name="answer2" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-75">
+                        <input type="text" name="question3" placeholder="QUESTION #3" required>
+                        </div>
+                        <div class="col-25">
+                        <select style=float:left; class="" name="answer3" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-75">
+                        <input type="text" name="question4" placeholder="QUESTION #4" required>
+                        </div>
+                        <div class="col-25">
+                        <select style=float:left; class="" name="answer4" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-75">
+                        <input type="text" name="question5" placeholder="QUESTION #5" required>
+                        </div>
+                        <div class="col-25">
+                        <select style=float:left; class="" name="answer5" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                        </div>
+                      </div>
+                
+                     
+
+                      <br>
+                      <div class="row">
+                        
+                      <center><input type="submit" name="submit" value="Submit" ><center>
+                      </div>
+                    </form>
+                    </div>
                   </div>
               
           </div>
