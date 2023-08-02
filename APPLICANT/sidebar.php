@@ -1,9 +1,23 @@
+<?php
+@session_start();
+include '../connect.php';
+$applicant_id = $_SESSION["applicant_id"];
+$query = "SELECT lastname, firstname FROM a_accounttb WHERE applicant_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $applicant_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+$lastname = $row['lastname'];
+$firstname = $row['firstname'];
+?>
 <link rel="stylesheet" href="../css/navbar.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <body>
-<div class="main">
+<div class="main-nav">
             <div id="navbar">
-                <a class="active" style="width: 350px; text-align: left;" href="#">Home</a>
+                <a class="active" style="margin-left: 400px;width: 350px; text-align: left;" href="#">Home</a>
                 <a style="width: 350px; padding-top: 20px; margin-left: 80px;">
                     <formsearch class="example" action="action_page.php">
                       <center>
@@ -13,8 +27,8 @@
                       
                   </formsearch>
                   </a>
-                  
-                <a href="#"></a>
+                  <a style="margin-right: 50px; padding: 0 20px"href="#"><?php echo $lastname . ', ' . $firstname; ?><i class="bi bi-caret-down-fill"></i></a>
+                
               </div>
 <div class="sidenav">
     <a href="#" class="noHover" style="height: 100px;">
