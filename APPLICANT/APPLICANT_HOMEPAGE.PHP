@@ -27,7 +27,6 @@
                     </div>
                     
                     <div class="column middle">
-                      <div style="height: 1000px; background: pink">
 
 </div>
                       
