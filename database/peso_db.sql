@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2023 at 02:31 AM
+-- Generation Time: Aug 02, 2023 at 02:47 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -469,7 +469,7 @@ INSERT INTO `p_accounttb` (`peso_id`, `firstname`, `lastname`, `age`, `sex`, `po
 --
 
 CREATE TABLE `p_job_posts` (
-  `p_job_posts` int(11) NOT NULL,
+  `p_job_posts_id` int(11) NOT NULL,
   `peso_id` int(11) NOT NULL,
   `jobTitle` varchar(50) NOT NULL,
   `roleType` varchar(50) NOT NULL,
@@ -480,15 +480,25 @@ CREATE TABLE `p_job_posts` (
   `salary` decimal(8,2) NOT NULL,
   `educBg` varchar(255) NOT NULL,
   `numSlot` int(20) NOT NULL,
-  `jobDescription` text NOT NULL
+  `jobDescription` text NOT NULL,
+  `question1` varchar(100) NOT NULL,
+  `answer1` varchar(20) NOT NULL,
+  `question2` varchar(100) NOT NULL,
+  `answer2` varchar(20) NOT NULL,
+  `question3` varchar(100) NOT NULL,
+  `answer3` varchar(20) NOT NULL,
+  `question4` varchar(100) NOT NULL,
+  `answer4` varchar(20) NOT NULL,
+  `question5` varchar(100) NOT NULL,
+  `answer5` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `p_job_posts`
 --
 
-INSERT INTO `p_job_posts` (`p_job_posts`, `peso_id`, `jobTitle`, `roleType`, `position`, `yrsExperience`, `jobSpecialization`, `workLocation`, `salary`, `educBg`, `numSlot`, `jobDescription`) VALUES
-(1, 1, 'dhajshd', 'djashd', 'dsg', '2347', 'gdajsh', 'djaskhgd', '3423.00', 'dkasgd', 3423, 'dahjsgd');
+INSERT INTO `p_job_posts` (`p_job_posts_id`, `peso_id`, `jobTitle`, `roleType`, `position`, `yrsExperience`, `jobSpecialization`, `workLocation`, `salary`, `educBg`, `numSlot`, `jobDescription`, `question1`, `answer1`, `question2`, `answer2`, `question3`, `answer3`, `question4`, `answer4`, `question5`, `answer5`) VALUES
+(1, 2, 'a', 'aa', 'a', 'a', 'a', 'a', '1235.00', 'a', 112, 'aaaa aaa aaa', 'a', 'Yes', 'a', 'Yes', 'a', 'Yes', 'a', 'Yes', 'a', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -661,8 +671,7 @@ ALTER TABLE `p_accounttb`
 -- Indexes for table `p_job_posts`
 --
 ALTER TABLE `p_job_posts`
-  ADD PRIMARY KEY (`p_job_posts`),
-  ADD KEY `p_job_postsfk` (`peso_id`);
+  ADD PRIMARY KEY (`p_job_posts_id`);
 
 --
 -- Indexes for table `walkin_applicant`
@@ -774,7 +783,7 @@ ALTER TABLE `p_accounttb`
 -- AUTO_INCREMENT for table `p_job_posts`
 --
 ALTER TABLE `p_job_posts`
-  MODIFY `p_job_posts` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `p_job_posts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `walkin_applicant`
@@ -851,12 +860,6 @@ ALTER TABLE `company_profile`
 --
 ALTER TABLE `c_job_posts`
   ADD CONSTRAINT `company_idfk` FOREIGN KEY (`company_id`) REFERENCES `c_accounttb` (`company_id`);
-
---
--- Constraints for table `p_job_posts`
---
-ALTER TABLE `p_job_posts`
-  ADD CONSTRAINT `p_job_postsfk` FOREIGN KEY (`peso_id`) REFERENCES `p_accounttb` (`peso_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
