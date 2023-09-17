@@ -1,32 +1,11 @@
 <!-- VERSION 3 -->
-
-
 <?php
-	
-	include 'COMPANY_CONFIG.PHP';
-
-	if (isset($_POST['post_comment'])) {
-
-		$c_jobTitle = $_POST['c_jobTitle'];
-		$c_salary = $_POST['c_salary'];
-    $c_workLocation = $_POST['c_workLocation'];
-		$c_jobIndustry = $_POST['c_jobIndustry'];
-    $c_numSlot = $_POST['c_numSlot'];
-		$c_skills = $_POST['c_skills'];
-    
-
-
-		
-		$sql = "INSERT INTO c_job_posting (c_jobTitle, c_salary, c_workLocation, c_jobIndustry, c_numSlot, c_skills)
-		VALUES ('$c_jobTitle', '$c_salary', '$c_workLocation', '$c_jobIndustry', '$c_numSlot', '$c_skills')";
-
-		if ($conn->query($sql) === TRUE) {
-		  echo "";
-		} else {
-		  echo "Error: " . $sql . "<br>" . $conn->error;
-		}
-	}
-
+session_start();
+include '../connect.php';
+/*if (!isset($_SESSION['company_id'])) {
+    header('Location: login.php');
+    exit();
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -45,38 +24,12 @@
     </head>
 
     <body>
-
-        <div class="sidenav">
-            <a href="#" class="noHover" style="height: 100px;">
-                <img src="../IMAGES/LOGO.png"  style="width:200px;height:60px; float: left; margin-left: 30px;">
-            </a>
-            
-            <a href="#">HOME</a>
-            <a href="#">APPLICANTS</a>
-            <a href="#" class="active">JOB POSTS</a>
-            <a href="#">JOB POSTING</a>
-            <a href="#">NOTIFICATION</a>
-            <a href="#">PROFILE</a>
-            <a href="#">SETTING</a>
-            <a href="#">MORE INFO</a>
-            <a href="#">LOG OUT</a>
-          </div>
+    <?php
+      include 'function.php';
+      include 'sidebar.php';
+      ?>
           
           <div class="main">
-            <div id="navbar">
-                <a class="active" style="width: 350px; text-align: left;" href="#">Home</a>
-                <a style="width: 350px; padding-top: 20px; margin-left: 80px;">
-                    <formsearch class="example" action="action_page.php">
-                      <center>
-                      <input type="text" placeholder="" name="search">
-                      <button type="submit"><i class="fa fa-search"></i></button>
-                      </center>
-                      
-                  </formsearch>
-                  </a>
-                  
-                <a href="#"></a>
-              </div>
               
               <div class="content">
                 <div class="row">
@@ -92,18 +45,18 @@
                                 <h1>JOB POSTS</h1>
                             </div>
                             <?php
+                            $company_id = $_SESSION['company_id'];
+                          $sql = "SELECT * FROM c_job_posts WHERE company_id = '$company_id'";
+                          $result = $conn->query($sql);
 
-                              $sql = "SELECT * FROM c_job_posting";
-                              $result = $conn->query($sql);
+                          if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                        ?>
 
-                              if ($result->num_rows > 0) {
-                                // output data of each row
-                                while($row = $result->fetch_assoc()) {
-                                
-                            ?>
                            
                             <div class="card3">
                             <div class="col-75">
+<<<<<<< HEAD
                                 <h2><?php echo $row['c_jobTitle']; ?><h2>
                                 <h3>COMPANY NAME:&nbsp;&nbsp;&nbsp;&nbsp;</h3>
                                 <h3>JOB INDUSTRY:&nbsp;&nbsp;&nbsp;&nbsp;<?php  echo $row['c_jobIndustry']; ?></h3>
@@ -111,8 +64,24 @@
                                 <h3>WORK LOCATION:&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row['c_workLocation']; ?></h3>
                                 <h3>SLOTS:&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row['c_numSlot']; ?></h3>
                                 <h3>SKILLS:&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row['c_skills']; ?></h3>
+
+                                
                             
                             </div>
+=======
+                                        <h2><?php echo $row['jobTitle']; ?></h2>
+                                        <h3>COMPANY ID: <?php echo $row['company_id']; ?></h3>
+                                        <h3>TYPE OF ROLE: <?php echo $row['roleType']; ?></h3>
+                                        <h3>POSITION: <?php echo $row['position']; ?></h3>
+                                        <h3>YEARS OF EXPERIENCE: <?php echo $row['yrsExperience']; ?></h3>
+                                        <h3>JOB SPECIALIZATION: <?php echo $row['jobSpecialization']; ?></h3>
+                                        <h3>WORK LOCATION: <?php echo $row['workLocation']; ?></h3>
+                                        <h3>SALARY: <?php echo $row['salary']; ?></h3>
+                                        <h3>EDUCATIONAL BACKGROUND: <?php echo $row['educBg']; ?></h3>
+                                        <h3>NUMBER OF SLOTS: <?php echo $row['numSlot']; ?></h3>
+                                        <h3>JOB DESCRIPTION: <?php echo $row['jobDescription']; ?></h3>
+                                    </div>
+>>>>>>> f699c237f58e16df6b14404dae7ac27155e685f8
                             <div class="col-25">
 
                             </div>

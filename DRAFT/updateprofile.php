@@ -1,154 +1,584 @@
-<?php
-@include 'config.php';
-session_start();
-if (isset($_POST['submit'])) {
-    $user_id = $_SESSION['user_id']; 
-    $lastName = $_POST['lastName'];
-    $firstName = $_POST['firstName'];
-    $midName = $_POST['midName'];
-    $suffix = $_POST['suffix'];
-    $jobseekerType = $_POST['jobseekerType'];
-    $birthplace = $_POST['birthplace'];
-    $birthday = $_POST['birthday'];
-    $age = $_POST['age'];
-    $sex = $_POST['sex'];
-    $civilStatus = $_POST['civilStatus'];
-    $citizenship = $_POST['citizenship'];
-    $housenumPresent = $_POST['housenumPresent'];
-    $brgyPresent = $_POST['brgyPresent'];
-    $cityPresent = $_POST['cityPresent'];
-    $provincePresent = $_POST['provincePresent'];
-    $housenumPermanent = $_POST['housenumPermanent'];
-    $brgyPermanent = $_POST['brgyPermanent'];
-    $cityPermanent = $_POST['cityPermanent'];
-    $provincePermanent = $_POST['provincePermanent'];
-    $height = $_POST['height'];
-    $weight = $_POST['weight'];
-    $landlineNum = $_POST['landlineNum'];
-    $mobilePnum = $_POST['mobilePnum'];
-    $mobileSnum = $_POST['mobileSnum'];
-    $email = $_POST['email'];
-    $disability = $_POST['disability'];
-    $employmentStatus = $_POST['employmentStatus'];
-    $activelyLooking = $_POST['activelyLooking'];
-    $willinglyWork = $_POST['willinglyWork'];
-    $fourpsBeneficiary = $_POST['fourpsBeneficiary'];
-    $ofw = $_POST['ofw'];
-
-    $insert = "INSERT INTO applicant_profile01 (user_id,lastName, firstName, midName, suffix, jobseekerType, birthplace, birthday, age, sex, civilStatus, citizenship, housenumPresent, brgyPresent, cityPresent, provincePresent, housenumPermanent, brgyPermanent, cityPermanent, provincePermanent, height, weight, landlineNum, mobilePnum, mobileSnum, email, disability, employmentStatus, activelyLooking, willinglyWork, fourpsBeneficiary, ofw)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $insert)){
-        echo "Error connecting to database";
-    } else{
-        mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssssssssssssss",$user_id,$lastName, $firstName, $midName, $suffix, $jobseekerType, $birthplace, $birthday, $age, $sex, $civilStatus, $citizenship, $housenumPresent, $brgyPresent, $cityPresent, $provincePresent, $housenumPermanent, $brgyPermanent, $cityPermanent, $provincePermanent, $height, $weight, $landlineNum, $mobilePnum, $mobileSnum, $email, $disability, $employmentStatus, $activelyLooking, $willinglyWork, $fourpsBeneficiary, $ofw);
-        mysqli_stmt_execute($stmt);
-        echo"data successfully stored";
-        header("location:APPLICANT_PROFILE_2.php");
-        exit();
-    }
-}
-?>
-
-<!-- VERSION 3 -->
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>APPLICANT HOMEPAGE</title>
+        <title>PERSONAL INFORMATION</title>
         <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
-        <link rel="stylesheet" href="../CSS/PERSONAL_INFORMATION.CSS">
+        <link rel="stylesheet" href="../CSS/APPLICANT_UPDATE.CSS">
         <link rel="stylesheet" href="../CSS/NAVBAR.CSS">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
         
     </head>
 
     <body>
 
-        <div class="sidenav">
-            <a href="#" class="noHover" style="height: 100px;">
-                <img src="../IMAGES/LOGO.png"  style="width:200px;height:60px; float: left; margin-left: 30px;">
-            </a>
-            
-            <a href="#" class="active">HOME</a>
-            <a href="#">FIND JOBS</a>
-            <a href="#">URGENT HIRING</a>
-            <a href="#">SAVED JOBS</a>
-            <a href="#">NOTIFICATION</a>
-            <a href="#">PROFILE</a>
-            <a href="#">SETTING</a>
-            <a href="#">MORE INFO</a>
-            <a href="#">LOG OUT</a>
-          </div>
-          
-          <div class="main">
             <div id="navbar">
                 <a class="active" style="width: 350px; text-align: left;" href="#">Home</a>
                 <a style="width: 350px; padding-top: 20px; margin-left: 80px;">
                     <formsearch class="example" action="action_page.php">
                       <center>
-                      <input type="text" placeholder="SEARCH FOR JOB!" name="search">
+                      <input type="text" placeholder="" name="search">
                       <button type="submit"><i class="fa fa-search"></i></button>
                       </center>
                       
                   </formsearch>
                   </a>
-                  <?php
-        $user_id = $_SESSION['user_id']; 
-        $query = " SELECT * FROM a_accounttb WHERE user_id = '$user_id'";
-        $result = mysqli_query($conn, $query);
-        while ($data = mysqli_fetch_assoc($result)) {
-        ?>
-                    <center><img style="height:35px; width:35px; border-radius: 50%; margin-top: 25px;" src="./upload_img/<?php echo $data['profile_img']; ?>">
-            <?php echo $data['lastname']; ?></center>
-        <?php
-        }
-        ?>
+                  
                 <a href="#"></a>
+            </div>
+
+            <form id="regForm" action="/action_page.php">
+  <h1>UPDATE PROFILE</h1>
+  <!-- One "tab" for each step in the form: -->
+
+
+  
+  <div class="tab">
+            <center>
+            <div class="card1">
+                <center>
+                <img style="height:200px; width:200px; border-radius: 50%; margin-top: 10px;" src="../IMAGES/SAMPLE_PROFILE.jpg">
+                <br>
+                <button type="" class="update" name="">UPDATE PROFILE</button>
+                </center>
+            </div>
+            </center>
+
+  </div>
+  <div class="tab">
+ 
+
+  <div class="card2">
+                <div class="card3">
+                    <div class="col3">
+                        <h2>NAME</h2>
+                        <input style="width:250px; margin-right: 15px;" type="text" oninput="this.className = ''" name="" value="">
+                        <input style="width:250px; margin-right: 15px;" type="text" oninput="this.className = ''" name="" value="">
+                        <input style="width:250px; margin-right: 15px;" type="text" oninput="this.className = ''" name="" value="">
+                        <input style="width:100px" type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                </div>
+
+                <div class="card3">
+                    <div class="col3">
+                        <h2>TYPE OF JOBSEEKER</h2>
+                        <select oninput="this.className = ''" name="jobseekerType" required>
+                                <option value="" selected disabled>TYPE OF JOBSEEKER</option>
+                                <option value="FirstTime">First Time Jobseeker</option>
+                                <option value="Jobseeker">Jobseeker</option>
+                                <option value="OFW">OFW</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card3">
+                    <div class="col1">
+                        <h2>BIRTHPLACE</h2>
+                        <input type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                    <div class="col2">
+                        <h2>BIRTHDAY</h2>
+                        <input type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                </div>
+
+                <div class="card3">
+                    <div class="col1">
+                        <h2>AGE</h2>
+                        <input type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                    <div class="col2">
+                        <h2>SEX</h2>
+                        <select oninput="this.className = ''" name="" required>
+                                <option value="" selected disabled>SEX</option>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                               
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card3">
+                    <div class="col1">
+                        <h2>CIVIL STATUS</h2>
+                        <input type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                    <div class="col2">
+                        <h2>CITIZENSHIP</h2>
+                        <input type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                </div>
+
+                <div class="card3">
+                    <div class="col3">
+                        <h2>PRESENT ADDRESS</h2>
+                        <input style="width:100px; margin-right: 15px;" type="text" oninput="this.className = ''" name="" value="">
+                        <input style="width:250px; margin-right: 15px;" type="text" oninput="this.className = ''" name="" value="">
+                        <input style="width:250px; margin-right: 15px;" type="text" oninput="this.className = ''" name="" value="">
+                        <input style="width:250px" type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                </div>
+
+                <div class="card3">
+                    <div class="col3">
+                        <h2>PERMANENT ADDRESS</h2>
+                        <input style="width:100px; margin-right: 15px;" type="text" oninput="this.className = ''" name="" value="">
+                        <input style="width:250px; margin-right: 15px;" type="text" oninput="this.className = ''" name="" value="">
+                        <input style="width:250px; margin-right: 15px;" type="text" oninput="this.className = ''" name="" value="">
+                        <input style="width:250px" type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                </div>
+
                 
-              </div>
-              
-              <div class="content">
-                <div class="row">
-
-                    <div class="column side">
-                    <div class="card1">
-                    <div id="display-image">
-        <?php
-        $user_id = $_SESSION['user_id']; 
-        $query = " SELECT * FROM a_accounttb WHERE user_id = '$user_id'";
-        $result = mysqli_query($conn, $query);
-        while ($data = mysqli_fetch_assoc($result)) {
-        ?>
-            <center><img style="height:150px; width:150px; border-radius: 50%; margin-top: 30px;" src="./upload_img/<?php echo $data['profile_img']; ?>"></center>
-        <?php
-        }
-        ?>
-    </div>   
-                    <a href="#" class="active">HOME</a>
-                    <a href="#">FIND JOBS</a>
-                    <a href="#">URGENT HIRING</a>
-                    <a href="#">SAVED JOBS</a>
-                    <a href="#">NOTIFICATION</a>
-                    <a href="#">PROFILE</a>
+                <div class="card3">
+                    <div class="col1">
+                        <h2>HEIGHT</h2>
+                        <input type="text" oninput="this.className = ''" name="" value="">
                     </div>
+                    <div class="col2">
+                        <h2>WEIGHT</h2>
+                        <input type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                </div>
+
+                <div class="card3">
+                    <div class="col3">
+                        <h2>LANDLINE NUMBER</h2>
+                        <input type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                </div>
+
+                
+                <div class="card3">
+                    <div class="col1">
+                        <h2>MOBILE NUMBERS</h2>
+                        <input type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                    <div class="col2">
+                        <h2>&nbsp;</h2>
+                        <inpDAut type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                </div>
+
+                <div class="card3">
+                    <div class="col3">
+                        <h2>EMAIL ADDRESS</h2>
+                        <input type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                </div>
+                
+                <div class="card3">
+                    <div class="col1">
+                        <h2>DISABILITY</h2>
+                        <input type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                    <div class="col2">
+                        <h2>BIRTHDAY</h2>
+                        <input type="text" oninput="this.className = ''" name="" value="">
+                    </div>
+                </div>
+
+                <div class="card3" style="height:40px">
+                          <div class="col1" style="width: 65%">
+                          <h2>ACTIVELY LOOKING FOR WORK?</h2>
+                          </div>
+                          <div class="col2" style="width: 30%">
+                            <select oninput="this.className = ''" name="" required>
+                                <option value="" selected disabled></option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="card3" style="height:40px">
+                          <div class="col1" style="width: 65%">
+                          <h2>ACTIVELY LOOKING FOR WORK?</h2>
+                          </div>
+                          <div class="col2" style="width: 30%">
+                          <select oninput="this.className = ''" name="" required>
+                                <option value="" selected disabled></option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            </div>
+                        </div>
+
+                        <div class="card3" style="height:40px">
+                          <div class="col1" style="width: 65%">
+                          <h2>ACTIVELY LOOKING FOR WORK?</h2>
+                          </div>
+                          <div class="col2" style="width: 30%">
+                          <select oninput="this.className = ''" name="" required>
+                                <option value="" selected disabled></option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            </div>
+                        </div>
+
+                        <div class="card3" style="height:40px">
+                          <div class="col1" style="width: 65%">
+                          <h2>ACTIVELY LOOKING FOR WORK?</h2>
+                          </div>
+                          <div class="col2" style="width: 30%">
+                          <select oninput="this.className = ''" name="" required>
+                                <option value="" selected disabled></option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            </div>
+                        </div>
+            </div>
+</div>
+<div class="tab">
+        <div class="card2">
+            <h1>JOB PREFERENCE</h1>
+            <div class="card6">
+                        <table style="width:100%">
+                                            <center>
+                                            <tr>
+                                                <th><h2>PREFERRED OCCUPATION</h2>
+                                                    <h3>(e.g., clerk, call center agent, saleslady)</h3>
+                                                </th>
+                                                <th><h2>PREFERRED INDUSTRY</h2>
+                                                    <h3>(e.g., IY-BPM, construction, manufacturing)</h3>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input style=width:90%;float:left; type="text" name="occupation1" placeholder="PREFERRED OCCUPATION #1" required maxlength="50">
+                                                </td>
+                                                <td>
+                                                    <input style=width:90%;float:left; type="text" name="industry1" placeholder="PREFERRED INDUSTRY #1" required maxlength="50">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input style=width:90%;float:left; type="text" name="occupation2" placeholder="PREFERRED OCCUPATION #2" required maxlength="50">
+                                                </td>
+                                                <td>
+                                                    <input style=width:90%;float:left; type="text" name="industry2" placeholder="PREFERRED INDUSTRY #2" required maxlength="50">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input style=width:90%;float:left; type="text" name="occupation3" placeholder="PREFERRED OCCUPATION #3" required maxlength="50">
+                                                </td>
+                                                <td>
+                                                    <input style=width:90%;float:left; type="text" name="industry3" placeholder="PREFERRED INDUSTRY #3" required maxlength="50">
+                                                </td>
+                                            </tr>
+                                            </center>
+        
+                                            
+        
+                    </table>
+                    </div>
+
+                    <div class="card4" style="height:40px">
+                          <div class="col1" style="width: 50%">
+                          <h4>PREFERED WORK LOCATION</h4>
+                          </div>
+                          <div class="col2" style="width: 40%">
+                          <select oninput="this.className = ''" name="" required>
+                                <option value="" selected disabled></option>
+                                <option value="Local">Local</option>
+                                <option value="Abroad">Abroad</option>
+                            </select>
+                            </div>
+                    </div>
+                    <br>
+                    <div class="card5">
+                          <div class="col3">
+                          <input type="text" name="" value="">
+                          </div>
+                    </div>
+                    
+                    <div class="card5">
+                          <div class="col3">
+                          <input type="text" name="" value="">
+                          </div>
+                    </div>
+
+        </div>
+    </div>
+
+    <div class="tab">
+    <div class="card2">
+        <h1>EDUCATIONAL BACKGROUND</h1>
+        <div class="card3" style="height:40px">
+                          <div class="col1" style="width: 65%">
+                          <h2>CURRENTLY IN SCHOOL?</h2>
+                          </div>
+                          <div class="col2" style="width: 30%">
+                          <select oninput="this.className = ''" name="" required>
+                                <option value="" selected disabled></option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            </div>
+                        </div>
+
+                        <div class="card3">
+                          <div class="col3">
+                          <h2>HIGHEST EDUCATIONAL LEVEL</h2>
+                          <input type="text" name="" value="">
+                          </div>
+                        </div>
+
+                        <div class="card3">
+                          <div class="col3">
+                          <h2>YEAR GRADUATED/LAST YEAR ATTENDED</h2>
+                          <input type="text" name="" value="">
+                          </div>
+                        </div>
+
+                        <div class="card3">
+                          <div class="col3">
+                          <h2>SCHOOL/UNIVERSITY</h2>
+                          <input type="text" name="" value="">
+                          </div>
+                        </div>
                         
+                        <div class="card3">
+                          <div class="col3">
+                          <h2>COURSE/PROGRAM</h2>
+                          <input type="text" name="" value="">
+                          </div>
+                        </div>
+                        
+                        <div class="card3">
+                          <div class="col3">
+                          <h2>AWARDS/HONORS RECEIVED</h2>
+                          <input type="text" name="" value="">
+                          </div>
+                        </div>
+    </div>
+  </div>
+
+  <div class="tab">
+    <div class="card2">
+        <h1>TRAININGS</h1>
+        <div class="card4" style="height:40px">
+                            <div class="col1" style="width:50%">
+                                <h4>CURRENTLY IN TRAINING?</h4>
+                            </div>
+                            <div class="col2" style="width: 40%">
+                            <select oninput="this.className = ''" name="" required>
+                                <option value="" selected disabled></option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="card3">
+                            <table style="width:95%;margin-left:25px;" >
+                                <center>
+                                <tr>
+                                    <th style=width:300px;>
+                                        <h2 style="text-align:center;">TRAININGS</h2>
+                                    </th>
+                                    <th>
+                                        <h2 style="text-align:center;">DURATION OF COURSES</h2>
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input style=width:100%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:35%;float:left; type="text" name="" placeholder="">
+                                        <input style=width:20%;float:left; type="text" name="" placeholder="TO">
+                                        <input style=width:35%;float:left; type="text" name="" placeholder="">
+                                        
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input style=width:100%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:35%;float:left; type="text" name="" placeholder="">
+                                        <input style=width:20%;float:left; type="text" name="" placeholder="TO">
+                                        <input style=width:35%;float:left; type="text" name="" placeholder="">
+                                        
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input style=width:100%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:35%;float:left; type="text" name="" placeholder="">
+                                        <input style=width:20%;float:left; type="text" name="" placeholder="TO">
+                                        <input style=width:35%;float:left; type="text" name="" placeholder="">
+                                        
+                                    </td>
+                                </tr>
+
+                                
+
+                                
+                                </center>
+                            </table>
                     </div>
-                    
-                    <div class="column middle">
-                      
+
+                    <div class="card3">
+                            <table style="width:95%;margin-left:25px;">
+                                <center>
+                                <tr>
+                                    <th>
+                                        <h2>TRAINING INSTITUTION</h2>
+                                    </th>
+                                    <th>
+                                        <h2>CERTIFICATED RECEIVED</h2>
+                                    </th>
+                                    <th style=width:100px;>
+                                        <h2>COMPLETED</h2>
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input style=width:100%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:100%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:90%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input style=width:100%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:100%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:90%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input style=width:100%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:100%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:90%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                </tr>
+
+                                
+
+                                
+                                </center>
+                            </table>
                     </div>
-                    
+    </div>
+  </div>
+
+  <div class="tab">
+    <div class="card2">
+        <h1>ELIGIBILITY</h1>
+        <div class="card3">
+                            <table style="width:95%; margin-left:25px;">
+                                <center>
+                                <tr>
+                                    <th>
+                                        <h2>CAREER SERVICE/ BOARD/ BAR</h2>
+                                    </th>
+                                    <th style=width:200px;>
+                                        <h2>LICENSE NUMBER</h2>
+                                    </th>
+                                    <th style=width:150px;>
+                                        <h2>EXPIRY DATE</h2>
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input style=width:90%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:80%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:80%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input style=width:90%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:80%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:80%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input style=width:90%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:80%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                    <td>
+                                        <input style=width:80%;float:left; type="text" name="" placeholder="" required maxlength="50">
+                                    </td>
+                                </tr>
+
+                                
+
+                                
+                                </center>
+                            </table>
+                    </div>
+
                    
-                  </div>
-              
-          </div>
 
-          <script src="../JS/NAVBAR.JS"></script>
-    </body>
+                    
+    </div>
+  </div>
+  <div class="tab">Login Info:
+    <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+    <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+  </div>
+  <center>
+  <div>
+    <div >
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </div>
+</center>
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+  </div>
+</form>
 
+
+<script src="../JS/APPLICANT_UPDATE.JS"></script>
+    </body>       
 </html>

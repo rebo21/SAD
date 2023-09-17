@@ -1,36 +1,28 @@
 <!-- VERSION 3 -->
 <?php
 session_start();
-include 'COMPANY_CONFIG.PHP';
-
-$error = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+include '../connect.php';
+if (isset($_POST["submit"])){
     $companyName = $_POST["companyName"];
     $industry = $_POST["industry"];
     $contactPerson = $_POST["contactPerson"];
     $contactNum = $_POST["contactNum"];
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $confirmPassword = $_POST["confirmPassword"];
-
-    $existingEmailQuery = "SELECT * FROM c_accounttb WHERE email = '$email'";
-    $existingEmailResult = $conn->query($existingEmailQuery);
-
-    if ($existingEmailResult->num_rows > 0) {
-        $error = "Account with this email already exists.";
-    } elseif ($password !== $confirmPassword) {
-        $error = "Password do not match!";
-    } else {
-        $sql = "INSERT INTO c_accounttb (companyName, industry, contactPerson, contactNum, email, password) VALUES ('$companyName', '$industry', '$contactPerson', '$contactNum', '$email', '$password')";
-
-        if ($conn->query($sql) === true) {
-            header('Location: COMPANY_LOGIN.php');
-            exit;
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
+    $confirm_password = $_POST["confirm_password"];
+    if($password !== $confirm_password){
+        echo "password not match!";
     }
+    $insert = "INSERT INTO c_accounttb (companyName, industry, contactPerson, contactNum, email, password) VALUES (?,?,?,?,?,?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt,$insert)){
+        echo "cant connect to database";
+    } else {
+        mysqli_stmt_bind_param($stmt, "ssssss",$companyName, $industry, $contactPerson, $contactNum, $email, $password);
+        mysqli_stmt_execute($stmt);
+        header("location:login.php");
+    }
+
 }
 ?>
 
@@ -43,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>COMPANY REGISTER</title>
     <link rel="icon" type="image/x-icon" href="../IMAGES/PESO_LOGO.png">
     <link rel="stylesheet" href="../CSS/COMPANY_REGISTER.CSS">
-   
   </head>
 
   <body>
@@ -98,19 +89,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     <div class="card2">
                         <div class="col3">
-                        
-                            <input style=float:left; type="password" placeholder="PASSWORD" name="password" id="myInput" oninput="validatePassword()"required maxlength="20">
+                            <img src="../IMAGES/eye-close.png" alt="" id="eyeicon1" class="eyeicon" data-target="myInput1">
+                            <input style="float:left;" type="password" placeholder="PASSWORD" name="password" id="myInput1" oninput="validatePassword()" required maxlength="20">
                         </div>
                     </div>
 
                     <div class="card2">
-                        
-
                         <div class="col3">
-                     
-                            <input style=float:left; type="password" placeholder="CONFIRM PASSWORD" name="confirm_password" id="myInput"required maxlength="20">
+                            <img src="../IMAGES/eye-close.png" alt="" id="eyeicon2" class="eyeicon" data-target="myInput2">
+                            <input style="float:left;" type="password" placeholder="CONFIRM PASSWORD" name="confirm_password" id="myInput2" required maxlength="20">
                         </div>
                     </div>
+                    
                     
 
                     <div class="card3">
@@ -122,8 +112,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>                            
                         </div>
                         <br>
-                        <center><button type="submit" class="register">REGISTER</button></center>
-                        <h3>Already have an Account?&nbsp;&nbsp;<a href="APPLICANT_LOGIN.php">LOG IN</a></h3>
+                        <center><button type="submit" class="register"name="submit">REGISTER</button></center>
+                        <h3>Already have an Account?&nbsp;&nbsp;<a href="login.php">LOG IN</a></h3>
                     </div>
 
                     
@@ -134,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </center>
 
-    <script src="../JS/COMPANY_REGISTER.JS"></script>
+    <script src="../JS/applicant_register.js"></script>
   </body>
 
 </html>
